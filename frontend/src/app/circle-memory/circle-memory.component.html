@@ -1,0 +1,11 @@
+<h1>circles memory game</h1>
+<button (click)="startGame()" *ngIf="lives ===0"> start game </button>   
+<div class="game_data">
+<div>lives: {{lives}}</div>
+<div>points {{points}}</div>
+</div>
+<svg [attr.width]="svgWidth" [attr.height]="svgHeight" *ngIf="lives>0">
+    <line *ngFor="let l of generateLines()" [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" [attr.y2]="l.y2" style="stroke:black;stroke-width:2"  />
+    <circle *ngFor="let c of circles; let i = index" [attr.cx]="c.x" [attr.cy]="c.y" r="20" stroke="black" stroke-width="3" fill="blue" (click)="checkNumber(i)" />
+    <text *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y" fill="white" >{{ displayNumber(n) }}</text>
+</svg>
