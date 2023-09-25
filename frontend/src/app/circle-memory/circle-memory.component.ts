@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-
+import { HttpClient } from '@angular/common/http';
+import { saveData } from '../game-util';
 export interface SVGCircle {
   x:number ,
   y: number,
@@ -19,11 +19,7 @@ export interface SVGNumber {
   n:number
 }
 
-export interface MemoryGame {
-  id?:number,
-  title:string,
-  points:number
-}
+
 
 @Component({
   selector: 'app-circle-memory',
@@ -32,7 +28,7 @@ export interface MemoryGame {
 })
 export class CircleMemoryComponent {
 
-  private DJANGO_URL="http://127.0.0.1:8000/api/memory_game/";
+
 
   circles:SVGCircle[] = [];
 
@@ -55,8 +51,6 @@ export class CircleMemoryComponent {
   constructor(private  http:HttpClient){
 
   }
-
-  ngOnInit(): void {}
 
   displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
@@ -93,7 +87,7 @@ export class CircleMemoryComponent {
           this.generateCircles();
         }
         else {
-          this.saveData();
+          saveData('circle',this.points,this.http);
         }
       }
     }
@@ -140,27 +134,6 @@ export class CircleMemoryComponent {
     return lines;
   }
 
-  saveData() {
-    let score:MemoryGame = {title:'circle',points:this.points};
-    
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };   
-    
-    // Subscribe to the POST request to trigger it
-    this.http.post<MemoryGame>(this.DJANGO_URL, score, httpOptions).subscribe(
-      (response) => {
-        // Handle the response from the server (e.g., update your local todos)
-        console.log('Game data saved:', response);
-      },
-      (error) => {
-        // Handle errors here
-        console.error('Error saving game data:', error);
-      }
-);
 
-  }
 
 }

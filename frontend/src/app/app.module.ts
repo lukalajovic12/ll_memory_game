@@ -7,12 +7,14 @@ import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
 import { HttpClientModule} from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { GameScoreComponent } from './game-score/game-score.component';
+import { SquareMemoryComponent } from './square-memory/square-memory.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CircleMemoryComponent,
-    GameScoreComponent
+    GameScoreComponent,
+    SquareMemoryComponent
   ],
   imports: [
     BrowserModule,

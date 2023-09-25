@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { DJANGO_URL } from '../game-util';
 
 export interface Score {
   id:number,
@@ -15,8 +16,6 @@ export interface Score {
 })
 export class GameScoreComponent {
 
-  private DJANGO_URL="http://127.0.0.1:8000/api/memory_game/";
-
   score: Observable<Score[]>;
 
   constructor(private  http:HttpClient){
@@ -24,7 +23,7 @@ export class GameScoreComponent {
   }  
 
   getScore() {
-    this.score=this.http.get<Score[]>(this.DJANGO_URL);
+    this.score=this.http.get<Score[]>(DJANGO_URL);
   }
 
 }
