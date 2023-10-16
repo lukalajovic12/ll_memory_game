@@ -20,9 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: cd ll_memory_game/frontend && npm install
-      - run: cd ll_memory_game/frontend && npm run build --if-present
-      - run: cd ll_memory_game/frontend && npm test
+      - run: cd frontend && npm install
+      - run: cd frontend && npm run build --if-present
+      - run: cd frontend && npm test
 
   deploy:
     needs: build
@@ -32,5 +32,5 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./ll_memory_game/frontend/dist/ll_memory_game
+          publish_dir: ./frontend/dist
           cache: 'll_memory_game/frontend/package-lock.json'
