@@ -1,5 +1,5 @@
 <app-game-data
-[title]="'Square memory'"
+[title]="'Square reverse memory'"
 [lives]="lives"
 [points]="points"
 [startGame]="startGame"
@@ -11,5 +11,12 @@
     [attr.height]="svgWidth/numberOfSquares" 
     [attr.x]=" k.column*svgWidth/numberOfSquares"
     [attr.y]="k.row*svgWidth/numberOfSquares"
-    (click)="checkSquare(k)" />
+     />
+    <rect *ngFor="let k of squaresReverse" [attr.fill]="squareReverseColor(k)" 
+    stroke="black" 
+    [attr.width]="svgWidth/numberOfSquares" 
+    [attr.height]="svgWidth/numberOfSquares" 
+    [attr.x]=" k.column*svgWidth/numberOfSquares"
+    [attr.y]="k.row*svgWidth/numberOfSquares"
+    (click)="checkSquare(k)" />   
 </svg>

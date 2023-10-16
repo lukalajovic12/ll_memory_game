@@ -31,3 +31,33 @@ export function saveData(title:string,gamePoints:number,http:HttpClient):void {
     );
 
   }
+
+  export interface WindowSize { width: number, height: number }
+
+  export function updateWindowSize(): WindowSize {
+    // Use Renderer2 to get the window size
+    const width = window.innerWidth;
+    const height = window.innerHeight;
+
+    // Store the window size in your class property
+
+    let svgWidth=0;
+
+    if(width<800){
+      svgWidth=width;
+    } else {
+      svgWidth=800;
+    }
+    let svgHeight=0;
+    if(height<1000){
+      svgHeight=height/2;
+    } else {
+        svgHeight=1000;
+    }
+    if(svgHeight>svgWidth) {
+      svgHeight=svgWidth;
+    } else {
+      svgWidth=svgHeight;
+    }
+    return {width:svgWidth,height:svgHeight}
+  }

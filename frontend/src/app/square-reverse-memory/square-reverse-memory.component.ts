@@ -11,20 +11,21 @@ interface SvgSquare {
 }
 
 @Component({
-  selector: 'app-square-memory-igra',
-  templateUrl: './square-memory.component.html',
-  styleUrls: ['./square-memory.component.scss']
+  selector: 'app-square-reverse-memory',
+  templateUrl: './square-reverse-memory.component.html',
+  styleUrls: ['./square-reverse-memory.component.scss']
 })
-export class SquareMemoryComponent implements OnInit {
-
+export class SquareReverseMemoryComponent implements OnInit {
   windowSize: WindowSize;
 
   squares:SvgSquare[] = [];
 
+  squaresReverse:SvgSquare[] = [];
+
   lives = 0;
   points = 0;
 
-  numberOfSquares=3;
+  numberOfSquares=2;
 
   svgWidth=500;
 
@@ -50,12 +51,24 @@ export class SquareMemoryComponent implements OnInit {
     }
   }
 
+  squareReverseColor(square:SvgSquare):string{
+    if( square.value==2 ){
+      return "green";
+    }
+    else{
+      return "gray";
+    }
+  }
+
+  
+
 
   startGame = () => {
     this.time =3000;
     this.currentNumber=1;
-    this.numberOfSquares=3;
+    this.numberOfSquares=4;
     this.squares=[];
+    this.squaresReverse=[];
     this.points=0;
     this.lives=5;
     this.generateSquares();
@@ -67,22 +80,22 @@ export class SquareMemoryComponent implements OnInit {
         if(this.currentNumber==this.numberOfSquares){
           square.value=2;
           this.points+=1000;
-          this.numberOfSquares+=1;
+          this.numberOfSquares+=2;
           this.generateSquares();
         } else {
           this.points+=100;
           this.currentNumber+=1;
           square.value=2;
         }
-      } else {
+      } else if(square.value != 2) {
         this.lives-=1;
         if(this.lives>0){
-          if(this.numberOfSquares>3){
-            this.numberOfSquares-=1;
+          if(this.numberOfSquares>4){
+            this.numberOfSquares-=2;
           }
           this.generateSquares();
         } else {
-            saveData('square',this.points,this.http);       
+            saveData('square-reverse',this.points,this.http);       
         }
       }
   }
@@ -90,6 +103,7 @@ export class SquareMemoryComponent implements OnInit {
 
   async generateSquares():Promise<void>{
     this.squares =[];
+    this.squaresReverse =[];
     this.currentNumber=1;
 
     this.showValue=true;
@@ -98,7 +112,7 @@ export class SquareMemoryComponent implements OnInit {
 
 
     let sq = [];
-    for(let i=0;i<(this.numberOfSquares*this.numberOfSquares-this.numberOfSquares);i++){
+    for(let i=0;i<(this.numberOfSquares*this.numberOfSquares/2-this.numberOfSquares);i++){
       sq.push(0);
     }
     for(let i=0;i<this.numberOfSquares;i++){
@@ -107,11 +121,22 @@ export class SquareMemoryComponent implements OnInit {
     const shuffledArray = sq.sort((a, b) => 0.5 - Math.random());
 
     let index=0;
-    for(let i=0;i<this.numberOfSquares;i++){
+    for(let i=0;i<this.numberOfSquares/2;i++){
 
       for(let j=0;j<this.numberOfSquares;j++) {
         let k:SvgSquare ={row:i,column:j,value:shuffledArray[index]};
         this.squares.push(k);
+        index+=1;
+      }
+  
+    }
+
+    index=0;
+    for(let i=0;i<this.numberOfSquares/2;i++){
+
+      for(let j=0;j<this.numberOfSquares;j++) {
+        let k:SvgSquare ={row:this.numberOfSquares-1-i,column:j,value:shuffledArray[index]};
+        this.squaresReverse.push(k);
         index+=1;
       }
   
@@ -122,4 +147,11 @@ export class SquareMemoryComponent implements OnInit {
     }, this.time);
   }
 
+
+
+
+
+
+
 }
+

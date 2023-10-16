@@ -1,19 +1,18 @@
-import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { saveData } from '../game-util';
-export interface SVGCircle {
+import { saveData,WindowSize,updateWindowSize } from '../game-util';
+import { Component, OnInit } from '@angular/core';
+interface SVGCircle {
   x:number ,
   y: number,
 }
-
-export interface SVGLine {
+interface SVGLine {
   x1:number ,
   y1: number,
   x2:number,
   y2:number
 }
 
-export interface SVGNumber {
+interface SVGNumber {
   x:number ,
   y: number,
   n:number
@@ -26,9 +25,9 @@ export interface SVGNumber {
   templateUrl: './circle-memory.component.html',
   styleUrls: ['./circle-memory.component.scss']
 })
-export class CircleMemoryComponent {
+export class CircleMemoryComponent implements OnInit {
 
-
+  windowSize: WindowSize;
 
   circles:SVGCircle[] = [];
 
@@ -39,7 +38,7 @@ export class CircleMemoryComponent {
 
   gameNumbers:SVGNumber[];
 
-  svgWidth=500;
+  svgWidth=1000;
   svgHeight=500;
 
   currentNumber:number;
@@ -49,14 +48,18 @@ export class CircleMemoryComponent {
   showValue:boolean;
 
   constructor(private  http:HttpClient){
+  }
 
+  ngOnInit() {
+    // Get the initial window size
+    this.windowSize=updateWindowSize();
   }
 
   displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
   }
 
-  startGame() {
+  startGame = () => {
     this.time =3000;
     this.currentNumber=1;
     this.numberOfCircles=3;
@@ -133,7 +136,4 @@ export class CircleMemoryComponent {
     }
     return lines;
   }
-
-
-
 }

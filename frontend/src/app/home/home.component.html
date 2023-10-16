@@ -1,0 +1,30 @@
+<h1>Memory games</h1>
+<ul class="game_menu">
+    <li>
+    <a routerLink="/circles">
+        circles
+    </a>
+    </li>
+    <li>
+    <a routerLink="/squares">
+        squares
+    </a>
+    </li>
+    <li>
+    <a routerLink="/squares-reverse">
+        squares reverse
+    </a>  
+</li>
+    <li>
+    <a routerLink="/score">
+        score
+    </a>  
+</li>         
+</ul>
+<div class="all_sides">
+    <div class="left_side" [style.padding.px]="leftSideWidth()"></div>
+    <div class="middle-side">
+        <router-outlet></router-outlet>
+    </div>
+    <div class="right_side" [style.padding.px]="rightSideWidth()"></div>
+    </div>

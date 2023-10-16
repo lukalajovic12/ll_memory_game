@@ -1,0 +1,11 @@
+<div class="game_data_component">
+    <h1>{{title}}</h1>
+  
+    <div class="game_data">
+        <div class="start_button_div">
+            <button (click)="startTheGame()" *ngIf="lives ===0"> start game </button> 
+        </div>
+        <div class="lives_div"><p>lives: {{lives}}</p></div>
+        <div class="points_div"><p>points {{points}}</p></div>
+    </div>
+</div>
