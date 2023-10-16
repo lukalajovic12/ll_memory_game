@@ -20,9 +20,9 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: npm install
-      - run: npm run build --if-present
-      - run: npm test
+      - run: cd ll_memory_game/frontend && npm install
+      - run: cd ll_memory_game/frontend && npm run build --if-present
+      - run: cd ll_memory_game/frontend && npm test
 
   deploy:
     needs: build
@@ -32,4 +32,4 @@ jobs:
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./frontend/dist/ll_memory_game
+          publish_dir: ./ll_memory_game/frontend/dist/ll_memory_game
