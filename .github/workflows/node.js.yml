@@ -20,9 +20,14 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
-      - run: cd ll_memory_game/frontend && npm install
-      - run: cd ll_memory_game/frontend && npm run build --if-present
-      - run: cd ll_memory_game/frontend && npm test
+      - name: Install Dependencies
+        working-directory: ./ll_memory_game/frontend
+        run: npm install
+      - name: Build and Test
+        working-directory: ./ll_memory_game/frontend
+        run: |
+          npm run build --if-present
+          npm test
 
   deploy:
     needs: build
@@ -33,5 +38,3 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./ll_memory_game/frontend/dist/ll_memory_game
-          cache: 'll_memory_game/frontend/package-lock.json'
-
