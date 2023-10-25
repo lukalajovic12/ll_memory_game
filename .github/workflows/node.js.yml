@@ -30,5 +30,6 @@ jobs:
       working-directory: frontend
     - run: npm run build --if-present
       working-directory: frontend
-
+    - run: npm run start
+      working-directory: frontend
       
