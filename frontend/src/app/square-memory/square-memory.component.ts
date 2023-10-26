@@ -34,6 +34,8 @@ export class SquareMemoryComponent implements OnInit {
 
   showValue:boolean;
 
+  private incressLevel=false;
+
   constructor(private  http:HttpClient) { }
 
   ngOnInit() {
@@ -62,12 +64,15 @@ export class SquareMemoryComponent implements OnInit {
   }
 
   checkSquare(square:SvgSquare){
-    if(!this.showValue) {
+    if(!this.showValue && square.value != 2) {
       if(square.value == 1){
         if(this.currentNumber==this.numberOfSquares){
           square.value=2;
           this.points+=1000;
-          this.numberOfSquares+=1;
+          if(this.incressLevel) {
+            this.numberOfSquares+=1;
+          }
+          this.incressLevel=!this.incressLevel;
           this.generateSquares();
         } else {
           this.points+=100;
@@ -76,6 +81,7 @@ export class SquareMemoryComponent implements OnInit {
         }
       } else {
         this.lives-=1;
+        this.incressLevel=false;
         if(this.lives>0){
           if(this.numberOfSquares>3){
             this.numberOfSquares-=1;
@@ -94,9 +100,6 @@ export class SquareMemoryComponent implements OnInit {
 
     this.showValue=true;
     this.time+=100;
-
-
-
     let sq = [];
     for(let i=0;i<(this.numberOfSquares*this.numberOfSquares-this.numberOfSquares);i++){
       sq.push(0);

@@ -1,0 +1,9 @@
+<form (ngSubmit)="register()">
+    <input type="text" formControlName="username" placeholder="Username">
+    <input type="email" formControlName="email" placeholder="Email">
+    <input type="password" formControlName="password" placeholder="Password">
+    <button type="submit">Register</button>
+  </form>
+  
+  <button (click)="signInWithGoogle()">Register with Google</button>
+  

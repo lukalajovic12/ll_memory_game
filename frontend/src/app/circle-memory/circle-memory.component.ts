@@ -47,6 +47,8 @@ export class CircleMemoryComponent implements OnInit {
 
   showValue:boolean;
 
+  private incressLevel=false;
+
   constructor(private  http:HttpClient){
   }
 
@@ -60,7 +62,7 @@ export class CircleMemoryComponent implements OnInit {
   }
 
   startGame = () => {
-    this.time =3000;
+    this.time =2000;
     this.currentNumber=1;
     this.numberOfCircles=3;
     this.gameNumbers=[];
@@ -71,11 +73,14 @@ export class CircleMemoryComponent implements OnInit {
   }
 
   checkNumber(i:number){
-    if(!this.showValue) {
+    if(!this.showValue && this.gameNumbers[i].n >= this.currentNumber) {
       if(this.gameNumbers[i].n == this.currentNumber){
         if(this.currentNumber==this.numberOfCircles){
           this.points+=1000;
-          this.numberOfCircles+=1;
+          if(this.incressLevel){
+            this.numberOfCircles+=1;
+          }
+          this.incressLevel=!this.incressLevel;
           this.generateCircles();
         } else {
           this.points+=100;
@@ -87,6 +92,7 @@ export class CircleMemoryComponent implements OnInit {
           if(this.numberOfCircles>3){
             this.numberOfCircles-=1;
           }
+          this.incressLevel=false;
           this.generateCircles();
         }
         else {
@@ -102,7 +108,7 @@ export class CircleMemoryComponent implements OnInit {
     this.circles=[]
     
     this.showValue=true;
-    this.time+=100;
+    this.time+=200;
     let sq = [];
     for(let i=1;i<(this.numberOfCircles+1);i++){
       sq.push(i);

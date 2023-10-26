@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
-import { AppRoutingModule } from './square-reverse-memory/app-routing.module';
+import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
 import { HttpClientModule} from '@angular/common/http'; 
@@ -11,6 +11,8 @@ import { SquareMemoryComponent } from './square-memory/square-memory.component';
 import { GameDataComponent } from './game-data/game-data.component';
 import { HomeComponent } from './home/home.component';
 import { SquareReverseMemoryComponent } from './square-reverse-memory/square-reverse-memory.component';
+import { RegistrationComponent } from './registration/registration.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { SquareReverseMemoryComponent } from './square-reverse-memory/square-rev
     SquareMemoryComponent,
     GameDataComponent,
     HomeComponent,
-    SquareReverseMemoryComponent
+    SquareReverseMemoryComponent,
+    RegistrationComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

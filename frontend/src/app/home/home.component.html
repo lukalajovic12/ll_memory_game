@@ -1,25 +1,10 @@
-<h1>Memory games</h1>
 <ul class="game_menu">
-    <li>
-    <a routerLink="/circles">
-        circles
-    </a>
-    </li>
-    <li>
-    <a routerLink="/squares">
-        squares
-    </a>
-    </li>
-    <li>
-    <a routerLink="/squares-reverse">
-        squares reverse
-    </a>  
-</li>
-    <li>
-    <a routerLink="/score">
-        score
-    </a>  
-</li>         
+<li><a routerLink="/circles">circles</a></li>
+<li><a routerLink="/squares">squares</a></li>
+<li><a routerLink="/squares-reverse">squares reverse</a></li> 
+<li><a routerLink="/score">score</a></li>  
+<li><a routerLink="/registration">registration</a></li> 
+<li><a routerLink="/login">login</a></li> 
 </ul>
 <div class="all_sides">
     <div class="left_side" [style.padding.px]="leftSideWidth()"></div>
@@ -27,4 +12,4 @@
         <router-outlet></router-outlet>
     </div>
     <div class="right_side" [style.padding.px]="rightSideWidth()"></div>
-    </div>
+</div>
