@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { saveData,WindowSize,updateWindowSize } from '../game-util';
 import { HttpClient } from '@angular/common/http';
+import {UserService} from '../user.service';
   //0 means not red
   //1 means red
   // 2 means red but already clcked
@@ -36,7 +37,7 @@ export class SquareMemoryComponent implements OnInit {
 
   private incressLevel=false;
 
-  constructor(private  http:HttpClient) { }
+  constructor(private  http:HttpClient,public _userService: UserService) { }
 
   ngOnInit() {
     // Get the initial window size
@@ -59,7 +60,7 @@ export class SquareMemoryComponent implements OnInit {
     this.numberOfSquares=3;
     this.squares=[];
     this.points=0;
-    this.lives=5;
+    this.lives=3;
     this.generateSquares();
   }
 
@@ -88,7 +89,7 @@ export class SquareMemoryComponent implements OnInit {
           }
           this.generateSquares();
         } else {
-            saveData('square',this.points,this.http);       
+            saveData('square',this.points,this.http,this._userService);       
         }
       }
   }

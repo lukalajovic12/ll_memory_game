@@ -13,9 +13,9 @@ const routes: Routes = [
     { path: 'squares', component: SquareMemoryComponent },   
     { path: 'squares-reverse', component: SquareReverseMemoryComponent },
     { path: 'register', component:RegistrationComponent},   
-    { path: 'login', component:LoginComponent} 
+    { path: 'login', component:LoginComponent},
+    {path:'score',component:GameScoreComponent} 
   ]},  
-  {path:'score',component:GameScoreComponent},
 ];
 
 

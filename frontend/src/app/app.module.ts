@@ -13,6 +13,7 @@ import { HomeComponent } from './home/home.component';
 import { SquareReverseMemoryComponent } from './square-reverse-memory/square-reverse-memory.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
+import { UserService } from './user.service';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,7 @@ import { LoginComponent } from './login/login.component';
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

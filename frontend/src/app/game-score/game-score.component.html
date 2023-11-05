@@ -1,23 +1,16 @@
-<h1>Score</h1>
-<a routerLink="/">
-    home
-</a> 
-<button (click)="getScore()"> show score</button>
-
-<table>
-    <th>id</th>
-    <th>title</th>
-    <th>description</th>
-    <th>completed</th>
-    <tr *ngFor="let s of score | async">
-        <td>
-        {{s.id}}
-        </td>
-        <td>
-        {{s.title}}
-        </td>
-        <td>
-        {{s.points}}
-        </td>            
-    </tr>
+<div *ngIf="_userService.token"> 
+    <h1>Score</h1>
+    <button (click)="getScore()"> show score</button>
+    <table>
+        <th>title</th>
+        <th>points</th>
+        <tr *ngFor="let s of score | async">
+            <td>
+            {{s.title}}
+            </td>
+            <td>
+            {{s.points}}
+            </td>            
+        </tr>
     </table>
+</div>

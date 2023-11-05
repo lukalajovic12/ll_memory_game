@@ -1,9 +1,9 @@
 <ul class="game_menu">
-<li><a routerLink="/circles">circles</a></li>
-<li><a routerLink="/squares">squares</a></li>
-<li><a routerLink="/squares-reverse">squares reverse</a></li> 
-<li><a routerLink="/score">score</a></li>  
-<li><a routerLink="/registration">registration</a></li> 
+<li *ngIf="_userService.token"><a routerLink="/circles">circles</a></li>
+<li *ngIf="_userService.token"><a routerLink="/squares">squares</a></li>
+<li *ngIf="_userService.token"><a routerLink="/squares-reverse">squares reverse</a></li> 
+<li *ngIf="_userService.token"><a routerLink="/score">score</a></li>  
+<li><a routerLink="/register">register</a></li> 
 <li><a routerLink="/login">login</a></li> 
 </ul>
 <div class="all_sides">

@@ -1,28 +1,47 @@
-import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { SocialAuthService, GoogleLoginProvider, SocialUser } from 'angularx-social-login';
+import { Component,OnInit } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import {User} from '../user.service';
+
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.scss']
 })
-export class RegistrationComponent {
-  registerForm: FormGroup;
+export class RegistrationComponent implements OnInit {
 
-  constructor(private fb: FormBuilder, private authService: SocialAuthService) {
-    this.registerForm = this.fb.group({
-      username: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]],
-    });
+  DJANGO_URL="http://127.0.0.1:8000/api/users/";
+  username="";
+  password="";
+
+  constructor(private http:HttpClient) {
   }
+
+  ngOnInit(): void {
+  }
+  
+
 
   register() {
-    // Handle registration logic here
+    let user: User= {id:-1,username:this.username, password:this.password};
+    
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };   
+    
+    // Subscribe to the POST request to trigger it
+    this.http.post<User>(this.DJANGO_URL, user, httpOptions).subscribe(
+      (response) => {
+        // Handle the response from the server (e.g., update your local todos)
+        console.log('Game data saved:', response);
+      },
+      (error) => {
+        // Handle errors here
+        console.error('Error saving game data:', error);
+      }
+    );
   }
 
-  signInWithGoogle(): void {
-    this.authService.signIn(GoogleLoginProvider.PROVIDER_ID);
-  }
 }

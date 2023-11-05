@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-
+import {UserService} from '../user.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,6 +9,8 @@ export class HomeComponent implements OnInit {
   
   windowSize: { width: number, height: number };
   svgWidth=1000;
+
+  constructor(public _userService: UserService) { }
 
   ngOnInit() {
     // Get the initial window size

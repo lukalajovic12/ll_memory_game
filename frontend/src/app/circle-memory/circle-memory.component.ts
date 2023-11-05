@@ -1,6 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { saveData,WindowSize,updateWindowSize } from '../game-util';
 import { Component, OnInit } from '@angular/core';
+import {UserService} from '../user.service';
+
 interface SVGCircle {
   x:number ,
   y: number,
@@ -49,7 +51,7 @@ export class CircleMemoryComponent implements OnInit {
 
   private incressLevel=false;
 
-  constructor(private  http:HttpClient){
+  constructor(private  http:HttpClient,public _userService: UserService){
   }
 
   ngOnInit() {
@@ -68,7 +70,7 @@ export class CircleMemoryComponent implements OnInit {
     this.gameNumbers=[];
     this.circles=[];
     this.points=0;
-    this.lives=5;
+    this.lives=3;
     this.generateCircles();
   }
 
@@ -96,7 +98,7 @@ export class CircleMemoryComponent implements OnInit {
           this.generateCircles();
         }
         else {
-          saveData('circle',this.points,this.http);
+          saveData('circle',this.points,this.http,this._userService);
         }
       }
     }
