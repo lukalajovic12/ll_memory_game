@@ -40,8 +40,7 @@ export class CircleMemoryComponent implements OnInit {
 
   gameNumbers:SVGNumber[];
 
-  svgWidth=1000;
-  svgHeight=500;
+
 
   currentNumber:number;
 
@@ -118,8 +117,8 @@ export class CircleMemoryComponent implements OnInit {
     let shuffledNumbers = sq.sort((a, b) => 0.5 - Math.random());
 
     for(let i=0;i<this.numberOfCircles;i++){
-      let xx =this.svgWidth/this.numberOfCircles*i +50
-      let yy = Math.floor(50+Math.random() * (this.svgHeight-100));
+      let xx =this.windowSize.width/this.numberOfCircles*i +50
+      let yy = Math.floor(50+Math.random() * (this.windowSize.height-100));
       let c:SVGCircle = {x:xx,y:yy}; 
       this.circles.push(c);
       let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i]}; 

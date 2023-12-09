@@ -1,8 +1,8 @@
 <ul class="game_menu">
-<li *ngIf="_userService.token"><a routerLink="/circles">circles</a></li>
-<li *ngIf="_userService.token"><a routerLink="/squares">squares</a></li>
-<li *ngIf="_userService.token"><a routerLink="/squares-reverse">squares reverse</a></li> 
-<li *ngIf="_userService.token"><a routerLink="/score">score</a></li>  
+<li *ngIf="_userService.isAuthenticated()"><a routerLink="/circles">circles</a></li>
+<li *ngIf="_userService.isAuthenticated()"><a routerLink="/squares">squares</a></li>
+<li *ngIf="_userService.isAuthenticated()"><a routerLink="/squares-reverse">squares reverse</a></li> 
+<li *ngIf="_userService.isAuthenticated()"><a routerLink="/score">score</a></li>  
 <li><a routerLink="/register">register</a></li> 
 <li><a routerLink="/login">login</a></li> 
 </ul>

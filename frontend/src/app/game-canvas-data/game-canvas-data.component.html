@@ -1,0 +1,6 @@
+<svg [attr.width]="windowSize.width" [attr.height]="windowSize.width" *ngIf="show" [@fadeInOut]>
+    <text [attr.x]="windowSize.width/10" [attr.y]="windowSize.width/10" style="font-size:18px;">Great Job</text>
+    <text [attr.x]="windowSize.width/10" [attr.y]="2*windowSize.width/10" style="font-size:18px;">You have {{lives}} lives</text>
+    <text [attr.x]="windowSize.width/10" [attr.y]="3*windowSize.width/10" style="font-size:18px;">You have {{points}} points</text>
+    <text [attr.x]="windowSize.width/10" [attr.y]="4*windowSize.width/10" style="font-size:18px;">Keep it Up</text>
+</svg>

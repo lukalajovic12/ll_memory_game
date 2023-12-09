@@ -3,14 +3,25 @@
 [lives]="lives"
 [points]="points"
 [startGame]="startGame"
-*ngIf="_userService.token"
+*ngIf="_userService.isAuthenticated() && lives<1"
 />
-<svg [attr.width]="svgWidth" [attr.height]="svgWidth" *ngIf="lives>0 && _userService.token">
-    <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
-    stroke="black" 
-    [attr.width]="svgWidth/numberOfSquares" 
-    [attr.height]="svgWidth/numberOfSquares" 
-    [attr.x]=" k.column*svgWidth/numberOfSquares"
-    [attr.y]="k.row*svgWidth/numberOfSquares"
-    (click)="checkSquare(k)" />
-</svg>
+<div class="game_area">
+    <div [attr.width]="sidesWidth()"></div>
+    <div>
+        <svg [attr.width]="windowSize.width" [attr.height]="windowSize.width" *ngIf="showGame() && showGameCanvas" [@fadeInOut]>
+            <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
+            stroke="black" 
+            [attr.width]="windowSize.width/numberOfSquares" 
+            [attr.height]="windowSize.width/numberOfSquares" 
+            [attr.x]=" k.column*windowSize.width/numberOfSquares"
+            [attr.y]="k.row*windowSize.width/numberOfSquares"
+            (click)="checkSquare(k)" />
+        </svg>
+        <app-game-canvas-data 
+        [lives]="lives"
+        [points]="points"
+        [show]="showGame() &&showDataCanvas"
+        />
+    </div>
+    <div [attr.width]="sidesWidth()"></div>
+</div>

@@ -3,9 +3,9 @@
 [lives]="lives"
 [points]="points"
 [startGame]="startGame"
-*ngIf="_userService.token"
+*ngIf="_userService.isAuthenticated()"
 />
-<svg [attr.width]="svgWidth" [attr.height]="svgWidth" *ngIf="lives>0 && _userService.token">
+<svg [attr.width]="svgWidth" [attr.height]="svgWidth" *ngIf="lives>0 && _userService.isAuthenticated()">
     <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
     stroke="black" 
     [attr.width]="svgWidth/numberOfSquares" 

@@ -79,6 +79,12 @@ export class UserService {
     this.username = token_decoded.username;
     this.user_id=token_decoded.user_id;
   }
+
+
+  public isAuthenticated():boolean {
+    // return this.token !==null;
+     return true;
+   }
  
 }
 

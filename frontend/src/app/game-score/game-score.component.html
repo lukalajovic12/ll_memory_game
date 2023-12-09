@@ -1,4 +1,4 @@
-<div *ngIf="_userService.token"> 
+<div *ngIf="_userService.isAuthenticated()"> 
     <h1>Score</h1>
     <button (click)="getScore()"> show score</button>
     <table>

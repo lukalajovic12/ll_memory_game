@@ -1,7 +1,7 @@
 
 
 <h2>Log In</h2>
-<div class="row" *ngIf="!_userService.token">
+<div class="row" *ngIf="!_userService.isAuthenticated()">
   <div class="col-sm-4">
     <label>Username:</label><br />
     <input type="text" name="login-username" [(ngModel)]="user.username">
@@ -21,7 +21,7 @@
     <span *ngFor="let error of _userService.errors.non_field_errors"><br /></span>
   </div>
 </div>
-<div class="row" *ngIf="_userService.token">
+<div class="row" *ngIf="_userService.isAuthenticated()">
   <div class="col-sm-12">
     <button (click)="logout()" class="btn btn-primary">Log Out</button>
   </div>
