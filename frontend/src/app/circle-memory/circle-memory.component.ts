@@ -1,7 +1,7 @@
-import { HttpClient } from '@angular/common/http';
-import { saveData,WindowSize,updateWindowSize } from '../game-util';
-import { Component, OnInit } from '@angular/core';
-import {UserService} from '../user.service';
+import {saveData,WindowSize,updateWindowSize } from '../game-util';
+import { Component } from '@angular/core';
+import {trigger, state, style, animate, transition } from '@angular/animations';
+import { GameBase } from '../game-base';
 
 interface SVGCircle {
   x:number ,
@@ -20,43 +20,30 @@ interface SVGNumber {
   n:number
 }
 
-
-
 @Component({
   selector: 'app-circle-memory',
   templateUrl: './circle-memory.component.html',
-  styleUrls: ['./circle-memory.component.scss']
+  styleUrls: ['./circle-memory.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate('0.5s ease-in-out')
+      ])
+    ])
+  ]  
 })
-export class CircleMemoryComponent implements OnInit {
-
-  windowSize: WindowSize;
+export class CircleMemoryComponent extends GameBase {
 
   circles:SVGCircle[] = [];
 
-  lives = 0;
-  points = 0;
+  protected numberOfCircles=3;
 
-  numberOfCircles=3;
+  protected gameNumbers:SVGNumber[];
 
-  gameNumbers:SVGNumber[];
-
-
-
-  currentNumber:number;
-
-  time:number;
-
-  showValue:boolean;
-
-  private incressLevel=false;
-
-  constructor(private  http:HttpClient,public _userService: UserService){
-  }
-
-  ngOnInit() {
-    // Get the initial window size
-    this.windowSize=updateWindowSize();
-  }
+  protected currentNumber:number;
 
   displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
@@ -70,7 +57,10 @@ export class CircleMemoryComponent implements OnInit {
     this.circles=[];
     this.points=0;
     this.lives=3;
-    this.generateCircles();
+    this.generate();
+    setTimeout(() => {
+      this.showValue=false;
+    }, this.time);
   }
 
   checkNumber(i:number){
@@ -82,7 +72,7 @@ export class CircleMemoryComponent implements OnInit {
             this.numberOfCircles+=1;
           }
           this.incressLevel=!this.incressLevel;
-          this.generateCircles();
+          this.generatePause();
         } else {
           this.points+=100;
           this.currentNumber+=1;
@@ -94,7 +84,7 @@ export class CircleMemoryComponent implements OnInit {
             this.numberOfCircles-=1;
           }
           this.incressLevel=false;
-          this.generateCircles();
+          this.generatePause();
         }
         else {
           saveData('circle',this.points,this.http,this._userService);
@@ -103,7 +93,7 @@ export class CircleMemoryComponent implements OnInit {
     }
   }
 
-  async generateCircles():Promise<void>{
+  async generate():Promise<void> {
     this.currentNumber=1;
     this.gameNumbers=[];
     this.circles=[]
@@ -124,13 +114,6 @@ export class CircleMemoryComponent implements OnInit {
       let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i]}; 
       this.gameNumbers.push(nu);
     }
-
-    setTimeout(() => {
-      this.showValue=false;
-    }, this.time);
-
-
-
   }
 
   generateLines():SVGLine[] {
@@ -143,4 +126,5 @@ export class CircleMemoryComponent implements OnInit {
     }
     return lines;
   }
+
 }

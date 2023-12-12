@@ -4,6 +4,7 @@ export const DJANGO_URL="http://127.0.0.1:8000/api/memory_game/";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {UserService} from './user.service';
 
+
 export interface MemoryGame {
     id?:number,
     title:string,
@@ -63,3 +64,7 @@ export function saveData(title:string,gamePoints:number,http:HttpClient,userServ
     }
     return {width:svgWidth,height:svgHeight}
   }
+
+
+
+

@@ -1,10 +1,20 @@
 <div class="game_data_component">  
     <div class="game_data">
-        <div class="game_name_div"><p>{{title}}</p></div>
-        <div class="lives_div"><p>lives: {{lives}}</p></div>
-        <div class="points_div"><p>points {{points}}</p></div>
         <div class="start_button_div">
-            <button (click)="startTheGame()" *ngIf="lives ===0"> start game </button> 
+            <button (click)="startTheGame()" *ngIf="lives === 0"> start game </button> 
         </div>
     </div>
+</div>
+<div class="game_area" *ngIf="showGame()">
+    <div [attr.width]="sidesWidth()"></div>
+    <div>
+        <ng-content />
+        <div *ngIf="showData" [@fadeInOut]>
+            <h1>Great Job</h1>
+            <h1>You have {{lives}} lives</h1>
+            <h1>You have {{points}} points</h1>
+            <h1>Keep it Up</h1>
+        </div>
+    </div>
+    <div [attr.width]="sidesWidth()"></div>
 </div>

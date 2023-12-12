@@ -3,21 +3,22 @@
 [lives]="lives"
 [points]="points"
 [startGame]="startGame"
-*ngIf="_userService.isAuthenticated()"
-/>
-<svg [attr.width]="svgWidth" [attr.height]="svgWidth" *ngIf="lives>0 && _userService.isAuthenticated()">
+[showData]="showDataCanvas"
+>
+<svg [attr.width]="windowSize.width" [attr.height]="windowSize.width" *ngIf="showGameCanvas" [@fadeInOut]>
     <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
     stroke="black" 
-    [attr.width]="svgWidth/numberOfSquares" 
-    [attr.height]="svgWidth/numberOfSquares" 
-    [attr.x]=" k.column*svgWidth/numberOfSquares"
-    [attr.y]="k.row*svgWidth/numberOfSquares"
+    [attr.width]="windowSize.width/numberOfSquares" 
+    [attr.height]="windowSize.width/numberOfSquares" 
+    [attr.x]=" k.column*windowSize.width/numberOfSquares"
+    [attr.y]="k.row*windowSize.width/numberOfSquares"
      />
     <rect *ngFor="let k of squaresReverse" [attr.fill]="squareReverseColor(k)" 
     stroke="black" 
-    [attr.width]="svgWidth/numberOfSquares" 
-    [attr.height]="svgWidth/numberOfSquares" 
-    [attr.x]=" k.column*svgWidth/numberOfSquares"
-    [attr.y]="k.row*svgWidth/numberOfSquares"
+    [attr.width]="windowSize.width/numberOfSquares" 
+    [attr.height]="windowSize.width/numberOfSquares" 
+    [attr.x]=" k.column*windowSize.width/numberOfSquares"
+    [attr.y]="k.row*windowSize.width/numberOfSquares"
     (click)="checkSquare(k)" />   
 </svg>
+</app-game-data>

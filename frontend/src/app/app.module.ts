@@ -14,7 +14,6 @@ import { SquareReverseMemoryComponent } from './square-reverse-memory/square-rev
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
-import { GameCanvasDataComponent } from './game-canvas-data/game-canvas-data.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
@@ -28,8 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HomeComponent,
     SquareReverseMemoryComponent,
     RegistrationComponent,
-    LoginComponent,
-    GameCanvasDataComponent
+    LoginComponent
   ],
   imports: [
     BrowserModule,

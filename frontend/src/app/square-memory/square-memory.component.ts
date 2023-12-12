@@ -1,9 +1,7 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { saveData, WindowSize, updateWindowSize } from '../game-util';
-import { HttpClient } from '@angular/common/http';
-import {UserService} from '../user.service';
+import { Component, HostListener } from '@angular/core';
+import { saveData, updateWindowSize } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
-import { timer } from 'rxjs';
+import { GameBase } from '../game-base';
 
   //0 means not red
   //1 means red
@@ -29,36 +27,13 @@ interface SvgSquare {
     ])
   ]  
 })
-export class SquareMemoryComponent implements OnInit {
-
-  protected windowSize: WindowSize;
+export class SquareMemoryComponent extends GameBase {
 
   protected squares:SvgSquare[] = [];
-
-  protected lives = 0;
-  protected points = 0;
 
   protected numberOfSquares=3;
 
   private currentNumber:number;
-
-  private time:number;
-
-  protected showGameCanvas:boolean;
-
-  protected showDataCanvas:boolean;
-
-  protected showValue:boolean;
-
-  private incressLevel=false;
-
-
-  constructor(private  http:HttpClient,public _userService: UserService) { }
-
-  ngOnInit() {
-    this.windowSize=updateWindowSize();
-    this.showGameCanvas=true;
-  }
 
   // HostListener to listen for window resize event
   @HostListener('window:resize', ['$event'])
@@ -83,15 +58,14 @@ export class SquareMemoryComponent implements OnInit {
     this.squares=[];
     this.points=0;
     this.lives=3;
-    this.generateSquares();
+    this.generate();
+    setTimeout(() => {
+      this.showValue=false;
+    }, this.time);
+
   }
 
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowSize.width)/2;
-  }
-
-  protected checkSquare(square:SvgSquare){
+  protected checkSquare(square:SvgSquare) {
     if(!this.showValue && square.value != 2) {
       if(square.value == 1){
         if(this.currentNumber==this.paintedSquares()){
@@ -122,6 +96,7 @@ export class SquareMemoryComponent implements OnInit {
   }
   }
 
+
   private paintedSquares():number {
     let extraSquares=1;
     if(this.incressLevel){
@@ -130,7 +105,7 @@ export class SquareMemoryComponent implements OnInit {
     return extraSquares+this.numberOfSquares;
   }
 
-  private async generateSquares():Promise<void>{
+  protected async generate():Promise<void> {
     this.squares =[];
     this.currentNumber=1;
 
@@ -156,34 +131,6 @@ export class SquareMemoryComponent implements OnInit {
       }
     }
 
-    setTimeout(() => {
-      this.showValue=false;
-    }, this.time);
   }
-
-  private async generatePause():Promise<void>{
-    this.showGameCanvas=false;
-    timer(500).subscribe(() => {
-        this.showDataCanvas=true; 
-        timer(1500).subscribe(() => {
-            this.showDataCanvas=false; 
-            timer(500).subscribe(() => {
-              this.showDataCanvas=false;
-              this.showGameCanvas=true;
-              this.generateSquares();
-            });
-          });
-      });
-
-
-  }
-
-
-
-  protected showGame():boolean{
-    return this.lives>0 && this._userService.isAuthenticated();
-  }
-
-
 
 }

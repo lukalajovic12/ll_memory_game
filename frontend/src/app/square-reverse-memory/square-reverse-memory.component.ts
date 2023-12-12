@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { saveData,WindowSize,updateWindowSize } from '../game-util';
+import { saveData, WindowSize, updateWindowSize } from '../game-util';
 import { HttpClient } from '@angular/common/http';
 import {UserService} from '../user.service';
+import {trigger, state, style, animate, transition } from '@angular/animations';
+import { timer } from 'rxjs';
+import { GameBase } from '../game-base';
+
   //0 means not red
   //1 means red
   // 2 means red but already clcked
@@ -14,36 +18,27 @@ interface SvgSquare {
 @Component({
   selector: 'app-square-reverse-memory',
   templateUrl: './square-reverse-memory.component.html',
-  styleUrls: ['./square-reverse-memory.component.scss']
+  styleUrls: ['./square-reverse-memory.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate('0.5s ease-in-out')
+      ])
+    ])
+  ]  
 })
-export class SquareReverseMemoryComponent implements OnInit {
-  windowSize: WindowSize;
+export class SquareReverseMemoryComponent extends GameBase {
 
   squares:SvgSquare[] = [];
 
   squaresReverse:SvgSquare[] = [];
 
-  lives = 0;
-  points = 0;
+  protected numberOfSquares=2;
 
-  numberOfSquares=2;
-
-  svgWidth=500;
-
-  currentNumber:number;
-
-  time:number;
-
-  showValue:boolean;
-
-  private incressLevel=false;
-
-  constructor(private  http:HttpClient,public _userService: UserService) { }
-
-  ngOnInit() {
-    // Get the initial window size
-    this.windowSize=updateWindowSize();
-  }
+  protected currentNumber:number;
 
   squareColor(square:SvgSquare):string{
     if((square.value==1 && this.showValue) || square.value==2 ){
@@ -71,7 +66,7 @@ export class SquareReverseMemoryComponent implements OnInit {
     this.squaresReverse=[];
     this.points=0;
     this.lives=3;
-    this.generateSquares();
+    this.generate();
   }
 
   checkSquare(square:SvgSquare){
@@ -84,7 +79,7 @@ export class SquareReverseMemoryComponent implements OnInit {
             this.numberOfSquares+=2;
           }
           this.incressLevel=!this.incressLevel;
-          this.generateSquares();
+          this.generatePause();
         } else {
           this.points+=100;
           this.currentNumber+=1;
@@ -97,7 +92,7 @@ export class SquareReverseMemoryComponent implements OnInit {
           if(this.numberOfSquares>4){
             this.numberOfSquares-=2;
           }
-          this.generateSquares();
+          this.generatePause();
         } else {
             saveData('square-reverse',this.points,this.http,this._userService);       
         }
@@ -105,16 +100,13 @@ export class SquareReverseMemoryComponent implements OnInit {
   }
   }
 
-  async generateSquares():Promise<void>{
+  protected async generate():Promise<void> {
     this.squares =[];
     this.squaresReverse =[];
     this.currentNumber=1;
 
     this.showValue=true;
     this.time+=100;
-
-
-
     let sq = [];
     for(let i=0;i<(this.numberOfSquares*this.numberOfSquares/2-this.numberOfSquares);i++){
       sq.push(0);
@@ -126,36 +118,26 @@ export class SquareReverseMemoryComponent implements OnInit {
 
     let index=0;
     for(let i=0;i<this.numberOfSquares/2;i++){
-
       for(let j=0;j<this.numberOfSquares;j++) {
         let k:SvgSquare ={row:i,column:j,value:shuffledArray[index]};
         this.squares.push(k);
         index+=1;
       }
-  
     }
 
     index=0;
     for(let i=0;i<this.numberOfSquares/2;i++){
-
       for(let j=0;j<this.numberOfSquares;j++) {
         let k:SvgSquare ={row:this.numberOfSquares-1-i,column:j,value:shuffledArray[index]};
         this.squaresReverse.push(k);
         index+=1;
       }
-  
     }
-
     setTimeout(() => {
       this.showValue=false;
     }, this.time);
+
   }
-
-
-
-
-
-
 
 }
 
