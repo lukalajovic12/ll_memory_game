@@ -33,7 +33,9 @@ export class HomeComponent implements OnInit {
     }
   }
 
-
+  protected loginLogout():string {
+    return this._userService.isAuthenticated()?'logout':'login';
+  }
 
 
   screenWidthCondition():boolean {

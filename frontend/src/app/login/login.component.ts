@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from '../user.service';
-import {throwError} from 'rxjs';
 
 @Component({
   selector: 'app-login',
@@ -30,5 +29,9 @@ export class LoginComponent implements OnInit{
   logout() {
     this._userService.logout();
   }
+
+  protected loginLogout():string {
+    return this._userService.isAuthenticated()?'logout':'login';
+  } 
 
 }

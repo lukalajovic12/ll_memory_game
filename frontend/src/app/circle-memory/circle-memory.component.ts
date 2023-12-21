@@ -1,4 +1,4 @@
-import {saveData,WindowSize,updateWindowSize } from '../game-util';
+import { saveData } from '../game-util';
 import { Component } from '@angular/core';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
@@ -45,11 +45,13 @@ export class CircleMemoryComponent extends GameBase {
 
   protected currentNumber:number;
 
-  displayNumber(n:SVGNumber): string {
+  protected displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
   }
 
-  startGame = () => {
+
+
+  public startGame = () => {
     this.time =2000;
     this.currentNumber=1;
     this.numberOfCircles=3;
@@ -61,6 +63,8 @@ export class CircleMemoryComponent extends GameBase {
     setTimeout(() => {
       this.showValue=false;
     }, this.time);
+
+
   }
 
   checkNumber(i:number){
@@ -105,10 +109,10 @@ export class CircleMemoryComponent extends GameBase {
       sq.push(i);
     }
     let shuffledNumbers = sq.sort((a, b) => 0.5 - Math.random());
-
+    let r =Math.min(this.windowSize.width/(this.numberOfCircles/2),50);
     for(let i=0;i<this.numberOfCircles;i++){
-      let xx =this.windowSize.width/this.numberOfCircles*i +50
-      let yy = Math.floor(50+Math.random() * (this.windowSize.height-100));
+      let xx =this.windowSize.width/this.numberOfCircles*i +r;
+      let yy = Math.floor(r+Math.random() * (this.windowSize.height-2*r));
       let c:SVGCircle = {x:xx,y:yy}; 
       this.circles.push(c);
       let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i]}; 

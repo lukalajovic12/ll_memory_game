@@ -1,5 +1,5 @@
 
-<app-game-data
+<app-game-template
 [title]="'Circle memory'"
 [lives]="lives"
 [points]="points"
@@ -10,4 +10,4 @@
     <circle class="game_circle" *ngFor="let c of circles; let i = index" [attr.cx]="c.x" [attr.cy]="c.y" r="20" stroke="black" stroke-width="3" fill="blue" (click)="checkNumber(i)" />
     <text class="game_circle_text" *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y" fill="white" >{{ displayNumber(n) }}</text>
 </svg>
-</app-game-data>
+</app-game-template>

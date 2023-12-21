@@ -4,20 +4,36 @@ export const DJANGO_URL="http://127.0.0.1:8000/api/memory_game/";
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {UserService} from './user.service';
 
+export interface User {
+  id:number,
+  username:string,
+}
+
 
 export interface MemoryGame {
     id?:number,
     title:string,
+    user:number
     points:number,
-    user_id:number
   }
+export interface Score {
+  id:number,
+  title:string,
+  points:number,
+  user:number
+  username:string
+}
 
 export function saveData(title:string,gamePoints:number,http:HttpClient,userService: UserService):void {
-    let score:MemoryGame = {title:title,points:gamePoints,user_id:userService.user_id};
+  let score:MemoryGame = {title:title,
+    user:userService.user_id,
+    points:gamePoints,
+  };
     
     const httpOptions = {
       headers: new HttpHeaders({
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${userService.token}`
       })
     };   
     

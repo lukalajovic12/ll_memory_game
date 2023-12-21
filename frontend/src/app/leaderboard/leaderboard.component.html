@@ -1,14 +1,18 @@
 <div *ngIf="_userService.isAuthenticated()"> 
     <h1>Score</h1>
     <table>
+        <th>user</th>
         <th>title</th>
         <th>points</th>
-        <tr *ngFor="let s of score | async">
+        <tr *ngFor="let l of score | async">
             <td>
-            {{s.title}}
+            {{l.username}}
             </td>
             <td>
-            {{s.points}}
+            {{l.title}}
+            </td>            
+            <td>
+            {{l.points}}
             </td>            
         </tr>
     </table>

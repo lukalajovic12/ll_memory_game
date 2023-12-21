@@ -3,8 +3,9 @@
 <li *ngIf="_userService.isAuthenticated()"><a routerLink="/squares">squares</a></li>
 <li *ngIf="_userService.isAuthenticated()"><a routerLink="/squares-reverse">squares reverse</a></li> 
 <li *ngIf="_userService.isAuthenticated()"><a routerLink="/score">score</a></li>  
+<li *ngIf="_userService.isAuthenticated()"><a routerLink="/ladderboard">ladderboard</a></li>  
 <li><a routerLink="/register">register</a></li> 
-<li><a routerLink="/login">login</a></li> 
+<li><a routerLink="/login">{{ loginLogout() }}</a></li> 
 </ul>
 <div class="all_sides">
     <div class="left_side" [style.padding.px]="leftSideWidth()"></div>

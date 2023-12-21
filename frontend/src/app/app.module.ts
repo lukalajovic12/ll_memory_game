@@ -8,13 +8,14 @@ import { HttpClientModule} from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { GameScoreComponent } from './game-score/game-score.component';
 import { SquareMemoryComponent } from './square-memory/square-memory.component';
-import { GameDataComponent } from './game-data/game-data.component';
+import { GameTemplateComponent } from './game-template/game-template.component';
 import { HomeComponent } from './home/home.component';
 import { SquareReverseMemoryComponent } from './square-reverse-memory/square-reverse-memory.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 
 @NgModule({
@@ -23,11 +24,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     CircleMemoryComponent,
     GameScoreComponent,
     SquareMemoryComponent,
-    GameDataComponent,
+    GameTemplateComponent,
     HomeComponent,
     SquareReverseMemoryComponent,
     RegistrationComponent,
-    LoginComponent
+    LoginComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,

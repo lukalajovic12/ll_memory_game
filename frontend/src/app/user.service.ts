@@ -40,6 +40,7 @@ export class UserService {
  
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public login(user) {
+    this.username=user.username;
     this.http.post(DJANGO_URL_BASIC+'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         this.updateData(data['access']);
@@ -76,14 +77,13 @@ export class UserService {
     const token_parts = this.token.split(/\./);
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
     this.token_expires = new Date(token_decoded.exp * 1000);
-    this.username = token_decoded.username;
+    this.username = this.username;
     this.user_id=token_decoded.user_id;
   }
 
 
   public isAuthenticated():boolean {
-    // return this.token !==null;
-     return true;
+     return this.token !==null && this.token !==undefined;
    }
  
 }

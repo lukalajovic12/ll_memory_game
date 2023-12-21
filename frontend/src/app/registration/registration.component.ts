@@ -1,7 +1,7 @@
 import { Component,OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../user.service';
-
+import {UserService} from '../user.service';
 
 @Component({
   selector: 'app-registration',
@@ -14,7 +14,7 @@ export class RegistrationComponent implements OnInit {
   username="";
   password="";
 
-  constructor(private http:HttpClient) {
+  constructor(private http:HttpClient,public _userService: UserService) {
   }
 
   ngOnInit(): void {
@@ -34,8 +34,8 @@ export class RegistrationComponent implements OnInit {
     // Subscribe to the POST request to trigger it
     this.http.post<User>(this.DJANGO_URL, user, httpOptions).subscribe(
       (response) => {
-        // Handle the response from the server (e.g., update your local todos)
-        console.log('Game data saved:', response);
+        console.log('user registered:', response);
+        this._userService.login({'username': this.username, 'password': this.password});
       },
       (error) => {
         // Handle errors here

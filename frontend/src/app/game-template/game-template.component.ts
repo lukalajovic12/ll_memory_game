@@ -3,9 +3,9 @@ import { WindowSize, updateWindowSize } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {UserService} from '../user.service';
 @Component({
-  selector: 'app-game-data',
-  templateUrl: './game-data.component.html',
-  styleUrls: ['./game-data.component.scss'],
+  selector: 'app-game-template',
+  templateUrl: './game-template.component.html',
+  styleUrls: ['./game-template.component.scss'],
   animations: [
     trigger('fadeInOut', [
       state('void', style({
@@ -17,7 +17,7 @@ import {UserService} from '../user.service';
     ])
   ]    
 })
-export class GameDataComponent implements OnInit  {
+export class GameTemplateComponent implements OnInit  {
 
   @Input() title:string;
 
