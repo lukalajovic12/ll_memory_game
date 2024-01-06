@@ -40,10 +40,7 @@ export class GameTemplateComponent implements OnInit  {
     return (width-this.windowSize.width)/2;
   }
 
-
-  constructor(private _userService: UserService){
-
-  }
+  constructor(private _userService: UserService){}
 
   ngOnInit() {
     this.windowSize=updateWindowSize();

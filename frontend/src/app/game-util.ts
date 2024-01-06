@@ -56,31 +56,15 @@ export function saveData(title:string,gamePoints:number,http:HttpClient,userServ
   export function updateWindowSize(): WindowSize {
     // Use Renderer2 to get the window size
     const width = window.innerWidth;
-    const height = window.innerHeight;
+    const height = window.innerHeight-120;
 
     // Store the window size in your class property
 
+    let maxSize=1200;
     let svgWidth=0;
-
-    if(width<800){
-      svgWidth=width;
-    } else {
-      svgWidth=800;
-    }
+    width<maxSize?svgWidth=width:svgWidth=maxSize;
     let svgHeight=0;
-    if(height<1000){
-      svgHeight=height/2;
-    } else {
-        svgHeight=1000;
-    }
-    if(svgHeight>svgWidth) {
-      svgHeight=svgWidth;
-    } else {
-      svgWidth=svgHeight;
-    }
+    height<maxSize?svgHeight=height:svgHeight=maxSize;
+    svgHeight>svgWidth?svgHeight=svgWidth:svgWidth=svgHeight;
     return {width:svgWidth,height:svgHeight}
   }
-
-
-
-

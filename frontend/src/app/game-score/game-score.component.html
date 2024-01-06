@@ -1,5 +1,18 @@
 <div *ngIf="_userService.isAuthenticated()"> 
     <h1>Score</h1>
+
+    <span style="display: inline-flex; align-items: center">
+        <label for="gamesSelect">Games: </label>
+        <select id="gamesSelect"
+          (change)="onChange($event)" [(ngModel)]="gameType">
+          <option value="circle">circle</option>
+          <option value="square">square</option>
+          <option value="square-reverse">square reverse</option>
+          <option value="all">all</option>
+        </select>
+      </span>
+
+
     <table>
         <th>title</th>
         <th>points</th>

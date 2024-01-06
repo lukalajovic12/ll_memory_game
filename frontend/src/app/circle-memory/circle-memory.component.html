@@ -5,9 +5,14 @@
 [points]="points"
 [startGame]="startGame"
 [showData]="showDataCanvas">
-<svg [attr.width]="windowSize.width" [attr.height]="windowSize.height" class="svg_canvas" *ngIf="showGameCanvas" [@fadeInOut]>
+<svg [attr.width]="windowSize.width" 
+[attr.height]="windowSize.height" class="svg_canvas" *ngIf="showGameCanvas" [@fadeInOut]>
     <line *ngFor="let l of generateLines()" [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" [attr.y2]="l.y2" style="stroke:black;stroke-width:2"  />
-    <circle class="game_circle" *ngFor="let c of circles; let i = index" [attr.cx]="c.x" [attr.cy]="c.y" r="20" stroke="black" stroke-width="3" fill="blue" (click)="checkNumber(i)" />
+    <circle class="game_circle"
+     *ngFor="let c of circles; let i = index"
+      [attr.cx]="c.x" [attr.cy]="c.y"
+       [attr.r]="radius/2" 
+       stroke="black" stroke-width="strokeWidth" fill="blue" (click)="checkNumber(i)" />
     <text class="game_circle_text" *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y" fill="white" >{{ displayNumber(n) }}</text>
 </svg>
 </app-game-template>

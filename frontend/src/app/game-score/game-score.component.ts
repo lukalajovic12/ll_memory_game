@@ -12,15 +12,31 @@ import { Score } from '../game-util';
 })
 export class GameScoreComponent implements OnInit {
 
-  score: Observable<Score[]>;
+  protected score: Observable<Score[]>;
+
+  protected gameType="all";
+
+
+  private scoreUrl():string {
+
+    if(this.gameType==="all"){
+      return "http://127.0.0.1:8000/api/user_score/?user_id="+this._userService.user_id;
+    } else {
+      let url ="http://127.0.0.1:8000/api/user_score/?title="+this.gameType+"&"+"user_id="+this._userService.user_id;
+       console.log(url);
+       return url;
+    }
+  }
 
   constructor(private  http:HttpClient,public _userService: UserService){}  
 
   ngOnInit() {
-    // Get the initial window size
     this.getScore();
   }
 
+  onChange(value:any) {
+    this.getScore();
+}
 
   private getScore() {
    let headers = new HttpHeaders({
@@ -28,6 +44,6 @@ export class GameScoreComponent implements OnInit {
     'Authorization': `Bearer ${this._userService.token}`
   });   
   headers.set('Authorization', `Bearer ${this._userService.token}`);
-   this.score=this.http.get<Score[]>("http://127.0.0.1:8000/api/user_score/?user_id="+this._userService.user_id, { headers });
+   this.score=this.http.get<Score[]>(this.scoreUrl(), { headers });
   }
 }

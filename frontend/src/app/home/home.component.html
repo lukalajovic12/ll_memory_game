@@ -7,10 +7,4 @@
 <li><a routerLink="/register">register</a></li> 
 <li><a routerLink="/login">{{ loginLogout() }}</a></li> 
 </ul>
-<div class="all_sides">
-    <div class="left_side" [style.padding.px]="leftSideWidth()"></div>
-    <div class="middle-side">
-        <router-outlet></router-outlet>
-    </div>
-    <div class="right_side" [style.padding.px]="rightSideWidth()"></div>
-</div>
+<router-outlet></router-outlet>

@@ -1,5 +1,5 @@
-import { Component, HostListener } from '@angular/core';
-import { saveData, updateWindowSize } from '../game-util';
+import { Component } from '@angular/core';
+import { saveData } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
 
@@ -35,11 +35,7 @@ export class SquareMemoryComponent extends GameBase {
 
   private currentNumber:number;
 
-  // HostListener to listen for window resize event
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowSize=updateWindowSize();
-  }
+
 
   protected squareColor(square:SvgSquare):string{
     if((square.value==1 && this.showValue) || square.value==2 ){

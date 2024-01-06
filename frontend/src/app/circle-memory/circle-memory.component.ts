@@ -39,17 +39,19 @@ export class CircleMemoryComponent extends GameBase {
 
   circles:SVGCircle[] = [];
 
-  protected numberOfCircles=3;
+  protected numberOfCircles:number;
 
   protected gameNumbers:SVGNumber[];
 
   protected currentNumber:number;
 
+  protected radius:number;
+
+  protected strokeWidth =3;
+
   protected displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
   }
-
-
 
   public startGame = () => {
     this.time =2000;
@@ -67,7 +69,7 @@ export class CircleMemoryComponent extends GameBase {
 
   }
 
-  checkNumber(i:number){
+  protected checkNumber(i:number){
     if(!this.showValue && this.gameNumbers[i].n >= this.currentNumber) {
       if(this.gameNumbers[i].n == this.currentNumber){
         if(this.currentNumber==this.numberOfCircles){
@@ -97,7 +99,7 @@ export class CircleMemoryComponent extends GameBase {
     }
   }
 
-  async generate():Promise<void> {
+  protected async generate():Promise<void> {
     this.currentNumber=1;
     this.gameNumbers=[];
     this.circles=[]
@@ -109,10 +111,10 @@ export class CircleMemoryComponent extends GameBase {
       sq.push(i);
     }
     let shuffledNumbers = sq.sort((a, b) => 0.5 - Math.random());
-    let r =Math.min(this.windowSize.width/(this.numberOfCircles/2),50);
+    this.radius = Math.max(this.windowSize.width/(Math.max(this.numberOfCircles,8))-10,10);
     for(let i=0;i<this.numberOfCircles;i++){
-      let xx =this.windowSize.width/this.numberOfCircles*i +r;
-      let yy = Math.floor(r+Math.random() * (this.windowSize.height-2*r));
+     let xx = i*(this.windowSize.width/this.numberOfCircles )+5*this.radius/8;     
+     let yy = Math.floor(this.radius*2+Math.random() * ((this.windowSize.height-this.radius)-2*this.radius*2));
       let c:SVGCircle = {x:xx,y:yy}; 
       this.circles.push(c);
       let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i]}; 
@@ -120,7 +122,7 @@ export class CircleMemoryComponent extends GameBase {
     }
   }
 
-  generateLines():SVGLine[] {
+  protected generateLines():SVGLine[] {
     let lines: SVGLine[] = [];
     if(this.circles.length>1){
       for(let i=0;i<this.circles.length-1;i++){
