@@ -111,10 +111,10 @@ export class CircleMemoryComponent extends GameBase {
       sq.push(i);
     }
     let shuffledNumbers = sq.sort((a, b) => 0.5 - Math.random());
-    this.radius = Math.max(this.windowSize.width/(Math.max(this.numberOfCircles,8))-10,10);
+    this.radius = Math.max(this.windowSize/(Math.max(this.numberOfCircles,8))-10,10);
     for(let i=0;i<this.numberOfCircles;i++){
-     let xx = i*(this.windowSize.width/this.numberOfCircles )+5*this.radius/8;     
-     let yy = Math.floor(this.radius*2+Math.random() * ((this.windowSize.height-this.radius)-2*this.radius*2));
+     let xx = i*(this.windowSize/this.numberOfCircles )+5*this.radius/8;     
+     let yy = Math.floor(this.radius*2+Math.random() * ((this.windowSize-this.radius)-2*this.radius*2));
       let c:SVGCircle = {x:xx,y:yy}; 
       this.circles.push(c);
       let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i]}; 

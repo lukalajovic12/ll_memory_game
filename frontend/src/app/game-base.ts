@@ -17,7 +17,7 @@ export abstract class GameBase implements OnInit {
   protected lives = 0;
   protected points = 0;
 
-  protected windowSize: WindowSize;
+  protected windowSize: number;
 
   protected incressLevel=false;
 

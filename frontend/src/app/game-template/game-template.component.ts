@@ -29,7 +29,7 @@ export class GameTemplateComponent implements OnInit  {
 
   @Input() showData;
 
-  protected windowSize: WindowSize;
+  protected windowSize: number;
 
   startTheGame(){
     this.startGame();
@@ -37,7 +37,7 @@ export class GameTemplateComponent implements OnInit  {
 
   protected sidesWidth():number {
     let width = window.innerWidth;
-    return (width-this.windowSize.width)/2;
+    return (width-this.windowSize)/2;
   }
 
   constructor(private _userService: UserService){}
