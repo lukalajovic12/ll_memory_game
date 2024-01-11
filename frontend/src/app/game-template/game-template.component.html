@@ -5,17 +5,23 @@
             <div class="start_button_div">
                 <button (click)="startTheGame()" *ngIf="lives === 0"> start game </button> 
             </div>
+            <div class="start_button_div">
+                <a *ngIf="lives === 0"  
+                [routerLink]="['/settings']"
+                 [queryParams]="{ title: title }"
+                 class="start_button_div"> settings </a> 
+            </div>
         </div>
     </div>    
-    <div *ngIf="showGame()" [ngStyle]="{ 'width.px': windowSize }">
-        <ng-content />
-        <div *ngIf="showData" [@fadeInOut]>
-            <h1>Great Job</h1>
-            <h1>You have {{lives}} lives</h1>
-            <h1>You have {{points}} points</h1>
-            <h1>Keep it Up</h1>
+        <div *ngIf="showGame()" [ngStyle]="{ 'width.px': windowSize }">
+            <ng-content />
+            <div *ngIf="showData" [@fadeInOut]>
+                <h1>Great Job</h1>
+                <h1>You have {{lives}} lives</h1>
+                <h1>You have {{points}} points</h1>
+                <h1>Keep it Up</h1>
+            </div>
         </div>
-    </div>
-    <div [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
+        <div [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
     </div>
 </div>

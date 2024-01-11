@@ -54,13 +54,12 @@ export class CircleMemoryComponent extends GameBase {
   }
 
   public startGame = () => {
+    this.settingsStart();
     this.time =2000;
     this.currentNumber=1;
-    this.numberOfCircles=3;
+    this.numberOfCircles=this.startLevel;
     this.gameNumbers=[];
     this.circles=[];
-    this.points=0;
-    this.lives=3;
     this.generate();
     setTimeout(() => {
       this.showValue=false;

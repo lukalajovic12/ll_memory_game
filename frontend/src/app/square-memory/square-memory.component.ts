@@ -48,12 +48,11 @@ export class SquareMemoryComponent extends GameBase {
 
 
   public startGame = () => {
+    this.settingsStart();
     this.time =3000;
     this.currentNumber=1;
-    this.numberOfSquares=3;
+    this.numberOfSquares=this.startLevel;
     this.squares=[];
-    this.points=0;
-    this.lives=3;
     this.generate();
     setTimeout(() => {
       this.showValue=false;

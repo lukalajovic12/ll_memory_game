@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { WindowSize, updateWindowSize } from '../game-util';
+import { updateWindowSize } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {UserService} from '../user.service';
 @Component({
@@ -33,6 +33,11 @@ export class GameTemplateComponent implements OnInit  {
 
   startTheGame(){
     this.startGame();
+  }
+
+
+  openSettings() {
+
   }
 
   protected sidesWidth():number {

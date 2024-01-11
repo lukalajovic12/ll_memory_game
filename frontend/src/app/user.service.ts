@@ -83,8 +83,8 @@ export class UserService {
 
 
   public isAuthenticated():boolean {
-     //return this.token !==null && this.token !==undefined;
-     return true;
+     return this.token !==null && this.token !==undefined;
+     //return true;
    }
  
 }

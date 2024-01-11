@@ -1,9 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { saveData, WindowSize, updateWindowSize } from '../game-util';
-import { HttpClient } from '@angular/common/http';
-import {UserService} from '../user.service';
+import { Component } from '@angular/core';
+import { saveData } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
-import { timer } from 'rxjs';
 import { GameBase } from '../game-base';
 
   //0 means not red
@@ -59,13 +56,12 @@ export class SquareReverseMemoryComponent extends GameBase {
   }
 
   startGame = () => {
+    this.settingsStart();
     this.time =3000;
     this.currentNumber=1;
-    this.numberOfSquares=4;
+    this.numberOfSquares=this.startLevel;
     this.squares=[];
     this.squaresReverse=[];
-    this.points=0;
-    this.lives=3;
     this.generate();
   }
 

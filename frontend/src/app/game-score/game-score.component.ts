@@ -23,7 +23,6 @@ export class GameScoreComponent implements OnInit {
       return "http://127.0.0.1:8000/api/user_score/?user_id="+this._userService.user_id;
     } else {
       let url ="http://127.0.0.1:8000/api/user_score/?title="+this.gameType+"&"+"user_id="+this._userService.user_id;
-       console.log(url);
        return url;
     }
   }

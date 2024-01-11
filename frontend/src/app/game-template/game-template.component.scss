@@ -13,12 +13,6 @@
     background-color: white;
 }
 
-.game_data_component .game_data {
-    display: flex;
-}
-
-
-
 .game_data_component .points_div {
     padding: 5px;
 }
@@ -44,7 +38,7 @@
     padding-bottom: 1px;
 }
 
-.game_data_component .start_button_div button {
+.game_data_component .start_button_div button, a {
     margin-top: 100px;
     display: inline-block;
     padding: 30px 30px;

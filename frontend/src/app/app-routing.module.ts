@@ -8,6 +8,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { GameSettingsComponent } from './game-settings/game-settings.component';
 const routes: Routes = [
   {path:'',component:HomeComponent,children:[
     { path: 'circles', component: CircleMemoryComponent },
@@ -15,8 +16,9 @@ const routes: Routes = [
     { path: 'squares-reverse', component: SquareReverseMemoryComponent },
     { path: 'register', component:RegistrationComponent},   
     { path: 'login', component:LoginComponent},
-    {path:'score',component:GameScoreComponent},
-    {path:'ladderboard',component:LeaderboardComponent}  
+    {path: 'score', component:GameScoreComponent},
+    {path: 'ladderboard', component:LeaderboardComponent},
+    {path: 'settings', component:GameSettingsComponent}  
   ]},  
 ];
 

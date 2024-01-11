@@ -16,6 +16,7 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { GameSettingsComponent } from './game-settings/game-settings.component';
 
 
 @NgModule({
@@ -29,7 +30,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     SquareReverseMemoryComponent,
     RegistrationComponent,
     LoginComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    GameSettingsComponent
   ],
   imports: [
     BrowserModule,

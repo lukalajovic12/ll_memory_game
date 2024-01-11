@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import MemoryGame
+from .models import MemoryGame, GameSettings
 from django.contrib.auth.models import User
 
 
@@ -15,7 +15,12 @@ class UserSerializer(serializers.ModelSerializer):
 class MemoryGameSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemoryGame
-        fields = ('id', 'title', 'points','user')
+        fields = ('id', 'title', 'points','user','settings')
+        
+class GameSettingsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = GameSettings
+        fields = ('id','lives','mistakes','startLevel','user','title')       
         
 class MemoryGameSerializerScore(serializers.ModelSerializer):
     username = serializers.SerializerMethodField()
