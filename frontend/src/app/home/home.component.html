@@ -1,10 +1,20 @@
-<ul class="game_menu">
-<li *ngIf="_userService.isAuthenticated()"><a routerLink="/circles">circles</a></li>
-<li *ngIf="_userService.isAuthenticated()"><a routerLink="/squares">squares</a></li>
-<li *ngIf="_userService.isAuthenticated()"><a routerLink="/squares-reverse">squares reverse</a></li> 
-<li *ngIf="_userService.isAuthenticated()"><a routerLink="/score">score</a></li>  
-<li *ngIf="_userService.isAuthenticated()"><a routerLink="/ladderboard">ladderboard</a></li>  
-<li><a routerLink="/register">register</a></li> 
-<li><a routerLink="/login">{{ loginLogout() }}</a></li> 
-</ul>
-<router-outlet></router-outlet>
+<ng-container *ngIf="_userService.isAuthenticated()">
+    <div class="row">
+        <button *ngFor="let game of games" (click)="toGame(game)" class="ll_button">{{ game }}</button>
+    </div>
+</ng-container >
+<div class="row" *ngIf="!_userService.isAuthenticated()">
+    <button (click)="toRegister()" class="ll_button">
+        Register
+    </button>
+</div>
+<div class="row" *ngIf="!_userService.isAuthenticated()">
+    <button (click)="toLogin()" class="ll_button" >
+        login
+    </button>
+</div>
+<div class="row" *ngIf="_userService.isAuthenticated()">
+    <button (click)="logout()" class="ll_button">
+        logout
+    </button>
+</div>

@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders  } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {UserService} from '../user.service';
 import { Score } from '../game-util';
-
-
+import { ActivatedRoute } from '@angular/router';
+import { environment } from 'src/environments/environment';
 @Component({
   selector: 'app-game-score',
   templateUrl: './game-score.component.html',
@@ -16,21 +16,23 @@ export class GameScoreComponent implements OnInit {
 
   protected gameType="all";
 
-
   private scoreUrl():string {
-
     if(this.gameType==="all"){
-      return "http://127.0.0.1:8000/api/user_score/?user_id="+this._userService.user_id;
+      return environment.BACKEND_URL + "api/user_score/?user_id="+this._userService.user_id;
     } else {
-      let url ="http://127.0.0.1:8000/api/user_score/?title="+this.gameType+"&"+"user_id="+this._userService.user_id;
-       return url;
+      return environment.BACKEND_URL + "api/user_score/?title="+this.gameType+"&"+"user_id="+this._userService.user_id;
     }
   }
 
-  constructor(private  http:HttpClient,public _userService: UserService){}  
+  constructor(private  http:HttpClient,
+    public _userService: UserService,
+    private route: ActivatedRoute){}  
 
   ngOnInit() {
-    this.getScore();
+    this.route.queryParams.subscribe(params => {
+      this.gameType=params['title'];
+      this.getScore();
+    });
   }
 
   onChange(value:any) {

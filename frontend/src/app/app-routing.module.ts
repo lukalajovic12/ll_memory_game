@@ -7,19 +7,17 @@ import { SquareReverseMemoryComponent } from './square-reverse-memory/square-rev
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { GameSettingsComponent } from './game-settings/game-settings.component';
+import { CIRCLES, SQUARES, SQUARES_REVERSE } from './game-util';
 const routes: Routes = [
-  {path:'',component:HomeComponent,children:[
-    { path: 'circles', component: CircleMemoryComponent },
-    { path: 'squares', component: SquareMemoryComponent },   
-    { path: 'squares-reverse', component: SquareReverseMemoryComponent },
-    { path: 'register', component:RegistrationComponent},   
-    { path: 'login', component:LoginComponent},
-    {path: 'score', component:GameScoreComponent},
-    {path: 'ladderboard', component:LeaderboardComponent},
-    {path: 'settings', component:GameSettingsComponent}  
-  ]},  
+  {path:'',component:HomeComponent},
+  {path: CIRCLES, component: CircleMemoryComponent} ,
+  {path: SQUARES, component: SquareMemoryComponent} ,   
+  {path: SQUARES_REVERSE, component: SquareReverseMemoryComponent},
+  {path: 'register', component:RegistrationComponent},   
+  {path: 'login', component:LoginComponent},
+  {path: 'score', component:GameScoreComponent},
+  {path: 'settings', component:GameSettingsComponent}    
 ];
 
 

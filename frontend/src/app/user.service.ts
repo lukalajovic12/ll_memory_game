@@ -1,16 +1,13 @@
 
 
 import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {DJANGO_URL_BASIC} from './game-util' 
-
+import {HttpClient, HttpHeaders} from '@angular/common/http'; 
+import { environment } from '../environments/environment';
 export interface User {
   id:number,
   username:string,
   password:string
 }
-
-
 @Injectable()
 export class UserService {
  
@@ -36,12 +33,17 @@ export class UserService {
     this.httpOptions = {
       headers: new HttpHeaders({'Content-Type': 'application/json'})
     };
+    const storedToken = localStorage.getItem('token');
+    if (storedToken) {
+      this.token=storedToken;
+      this.refreshToken();
+    }
   }
  
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public login(user) {
     this.username=user.username;
-    this.http.post(DJANGO_URL_BASIC+'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
+    this.http.post(environment.BACKEND_URL+'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         this.updateData(data['access']);
       },
@@ -53,7 +55,7 @@ export class UserService {
  
   // Refreshes the JWT token, to extend the time the user is logged in
   public refreshToken() {
-    this.http.post(DJANGO_URL_BASIC+'api/token/refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
+    this.http.post(environment.BACKEND_URL+'api/token/refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
       data => {
         this.updateData(data['access']);
       },
@@ -74,6 +76,7 @@ export class UserService {
     this.token = token;
     this.errors = [];
     // decode the token to read the username and expiration timestamp
+    localStorage.setItem('token', token);
     const token_parts = this.token.split(/\./);
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
     this.token_expires = new Date(token_decoded.exp * 1000);
@@ -84,7 +87,6 @@ export class UserService {
 
   public isAuthenticated():boolean {
      return this.token !==null && this.token !==undefined;
-     //return true;
    }
  
 }

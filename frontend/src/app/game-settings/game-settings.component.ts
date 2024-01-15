@@ -9,71 +9,48 @@ import {SettingsService} from '../settings.service';
 })
 export class GameSettingsComponent  implements OnInit {
 
-
-  protected title: string = '';
-
-  protected lives:number;
-
-  protected startLevel:number;
-
-  protected mistakes:number; 
-
   constructor(private route: ActivatedRoute,
     private router: Router,
-    private _userService: UserService,
-    private _settingsService:SettingsService) {}
+    protected _userService: UserService,
+    protected _settingsService:SettingsService) {}
    
   ngOnInit(): void {
-    this.title = this.route.snapshot.params['title'];
     this.route.queryParams.subscribe(params => 
-      this.title = params['title']
-    );
-    this._settingsService.setTitle(this.title);
-    this._settingsService.getData();
-
-    this.lives=this._settingsService.lives;
-    this.startLevel=this._settingsService.startLevel;
-    this.mistakes=this._settingsService.mistakes;
-}
-
-protected plusLife():void {
-  this.lives+=1;
-}
-
-protected minusLife():void {
-  if(this.lives>1){
-    this.lives-=1;
+      this._settingsService.getData(params['title']))
+    }
+  protected plusLife():void {
+    this._settingsService.lives+=1;
   }
-}
 
-protected plusStartLevel():void {
-  this.startLevel+=1;
-}
-
-protected minusStartLevel():void {
-  if(this.startLevel>2){
-    this.startLevel-=1;
+  protected minusLife():void {
+    if(this._settingsService.lives>1){
+      this._settingsService.lives-=1;
+    }
   }
-}
 
-protected plusMistakes():void {
-  this.mistakes+=1;
-}
-
-protected minusMistakes():void {
-  if(this.mistakes>0){
-    this.mistakes-=1;
+  protected plusStartLevel():void {
+    this._settingsService.startLevel+=1;
   }
-}
 
+  protected minusStartLevel():void {
+    if(this._settingsService.startLevel>2){
+      this._settingsService.startLevel-=1;
+    }
+  }
 
-protected saveSettings():void{
-  this._settingsService.lives=this.lives;
-  this._settingsService.startLevel=this.startLevel;
-  this._settingsService.saveSettings();
-  
- // this.router.navigate(['/circle']);
-}
+  protected plusMistakes():void {
+    this._settingsService.mistakes+=1;
+  }
 
+  protected minusMistakes():void {
+    if(this._settingsService.mistakes>0){
+      this._settingsService.mistakes-=1;
+    }
+  }
 
+  protected saveSettings():void {
+    this._settingsService.saveSettings();
+    let url = '/'+this._settingsService.title;
+    this.router.navigate([url]);
+  }
 }

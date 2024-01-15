@@ -2,6 +2,7 @@ import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { updateWindowSize } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {UserService} from '../user.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-template',
   templateUrl: './game-template.component.html',
@@ -31,13 +32,15 @@ export class GameTemplateComponent implements OnInit  {
 
   protected windowSize: number;
 
-  startTheGame(){
+  protected startTheGame(){
     this.startGame();
   }
 
-
-  openSettings() {
-
+  protected toSettings(){
+    this.router.navigate(['/settings'], { queryParams: { title: this.title } });
+  }
+  protected toScore(){
+    this.router.navigate(['/score'], { queryParams: { title: this.title } });
   }
 
   protected sidesWidth():number {
@@ -45,7 +48,7 @@ export class GameTemplateComponent implements OnInit  {
     return (width-this.windowSize)/2;
   }
 
-  constructor(private _userService: UserService){}
+  constructor(protected _userService: UserService,private router: Router){}
 
   ngOnInit() {
     this.windowSize=updateWindowSize();

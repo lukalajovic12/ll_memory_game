@@ -2,7 +2,8 @@ import { Component,OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../user.service';
 import {UserService} from '../user.service';
-
+import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -10,11 +11,11 @@ import {UserService} from '../user.service';
 })
 export class RegistrationComponent implements OnInit {
 
-  DJANGO_URL="http://127.0.0.1:8000/api/users/";
+
   username="";
   password="";
 
-  constructor(private http:HttpClient,public _userService: UserService) {
+  constructor(private http:HttpClient,public _userService: UserService,private router: Router) {
   }
 
   ngOnInit(): void {
@@ -32,10 +33,10 @@ export class RegistrationComponent implements OnInit {
     };   
     
     // Subscribe to the POST request to trigger it
-    this.http.post<User>(this.DJANGO_URL, user, httpOptions).subscribe(
+    this.http.post<User>(environment.BACKEND_URL+"api/users", user, httpOptions).subscribe(
       (response) => {
-        console.log('user registered:', response);
         this._userService.login({'username': this.username, 'password': this.password});
+        this.router.navigate(['/']);
       },
       (error) => {
         // Handle errors here

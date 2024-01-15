@@ -1,23 +1,22 @@
-<div>
-<h1>Settings {{ title }}</h1>
 
-<div class="data_settings">
-    <p>lives: {{lives}}</p>
-    <button (click)="plusLife()">+1</button>
-    <button (click)="minusLife()">-1</button>
-</div>
-
-<div class="data_settings">
-    <p>start level: {{startLevel}}</p>
-    <button (click)="plusStartLevel()">+1</button>
-    <button (click)="minusStartLevel()">-1</button>
-</div>
-
-<div class="data_settings">
-    <p>mistakes: {{mistakes}}</p>
-    <button (click)="plusMistakes()">+1</button>
-    <button (click)="minusMistakes()">-1</button>
-</div>
-
-<button (click)="saveSettings()">save</button>
+<div *ngIf="_userService.isAuthenticated()">
+    <div>
+        <h1>Settings {{ _settingsService.title }}</h1>
+        <div class="data_settings">
+            <div class="ll_value">lives: {{_settingsService.lives}}</div>
+            <button (click)="plusLife()" class="ll_button">+1</button>
+            <button (click)="minusLife()" class="ll_button">-1</button>
+        </div>
+        <div class="data_settings">
+            <div class="ll_value">start level: {{_settingsService.startLevel}}</div>
+            <button (click)="plusStartLevel()" class="ll_button">+1</button>
+            <button (click)="minusStartLevel()" class="ll_button">-1</button>
+        </div>
+        <div class="data_settings">
+            <div class="ll_value">mistakes: {{_settingsService.mistakes}}</div>
+            <button (click)="plusMistakes()" class="ll_button">+1</button>
+            <button (click)="minusMistakes()" class="ll_button">-1</button>
+        </div>
+        <button (click)="saveSettings()" class="ll_button">save</button>
+    </div>
 </div>

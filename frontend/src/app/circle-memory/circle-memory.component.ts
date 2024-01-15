@@ -1,4 +1,4 @@
-import { saveData } from '../game-util';
+import { CIRCLES, saveData } from '../game-util';
 import { Component } from '@angular/core';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
@@ -49,12 +49,14 @@ export class CircleMemoryComponent extends GameBase {
 
   protected strokeWidth =3;
 
+  protected override title = CIRCLES;
+
   protected displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
   }
 
   public startGame = () => {
-    this.settingsStart();
+    this.settingsStart(this.title);
     this.time =2000;
     this.currentNumber=1;
     this.numberOfCircles=this.startLevel;
@@ -92,7 +94,7 @@ export class CircleMemoryComponent extends GameBase {
           this.generatePause();
         }
         else {
-          saveData('circle',this.points,this.http,this._userService);
+          saveData(this.title,this.points,this.http,this._userService,this._settingsService);
         }
       }
     }

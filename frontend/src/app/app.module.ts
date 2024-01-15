@@ -15,7 +15,6 @@ import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { GameSettingsComponent } from './game-settings/game-settings.component';
 
 
@@ -30,7 +29,6 @@ import { GameSettingsComponent } from './game-settings/game-settings.component';
     SquareReverseMemoryComponent,
     RegistrationComponent,
     LoginComponent,
-    LeaderboardComponent,
     GameSettingsComponent
   ],
   imports: [

@@ -38,27 +38,8 @@
     padding-bottom: 1px;
 }
 
-.game_data_component .start_button_div button, a {
+.start_button {
     margin-top: 100px;
-    display: inline-block;
+    width: 150px;
     padding: 30px 30px;
-    font-size: 18px;
-    cursor: pointer;
-    text-align: center;
-    text-decoration: none;
-    outline: none;
-    color: #fff;
-    background-color: #333333;
-    border: none;
-    border-radius: 15px;
-}
-
-.game_data_component .start_button_div .start_button:hover {
-    background-color: #111111;
-}
-
-.game_data_component .start_button_div .start_button:active {
-    background-color: #111111;
-    box-shadow: 0 5px #666;
-    transform: translateY(4px);
 }

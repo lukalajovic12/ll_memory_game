@@ -1,8 +1,12 @@
 
-export const DJANGO_URL_BASIC="http://127.0.0.1:8000/";
-export const DJANGO_URL="http://127.0.0.1:8000/api/memory_game/";
+import { environment } from '../environments/environment';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {UserService} from './user.service';
+import {SettingsService} from './settings.service';
+
+export const CIRCLES = 'circles';
+export const SQUARES = 'squares';
+export const SQUARES_REVERSE = 'squares-reverse';
 
 export interface User {
   id:number,
@@ -15,30 +19,39 @@ export interface MemoryGame {
     title:string,
     user:number
     points:number,
+    settings:number
   }
 export interface Score {
   id:number,
   title:string,
   points:number,
-  user:number
-  username:string
+  user:number,
+  username:string,
+  settings_id:number,
+  lives:number,
+  mistakes:number,
+  startLevel:number
 }
 
-export function saveData(title:string,gamePoints:number,http:HttpClient,userService: UserService):void {
-  let score:MemoryGame = {title:title,
-    user:userService.user_id,
-    points:gamePoints,
+export function saveData(title:string,gamePoints:number,
+  http:HttpClient,
+  _userService: UserService,
+  _settingsService:SettingsService):void {
+  let gameScore:MemoryGame = {title:title,
+    user:_userService.user_id,
+    points:gamePoints,settings:_settingsService.settings_id
   };
     
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${userService.token}`
+        'Authorization': `Bearer ${_userService.token}`
       })
-    };   
-    
+    };  
+    console.log("JOOOJ"); 
+    console.log(gameScore);
     // Subscribe to the POST request to trigger it
-    http.post<MemoryGame>(DJANGO_URL, score, httpOptions).subscribe(
+    http.post<MemoryGame>(environment.BACKEND_URL+"api/memory_game/", gameScore, httpOptions).subscribe(
       (response) => {
         // Handle the response from the server (e.g., update your local todos)
         console.log('Game data saved:', response);

@@ -1,16 +1,20 @@
-<div class="game_area" >
+<div class="game_area" *ngIf="_userService.isAuthenticated()">
     <div [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
     <div class="game_data_component" *ngIf="!showGame()">  
         <div class="game_data">
             <div class="start_button_div">
-                <button (click)="startTheGame()" *ngIf="lives === 0"> start game </button> 
+                <button (click)="startTheGame()" class="ll_button start_button"> start game </button> 
             </div>
             <div class="start_button_div">
-                <a *ngIf="lives === 0"  
-                [routerLink]="['/settings']"
-                 [queryParams]="{ title: title }"
-                 class="start_button_div"> settings </a> 
+                <button   
+                 (click)="toSettings()" class="ll_button start_button"> settings </button> 
             </div>
+            <div class="start_button_div">
+                <button   
+                 (click)="toScore()" class="ll_button start_button"> score </button> 
+            </div>
+
+
         </div>
     </div>    
         <div *ngIf="showGame()" [ngStyle]="{ 'width.px': windowSize }">

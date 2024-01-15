@@ -5,8 +5,8 @@
         <label for="gamesSelect">Games: </label>
         <select id="gamesSelect"
           (change)="onChange($event)" [(ngModel)]="gameType">
-          <option value="circle">circle</option>
-          <option value="square">square</option>
+          <option value="circles">circle</option>
+          <option value="squares">square</option>
           <option value="square-reverse">square reverse</option>
           <option value="all">all</option>
         </select>
@@ -16,13 +16,25 @@
     <table>
         <th>title</th>
         <th>points</th>
+        <th>start lives</th>       
+        <th>start level</th>   
+        <th>mistakes tollerance</th>  
         <tr *ngFor="let s of score | async">
             <td>
-            {{s.title}}
+              {{s.title}}
             </td>
             <td>
-            {{s.points}}
-            </td>            
+              {{s.points}}
+            </td>     
+            <td>
+              {{s.lives}}
+            </td>                 
+            <td>
+              {{s.startLevel}}
+            </td>   
+            <td>
+              {{s.mistakes}}
+            </td>                           
         </tr>
     </table>
 </div>

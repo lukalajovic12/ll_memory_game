@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { saveData } from '../game-util';
+import { SQUARES, saveData } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
 
@@ -35,7 +35,7 @@ export class SquareMemoryComponent extends GameBase {
 
   private currentNumber:number;
 
-
+  protected override title=SQUARES;
 
   protected squareColor(square:SvgSquare):string{
     if((square.value==1 && this.showValue) || square.value==2 ){
@@ -47,8 +47,8 @@ export class SquareMemoryComponent extends GameBase {
   }
 
 
-  public startGame = () => {
-    this.settingsStart();
+  startGame = () => {
+     this.settingsStart(this.title);
     this.time =3000;
     this.currentNumber=1;
     this.numberOfSquares=this.startLevel;
@@ -85,7 +85,7 @@ export class SquareMemoryComponent extends GameBase {
           }
           this.generatePause();
         } else {
-            saveData('square',this.points,this.http,this._userService);       
+            saveData(this.title,this.points,this.http,this._userService,this._settingsService);       
         }
       }
   }

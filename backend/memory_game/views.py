@@ -16,7 +16,7 @@ class MemoryGameView(viewsets.ModelViewSet):
 
 
 class MemoryGameViewUserScore(APIView):
-    permission_classes = [IsAuthenticated]
+   # permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_user_id = request.query_params.get('user_id', None)
         parameter_game_title = request.query_params.get('title', None)
@@ -42,7 +42,7 @@ class SettingsView(viewsets.ModelViewSet):
     queryset = GameSettings.objects.all()    
     
 class SettingsGetView(APIView):
-   # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_user_id = request.query_params.get('user_id', None)
         parameter_game_title = request.query_params.get('title', None)

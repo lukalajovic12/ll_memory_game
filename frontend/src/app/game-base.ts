@@ -23,23 +23,23 @@ export abstract class GameBase implements OnInit {
   protected windowSize: number;
 
   protected incressLevel=false;
-
+  protected abstract title:string;
   constructor(protected http:HttpClient,
     protected _userService: UserService,
     protected _settingsService:SettingsService ){
   }
 
   ngOnInit() {
+    this._settingsService.getData(this.title);
     this.windowSize=updateWindowSize();
     this.showGameCanvas=true;
   }
 
-  protected settingsStart():void {
+  protected settingsStart(title:string):void {
     this.lives=this._settingsService.lives;
     this.startLevel=this._settingsService.startLevel;
     this.mistakes=this._settingsService.mistakes;
     this.points=0;
-    
   }
 
   protected async generatePause(): Promise<void>{
