@@ -53,4 +53,8 @@ export class GameSettingsComponent  implements OnInit {
     let url = '/'+this._settingsService.title;
     this.router.navigate([url]);
   }
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }
+
 }

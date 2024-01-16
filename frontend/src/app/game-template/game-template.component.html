@@ -1,5 +1,5 @@
 <div class="game_area" *ngIf="_userService.isAuthenticated()">
-    <div [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
+    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
     <div class="game_data_component" *ngIf="!showGame()">  
         <div class="game_data">
             <div class="start_button_div">
@@ -17,7 +17,7 @@
 
         </div>
     </div>    
-        <div *ngIf="showGame()" [ngStyle]="{ 'width.px': windowSize }">
+        <ng-container *ngIf="showGame()">
             <ng-content />
             <div *ngIf="showData" [@fadeInOut]>
                 <h1>Great Job</h1>
@@ -25,7 +25,7 @@
                 <h1>You have {{points}} points</h1>
                 <h1>Keep it Up</h1>
             </div>
-        </div>
-        <div [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
+        </ng-container>
+        <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
     </div>
 </div>

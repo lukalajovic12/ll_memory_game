@@ -5,6 +5,7 @@ import {UserService} from '../user.service';
 import { Score } from '../game-util';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-game-score',
   templateUrl: './game-score.component.html',
@@ -26,9 +27,14 @@ export class GameScoreComponent implements OnInit {
 
   constructor(private  http:HttpClient,
     public _userService: UserService,
-    private route: ActivatedRoute){}  
+    private route: ActivatedRoute,private router: Router){}  
 
   ngOnInit() {
+
+    if(!this._userService.isAuthenticated()){
+      this.toHome();
+    }
+
     this.route.queryParams.subscribe(params => {
       this.gameType=params['title'];
       this.getScore();
@@ -47,4 +53,10 @@ export class GameScoreComponent implements OnInit {
   headers.set('Authorization', `Bearer ${this._userService.token}`);
    this.score=this.http.get<Score[]>(this.scoreUrl(), { headers });
   }
+ 
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }
+
+
 }

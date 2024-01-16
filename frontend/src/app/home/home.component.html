@@ -1,20 +1,37 @@
-<ng-container *ngIf="_userService.isAuthenticated()">
-    <div class="row">
-        <button *ngFor="let game of games" (click)="toGame(game)" class="ll_button">{{ game }}</button>
-    </div>
-</ng-container >
-<div class="row" *ngIf="!_userService.isAuthenticated()">
-    <button (click)="toRegister()" class="ll_button">
-        Register
-    </button>
-</div>
-<div class="row" *ngIf="!_userService.isAuthenticated()">
-    <button (click)="toLogin()" class="ll_button" >
-        login
-    </button>
-</div>
-<div class="row" *ngIf="_userService.isAuthenticated()">
-    <button (click)="logout()" class="ll_button">
-        logout
-    </button>
-</div>
+
+<h1>LL Memory</h1>
+<ul>
+    <ng-container *ngIf="_userService.isAuthenticated()">
+        <li *ngFor="let game of games">
+            <div class="row">
+            <button (click)="toGame(game)" class="ll_button">{{ game }}</button>
+        </div>    
+        </li>
+    </ng-container>
+    <li>
+        <div class="row" *ngIf="!_userService.isAuthenticated()">
+            <button (click)="toRegister()" class="ll_button">
+                Register
+            </button>
+        </div>
+    </li>
+    <li>
+        <div class="row" *ngIf="!_userService.isAuthenticated()">
+            <button (click)="toLogin()" class="ll_button" >
+                login
+            </button>
+        </div>
+        <div class="row" *ngIf="_userService.isAuthenticated()">
+            <button (click)="logout()" class="ll_button">
+                logout
+            </button>
+        </div>
+    </li>
+
+</ul>
+    
+
+
+
+
+
