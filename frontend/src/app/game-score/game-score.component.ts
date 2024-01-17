@@ -17,6 +17,8 @@ export class GameScoreComponent implements OnInit {
 
   protected gameType="all";
 
+  private title="all";
+
   private scoreUrl():string {
     if(this.gameType==="all"){
       return environment.BACKEND_URL + "api/user_score/?user_id="+this._userService.user_id;
@@ -37,6 +39,7 @@ export class GameScoreComponent implements OnInit {
 
     this.route.queryParams.subscribe(params => {
       this.gameType=params['title'];
+      this.title=params['title'];
       this.getScore();
     });
   }
@@ -57,6 +60,9 @@ export class GameScoreComponent implements OnInit {
   protected toHome():void {
     this.router.navigate(['/']);
   }
-
+  protected toBack():void {
+    let url = '/'+this.title;
+    this.router.navigate([url]);
+  }  
 
 }

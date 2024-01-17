@@ -21,6 +21,9 @@ export abstract class GameBase implements OnInit {
   protected mistakes =0;
 
   protected windowSize: number;
+  protected canvasSize: number;
+
+  private canvasOffset = 35;
 
   protected incressLevel=false;
   protected abstract title:string;
@@ -32,6 +35,7 @@ export abstract class GameBase implements OnInit {
   ngOnInit() {
     this._settingsService.getData(this.title);
     this.windowSize=updateWindowSize();
+    this.canvasSize=this.windowSize-this.canvasOffset;
     this.showGameCanvas=true;
   }
 
@@ -65,6 +69,7 @@ export abstract class GameBase implements OnInit {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.windowSize=updateWindowSize();
+    this.canvasSize=this.windowSize-this.canvasOffset;
   }    
 
   protected abstract generate():Promise<void>

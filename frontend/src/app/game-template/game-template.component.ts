@@ -42,6 +42,10 @@ export class GameTemplateComponent implements OnInit  {
   protected toScore(){
     this.router.navigate(['/score'], { queryParams: { title: this.title } });
   }
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }
+
 
   protected sidesWidth():number {
     let width = window.innerWidth;
