@@ -6,6 +6,7 @@ import { GameBase } from '../game-base';
   //0 means not red
   //1 means red
   // 2 means red but already clcked
+  // 3 means checked but wrong
 interface SvgSquare {
   value:number,
   column:number,
@@ -40,17 +41,17 @@ export class SquareMemoryComponent extends GameBase {
   protected squareColor(square:SvgSquare):string{
     if((square.value==1 && this.showValue) || square.value==2 ){
       return "red";
-    }
-    else{
+    } else if( square.value==3 ) {
+      return "orange";
+    } else {
       return "lightGray";
     }
   }
 
-
   startGame = () => {
      this.settingsStart(this.title);
-    this.time =3000;
     this.currentNumber=1;
+    this.currentMistakes=0;
     this.numberOfSquares=this.startLevel;
     this.squares=[];
     this.generate();
@@ -61,7 +62,7 @@ export class SquareMemoryComponent extends GameBase {
   }
 
   protected checkSquare(square:SvgSquare) {
-    if(!this.showValue && square.value != 2) {
+    if(!this.showValue && square.value != 2 && square.value != 3) {
       if(square.value == 1){
         if(this.currentNumber==this.paintedSquares()){
           square.value=2;
@@ -76,6 +77,9 @@ export class SquareMemoryComponent extends GameBase {
           this.currentNumber+=1;
           square.value=2;
         }
+      } else if(this.currentMistakes<this.mistakes) {
+        square.value=3;
+        this.currentMistakes+=1;
       } else {
         this.lives-=1;
         this.incressLevel=false;
@@ -91,7 +95,6 @@ export class SquareMemoryComponent extends GameBase {
   }
   }
 
-
   private paintedSquares():number {
     let extraSquares=1;
     if(this.incressLevel){
@@ -103,9 +106,9 @@ export class SquareMemoryComponent extends GameBase {
   protected async generate():Promise<void> {
     this.squares =[];
     this.currentNumber=1;
-
+    this.currentMistakes=0;
     this.showValue=true;
-    this.time+=100;
+    this.time+=this.timeIncrease;
     let sq = [];
 
     for(let i=0;i<(this.numberOfSquares*this.numberOfSquares-this.paintedSquares());i++){

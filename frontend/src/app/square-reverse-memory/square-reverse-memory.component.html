@@ -8,17 +8,17 @@
 <svg [attr.width]="windowSize" [attr.height]="windowSize" *ngIf="showGameCanvas" [@fadeInOut]>
     <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
     stroke="black" 
-    [attr.width]="windowSize/numberOfSquares" 
-    [attr.height]="windowSize/numberOfSquares" 
-    [attr.x]=" k.column*windowSize/numberOfSquares"
-    [attr.y]="k.row*windowSize/numberOfSquares"
+    [attr.width]="canvasSize/numberOfSquares" 
+    [attr.height]="canvasSize/numberOfSquares" 
+    [attr.x]=" k.column*canvasSize/numberOfSquares"
+    [attr.y]="k.row*canvasSize/numberOfSquares"
      />
     <rect *ngFor="let k of squaresReverse" [attr.fill]="squareReverseColor(k)" 
     stroke="black" 
-    [attr.width]="windowSize/numberOfSquares" 
-    [attr.height]="windowSize/numberOfSquares" 
-    [attr.x]=" k.column*windowSize/numberOfSquares"
-    [attr.y]="k.row*windowSize/numberOfSquares"
+    [attr.width]="canvasSize/numberOfSquares" 
+    [attr.height]="canvasSize/numberOfSquares" 
+    [attr.x]=" k.column*canvasSize/numberOfSquares"
+    [attr.y]="k.row*canvasSize/numberOfSquares"
     (click)="checkSquare(k)" />   
 </svg>
 </app-game-template>

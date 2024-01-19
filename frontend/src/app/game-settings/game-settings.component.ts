@@ -62,4 +62,24 @@ export class GameSettingsComponent  implements OnInit {
     this.router.navigate([url]);
   }  
 
+  protected plusStartTime():void {
+    this._settingsService.startTime+=100;
+  }
+
+  protected minusStartTime():void {
+    if(this._settingsService.startTime>1000){
+      this._settingsService.startTime-=100;
+    }
+  }
+  
+  protected plusTimeIncrease():void {
+    this._settingsService.timeIncrease+=100;
+  }
+
+  protected minusTimeIncrease():void {
+    if(this._settingsService.timeIncrease>0){
+      this._settingsService.timeIncrease-=100;
+    }
+  }  
+
 }

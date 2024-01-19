@@ -7,20 +7,21 @@
           (change)="onChange($event)" [(ngModel)]="gameType">
           <option value="circles">circle</option>
           <option value="squares">square</option>
-          <option value="square-reverse">square reverse</option>
           <option value="all">all</option>
         </select>
       </span>
 
 
     <table>
-        <th>title</th>
+        <th *ngIf="gameType === 'all'">title</th>
         <th>points</th>
         <th>start lives</th>       
         <th>start level</th>   
-        <th>mistakes tollerance</th>  
+        <th>mistakes</th>  
+        <th>start time</th>  
+        <th>time increase</th>  
         <tr *ngFor="let s of score | async">
-            <td>
+            <td *ngIf="gameType === 'all'">
               {{s.title}}
             </td>
             <td>
@@ -34,7 +35,13 @@
             </td>   
             <td>
               {{s.mistakes}}
-            </td>                           
+            </td>    
+            <td>
+              {{s.startTime}}
+            </td>
+            <td>
+              {{s.timeIncrease}}
+            </td>                                                       
         </tr>
     </table>
 </div>

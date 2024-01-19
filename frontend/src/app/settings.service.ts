@@ -10,7 +10,9 @@ export interface GameSettings {
   lives:number,
   startLevel:number,
   mistakes:number,
-  settings_id:number
+  settings_id:number,
+  startTime:number,
+  timeIncrease:number
 }
 
 @Injectable({
@@ -21,6 +23,8 @@ export class SettingsService {
   public lives = 3;
   public startLevel=3;
   public mistakes =0;
+  public startTime = 3000;
+  public timeIncrease =100;
   public title="";
   public settings_id=-1;
   constructor(private _userService:UserService,private http:HttpClient) { }
@@ -31,7 +35,9 @@ export class SettingsService {
       mistakes:this.mistakes,
       lives:this.lives,
       startLevel:this.startLevel,
-      settings_id:this.settings_id
+      settings_id:this.settings_id,
+      startTime:this.startTime,
+      timeIncrease:this.timeIncrease
     };
       
       const httpOptions = {

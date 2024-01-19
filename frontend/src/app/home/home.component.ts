@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import {UserService} from '../user.service';
 import { Router } from '@angular/router';
-import { CIRCLES, SQUARES, SQUARES_REVERSE } from '../game-util';
+import { CIRCLES, SQUARES } from '../game-util';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +9,7 @@ import { CIRCLES, SQUARES, SQUARES_REVERSE } from '../game-util';
 })
 export class HomeComponent {
 
-  protected games = [SQUARES,CIRCLES,SQUARES_REVERSE];
+  protected games = [SQUARES,CIRCLES];
   
   constructor(protected _userService: UserService,private router: Router) { }
 

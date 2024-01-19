@@ -17,7 +17,8 @@ interface SVGLine {
 interface SVGNumber {
   x:number ,
   y: number,
-  n:number
+  n:number,
+  mistake:boolean
 }
 
 @Component({
@@ -55,10 +56,15 @@ export class CircleMemoryComponent extends GameBase {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
   }
 
+  protected circleColor(i:number): string {
+    let n = this.gameNumbers[i];
+    return n.mistake ? 'orange': 'blue';
+  } 
+
   public startGame = () => {
     this.settingsStart(this.title);
-    this.time =2000;
     this.currentNumber=1;
+    this.currentMistakes=0;
     this.numberOfCircles=this.startLevel;
     this.gameNumbers=[];
     this.circles=[];
@@ -84,6 +90,9 @@ export class CircleMemoryComponent extends GameBase {
           this.points+=100;
           this.currentNumber+=1;
         }
+      } else if(this.currentMistakes<this.mistakes) {
+        this.gameNumbers[i].mistake = true;
+        this.currentMistakes+=1;
       } else {
         this.lives-=1;
         if(this.lives>0) {
@@ -104,21 +113,21 @@ export class CircleMemoryComponent extends GameBase {
     this.currentNumber=1;
     this.gameNumbers=[];
     this.circles=[]
-    
+    this.currentMistakes=0;
     this.showValue=true;
-    this.time+=200;
+    this.time+=this.timeIncrease;
     let sq = [];
     for(let i=1;i<(this.numberOfCircles+1);i++){
       sq.push(i);
     }
     let shuffledNumbers = sq.sort((a, b) => 0.5 - Math.random());
-    this.radius = Math.max(this.windowSize/(Math.max(this.numberOfCircles,8))-10,10);
+    this.radius = Math.max(this.canvasSize/(Math.max(this.numberOfCircles,8))-10,10);
     for(let i=0;i<this.numberOfCircles;i++){
-     let xx = i*(this.windowSize/this.numberOfCircles )+5*this.radius/8;     
-     let yy = Math.floor(this.radius*2+Math.random() * ((this.windowSize-this.radius)-2*this.radius*2));
+     let xx = i*(this.canvasSize/this.numberOfCircles )+5*this.radius/8;     
+     let yy = Math.floor(this.radius*2+Math.random() * ((this.canvasSize-this.radius)-2*this.radius*2));
       let c:SVGCircle = {x:xx,y:yy}; 
       this.circles.push(c);
-      let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i]}; 
+      let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i],mistake:false}; 
       this.gameNumbers.push(nu);
     }
   }

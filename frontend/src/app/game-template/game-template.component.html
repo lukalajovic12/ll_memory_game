@@ -3,19 +3,19 @@
     <div class="game_data_component" *ngIf="!showGame()">  
         <div class="game_data">
             <div class="start_button_div">
-                <button (click)="startTheGame()" class="ll_button start_button"> start game </button> 
+                <button (click)="startTheGame()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30 }"> start game </button> 
             </div>
             <div class="start_button_div">
                 <button   
-                 (click)="toSettings()" class="ll_button start_button"> settings </button> 
+                 (click)="toSettings()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30 }"> settings </button> 
             </div>
             <div class="start_button_div">
                 <button   
-                 (click)="toScore()" class="ll_button start_button"> score </button> 
+                 (click)="toScore()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30 }"> score </button> 
             </div>
             <div class="start_button_div">
                 <button   
-                 (click)="toHome()" class="ll_button start_button"> home </button> 
+                 (click)="toHome()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30 }"> home </button> 
             </div>
 
         </div>
@@ -31,4 +31,8 @@
         </ng-container>
         <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
     </div>
+</div>
+<div class="start_button_div" *ngIf="!_userService.isAuthenticated()">
+    <button   
+     (click)="toHome()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30 }"> home </button> 
 </div>

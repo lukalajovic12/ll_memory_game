@@ -30,7 +30,9 @@ export interface Score {
   settings_id:number,
   lives:number,
   mistakes:number,
-  startLevel:number
+  startLevel:number,
+  startTime:number,
+  timeIncrease:number
 }
 
 export function saveData(title:string,gamePoints:number,
@@ -48,8 +50,6 @@ export function saveData(title:string,gamePoints:number,
         'Authorization': `Bearer ${_userService.token}`
       })
     };  
-    console.log("JOOOJ"); 
-    console.log(gameScore);
     // Subscribe to the POST request to trigger it
     http.post<MemoryGame>(environment.BACKEND_URL+"api/memory_game/", gameScore, httpOptions).subscribe(
       (response) => {

@@ -4,6 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { Directive, HostListener, OnInit } from '@angular/core';
 import { updateWindowSize } from './game-util';
 import {SettingsService} from './settings.service';
+import { Router } from '@angular/router';
 
 @Directive()
 export abstract class GameBase implements OnInit {
@@ -14,11 +15,13 @@ export abstract class GameBase implements OnInit {
 
   protected showValue:boolean;
 
-  protected time:number;
+  protected time = 3000;
   protected startLevel = 0;
   protected lives = 0;
   protected points = 0;
-  protected mistakes =0;
+  protected mistakes = 2;
+  protected currentMistakes = 0;
+  protected timeIncrease = 100;
 
   protected windowSize: number;
   protected canvasSize: number;
@@ -27,22 +30,31 @@ export abstract class GameBase implements OnInit {
 
   protected incressLevel=false;
   protected abstract title:string;
+
+
   constructor(protected http:HttpClient,
     protected _userService: UserService,
-    protected _settingsService:SettingsService ){
+    protected _settingsService:SettingsService,
+    private router: Router ){
   }
 
   ngOnInit() {
-    this._settingsService.getData(this.title);
-    this.windowSize=updateWindowSize();
-    this.canvasSize=this.windowSize-this.canvasOffset;
-    this.showGameCanvas=true;
+    if(!this._userService.isAuthenticated()){
+      console.log("POMPEJI");
+      this.toHome();
+    } else {
+      this._settingsService.getData(this.title);
+      this.windowSize=updateWindowSize();
+      this.canvasSize=this.windowSize-this.canvasOffset;
+      this.showGameCanvas=true;
+    }
   }
 
   protected settingsStart(title:string):void {
     this.lives=this._settingsService.lives;
     this.startLevel=this._settingsService.startLevel;
     this.mistakes=this._settingsService.mistakes;
+    this.time=this._settingsService.startTime;
     this.points=0;
   }
 
@@ -71,6 +83,10 @@ export abstract class GameBase implements OnInit {
     this.windowSize=updateWindowSize();
     this.canvasSize=this.windowSize-this.canvasOffset;
   }    
+
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }  
 
   protected abstract generate():Promise<void>
 

@@ -33,7 +33,7 @@ export class RegistrationComponent implements OnInit {
     };   
     
     // Subscribe to the POST request to trigger it
-    this.http.post<User>(environment.BACKEND_URL+"api/users", user, httpOptions).subscribe(
+    this.http.post<User>(environment.BACKEND_URL+"api/users/", user, httpOptions).subscribe(
       (response) => {
         this._userService.login({'username': this.username, 'password': this.password});
         this.router.navigate(['/']);
@@ -44,5 +44,9 @@ export class RegistrationComponent implements OnInit {
       }
     );
   }
+
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }    
 
 }

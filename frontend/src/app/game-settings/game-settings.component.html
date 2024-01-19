@@ -17,6 +17,17 @@
             <button (click)="plusMistakes()" class="ll_button">+1</button>
             <button (click)="minusMistakes()" class="ll_button">-1</button>
         </div>
+        <div class="data_settings">
+            <div class="ll_value">start time: {{_settingsService.startTime}}</div>
+            <button (click)="plusStartTime()" class="ll_button">+100</button>
+            <button (click)="minusStartTime()" class="ll_button">-100</button>
+        </div>            
+        <div class="data_settings">
+            <div class="ll_value">time increase: {{_settingsService.timeIncrease}}</div>
+            <button (click)="plusTimeIncrease()" class="ll_button">+100</button>
+            <button (click)="minusTimeIncrease()" class="ll_button">-100</button>
+        </div>
+           
         <button (click)="saveSettings()" class="ll_button">save</button>
     </div>
 </div>

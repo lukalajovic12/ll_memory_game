@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
 
   /**
    * An object representing the user for the login form
@@ -26,6 +26,10 @@ export class LoginComponent implements OnInit{
     this._userService.login({'username': this.user.username, 'password': this.user.password});
     this.router.navigate(['/']);
   }
+
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }  
 
 
 }

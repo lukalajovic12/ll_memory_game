@@ -7,8 +7,8 @@ class GameSettings(models.Model):
     startLevel = models.IntegerField(default=3)
     mistakes = models.IntegerField(default=2)      
     title = models.CharField(max_length=120)      
-    startTime = models.FloatField(default=2.0)
-        
+    startTime = models.IntegerField(default=3000) # in miliseconds
+    timeIncrease  = models.IntegerField(default=100) # in miliseconds      
          
 class MemoryGame(models.Model):
     title = models.CharField(max_length=120)
