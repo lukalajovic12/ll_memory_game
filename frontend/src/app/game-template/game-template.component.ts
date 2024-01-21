@@ -32,6 +32,16 @@ export class GameTemplateComponent implements OnInit  {
 
   protected windowSize: number;
 
+  private windowHeight: number;
+
+  protected buttonHeight():number {
+    return this.windowHeight/16;
+  }
+
+  protected buttonDivPadding():number {
+    return this.windowHeight/32;   
+  }
+
   protected startTheGame(){
     this.startGame();
   }
@@ -56,12 +66,14 @@ export class GameTemplateComponent implements OnInit  {
 
   ngOnInit() {
     this.windowSize=updateWindowSize();
+    this.windowHeight = window.innerHeight;
   }
 
   // HostListener to listen for window resize event
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.windowSize=updateWindowSize();
+    this.windowSize = updateWindowSize();
+    this.windowHeight = window.innerHeight;
   }
 
   protected showGame():boolean{

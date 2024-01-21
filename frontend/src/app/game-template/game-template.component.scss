@@ -1,17 +1,8 @@
-.game_area {
-    padding: 5px;
-    display: flex;
-}
 .game_data_component {
     background-color: white;
 }
 
-.game_data_left_side {
-    background-color: white;
-}
-.game_data_right_side {
-    background-color: white;
-}
+
 
 .game_data_component .points_div {
     padding: 5px;
@@ -39,6 +30,5 @@
 }
 
 .start_button {
-    margin-top: 50px;
     padding: 30px 30px;
 }

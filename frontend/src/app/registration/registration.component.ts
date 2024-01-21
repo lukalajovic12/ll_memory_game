@@ -1,9 +1,11 @@
-import { Component,OnInit } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {User} from '../user.service';
 import {UserService} from '../user.service';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+import { updateWindowSize } from '../game-util';
+
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
@@ -12,13 +14,16 @@ import { Router } from '@angular/router';
 export class RegistrationComponent implements OnInit {
 
 
-  username="";
-  password="";
+  protected username="";
+  protected password="";
+
+  private windowSize: number;  
 
   constructor(private http:HttpClient,public _userService: UserService,private router: Router) {
   }
 
   ngOnInit(): void {
+    this.windowSize=updateWindowSize();
   }
   
 
@@ -47,6 +52,17 @@ export class RegistrationComponent implements OnInit {
 
   protected toHome():void {
     this.router.navigate(['/']);
-  }    
+  }  
+  
+  // HostListener to listen for window resize event
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.windowSize = updateWindowSize();
+  }  
+
+  protected sidesWidth():number {
+    let width = window.innerWidth;
+    return (width-this.windowSize)/2;
+  }  
 
 }
