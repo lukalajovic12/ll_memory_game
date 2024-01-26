@@ -16,6 +16,8 @@ import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameSettingsComponent } from './game-settings/game-settings.component';
+import { HomeMenuComponent } from './home/home-menu/home-menu.component';
+import { GameMenuComponent } from './game-template/game-menu/game-menu.component';
 
 
 @NgModule({
@@ -29,7 +31,9 @@ import { GameSettingsComponent } from './game-settings/game-settings.component';
     SquareReverseMemoryComponent,
     RegistrationComponent,
     LoginComponent,
-    GameSettingsComponent
+    GameSettingsComponent,
+    HomeMenuComponent,
+    GameMenuComponent
   ],
   imports: [
     BrowserModule,

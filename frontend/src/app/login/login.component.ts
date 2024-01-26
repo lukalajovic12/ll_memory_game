@@ -1,7 +1,5 @@
-import {Component, HostListener, OnInit} from '@angular/core';
+import {Component, Input, OnInit, Output, EventEmitter} from '@angular/core';
 import {UserService} from '../user.service';
-import { Router } from '@angular/router';
-import { updateWindowSize } from '../game-util';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -14,35 +12,28 @@ export class LoginComponent implements OnInit {
    */
   protected user: any;
 
-  private windowSize: number;  
+  @Input()
+  public homeState: 'register'|'login'|'menu';
+  @Output() homeStateChange = new EventEmitter<'register' | 'login' | 'menu'>();
 
-  constructor(public _userService: UserService,private router: Router) { }
+  constructor(public _userService: UserService) { }
  
   ngOnInit() {
-    this.windowSize=updateWindowSize();
     this.user = {
       username: '',
       password: ''
     };
   }
  
-  protected login() {
-    this._userService.login({'username': this.user.username, 'password': this.user.password});
-    this.router.navigate(['/']);
+  protected async login() {
+    let logedin = this._userService.login({id:-1,'username': this.user.username, 'password': this.user.password});
+    await logedin;
+    if(logedin){
+      this.homeState='menu';
+      this.homeStateChange.emit('menu');
+    }
   }
 
-  protected toHome():void {
-    this.router.navigate(['/']);
-  }  
 
-  // HostListener to listen for window resize event
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowSize = updateWindowSize();
-  }
-
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowSize)/2;
-  }
+  
 }

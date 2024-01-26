@@ -1,32 +1,19 @@
-
-
-<div class="game_area">
-  <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
-  <div>
-    <h2 *ngIf="!_userService.isAuthenticated()">login</h2>
-    <div *ngIf="!_userService.isAuthenticated()">
-      <div class="row">
-        <label>Username:</label><br />
-        <input type="text" name="login-username" [(ngModel)]="user.username">
-        <span *ngFor="let error of _userService.errors.username"><br />
-        </span>
-      </div>
-      <div class="row">
-        <label>Password:</label><br />
-        <input type="password" name="login-password" [(ngModel)]="user.password">
-        <span *ngFor="let error of _userService.errors.password"><br />
-        </span>
-      </div>
-      <div class="row">
-        <button (click)="login()" class="ll_button">Log In</button>
-      </div>
-      <div class="row">
-        <span *ngFor="let error of _userService.errors.non_field_errors"><br /></span>
-      </div>
-      <div class="row">
-        <button (click)="toHome()" class="ll_button">Home</button>
-      </div>
-    </div>
-  </div>
-  <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side"></div>
+<h2>login</h2>
+<div class="row">
+  <label>Username:</label><br />
+  <input type="text" name="login-username" [(ngModel)]="user.username">
+  <span *ngFor="let error of _userService.errors.username"><br />
+  </span>
+</div>
+<div class="row">
+  <label>Password:</label><br />
+  <input type="password" name="login-password" [(ngModel)]="user.password">
+  <span *ngFor="let error of _userService.errors.password"><br />
+  </span>
+</div>
+<div class="row">
+  <button (click)="login()" class="ll_button">Log In</button>
+</div>
+<div class="row">
+  <span *ngFor="let error of _userService.errors.non_field_errors"><br /></span>
 </div>

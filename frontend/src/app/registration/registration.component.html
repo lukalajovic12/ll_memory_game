@@ -1,22 +1,12 @@
-<div class="game_area">
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
-    <div>
-        <div class="row">
-            <label>username</label>
-            <input type="text" [(ngModel)]="username">
-        </div>
-        <div class="row">
-            <label>password</label>
-            <input type="password" [(ngModel)]="password">
-        </div>
-        <div class="row">
-            <button (click)="register()" class="ll_button">Register</button>
-        </div>
-        <div class="row">
-            <button (click)="toHome()" class="ll_button">Home</button>
-        </div>
-    </div>
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side"></div>
-</div>
 
-  
+<div class="row">
+    <label>username</label>
+    <input type="text" [(ngModel)]="username">
+</div>
+<div class="row">
+    <label>password</label>
+    <input type="password" [(ngModel)]="password">
+</div>
+<div class="row">
+    <button (click)="register()" class="ll_button">Register</button>
+</div>

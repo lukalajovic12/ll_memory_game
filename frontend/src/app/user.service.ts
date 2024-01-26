@@ -1,61 +1,94 @@
 
 
-import {Injectable} from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http'; 
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../environments/environment';
 export interface User {
-  id:number,
-  username:string,
-  password:string
+  id: number,
+  username: string,
+  password: string
 }
 @Injectable()
 export class UserService {
- 
+
   // http options used for making API calls
   private httpOptions: any;
- 
+
   // the actual JWT token
   public token: string;
- 
+
   // the token expiration date
   public token_expires: Date;
- 
+
   // the username of the logged in user
   public username: string;
 
   // the user_id of the logged in user
-  public user_id:number;
- 
+  public user_id: number;
+
   // error messages received from the login attempt
   public errors: any = [];
- 
+
   constructor(private http: HttpClient) {
     this.httpOptions = {
-      headers: new HttpHeaders({'Content-Type': 'application/json'})
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
     const storedToken = localStorage.getItem('token');
     if (storedToken) {
-      this.token=storedToken;
+      this.token = storedToken;
       this.refreshToken();
     }
   }
- 
+
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
-  public login(user) {
-    this.username=user.username;
-    this.http.post(environment.BACKEND_URL+'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
+  public async login(user:User): Promise<boolean> {
+    let logedin = false;
+    this.username = user.username;
+    this.http.post(environment.BACKEND_URL + 'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
+        logedin = true;
         this.updateData(data['access']);
       },
       err => {
         this.errors = err['error'];
       }
     );
+    return logedin;
   }
- 
+
+
+  public async register(user:User): Promise<boolean> {
+    let logedin = false;
+    // let user: User= {id:-1,username:this.username, password:this.password};
+
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json'
+      })
+    };
+
+    // Subscribe to the POST request to trigger it
+    this.http.post<User>(environment.BACKEND_URL + "api/users/", user, httpOptions).subscribe(
+      (data) => {
+        console.log("user created", data);
+        logedin = true;
+        this.updateData(data['access']);
+      },
+      (error) => {
+        // Handle errors here
+        console.error('Error saving game data:', error);
+      }
+    );
+    return logedin;
+  }
+
+
+
+
+
   // Refreshes the JWT token, to extend the time the user is logged in
   public refreshToken() {
-    this.http.post(environment.BACKEND_URL+'api/token/refresh/', JSON.stringify({token: this.token}), this.httpOptions).subscribe(
+    this.http.post(environment.BACKEND_URL + 'api/token/refresh/', JSON.stringify({ token: this.token }), this.httpOptions).subscribe(
       data => {
         this.updateData(data['access']);
       },
@@ -65,14 +98,14 @@ export class UserService {
       }
     );
   }
- 
+
   public logout() {
     this.token = null;
     this.token_expires = null;
     this.username = null;
-    this.user_id= null;
+    this.user_id = null;
   }
- 
+
   private updateData(token) {
     this.token = token;
     this.errors = [];
@@ -82,13 +115,14 @@ export class UserService {
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
     this.token_expires = new Date(token_decoded.exp * 1000);
     this.username = this.username;
-    this.user_id=token_decoded.user_id;
+    this.user_id = token_decoded.user_id;
+    console.log("BOBO " + this.isAuthenticated());
   }
 
 
-  public isAuthenticated():boolean {
-     return this.token !==null && this.token !==undefined;
-   }
- 
+  public isAuthenticated(): boolean {
+    return this.token !== null && this.token !== undefined;
+  }
+
 }
 

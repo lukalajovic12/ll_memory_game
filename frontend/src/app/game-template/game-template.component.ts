@@ -20,42 +20,17 @@ import { Router } from '@angular/router';
 })
 export class GameTemplateComponent implements OnInit  {
 
-  @Input() title:string;
+  @Input()  title:string;
 
-  @Input() lives:number;
+  @Input()  lives:number;
 
-  @Input() points:number;
+  @Input()  points:number;
 
   @Input() startGame:() => void;
 
   @Input() showData;
 
   protected windowSize: number;
-
-  private windowHeight: number;
-
-  protected buttonHeight():number {
-    return this.windowHeight/16;
-  }
-
-  protected buttonDivPadding():number {
-    return this.windowHeight/32;   
-  }
-
-  protected startTheGame(){
-    this.startGame();
-  }
-
-  protected toSettings(){
-    this.router.navigate(['/settings'], { queryParams: { title: this.title } });
-  }
-  protected toScore(){
-    this.router.navigate(['/score'], { queryParams: { title: this.title } });
-  }
-  protected toHome():void {
-    this.router.navigate(['/']);
-  }
-
 
   protected sidesWidth():number {
     let width = window.innerWidth;
@@ -66,14 +41,12 @@ export class GameTemplateComponent implements OnInit  {
 
   ngOnInit() {
     this.windowSize=updateWindowSize();
-    this.windowHeight = window.innerHeight;
   }
 
   // HostListener to listen for window resize event
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.windowSize = updateWindowSize();
-    this.windowHeight = window.innerHeight;
   }
 
   protected showGame():boolean{

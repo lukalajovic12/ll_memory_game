@@ -10,37 +10,26 @@ import { CIRCLES, SQUARES, updateWindowSize } from '../game-util';
 })
 export class HomeComponent implements OnInit {
 
-  protected games = [SQUARES,CIRCLES];
 
-  private windowSize: number;    
+  private windowSize: number; 
 
+  public homeState: 'register'|'login'|'menu' ='menu';
+  
+  
   constructor(protected _userService: UserService,private router: Router) { }
 
   ngOnInit() {
     this.windowSize=updateWindowSize();
   }
 
-
-
-  protected toGame(game:string){
-    this.router.navigate(['/'+game]);
-  }
-
-
-  protected toRegister(){
-    this.router.navigate(['/register']);
-  }
-  protected toLogin(){
-    this.router.navigate(['/login']);
-  }
-
-  protected logout(){
-    this._userService.logout();
-  }
-
   protected sidesWidth():number {
     let width = window.innerWidth;
     return (width-this.windowSize)/2;
   }
+
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.windowSize = updateWindowSize();
+  }  
 
 }

@@ -2,35 +2,9 @@
 <div class="game_area">
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
     <div>
-        <h1>LL Memory</h1>
-        <ul>
-            <ng-container *ngIf="_userService.isAuthenticated()">
-                <li *ngFor="let game of games">
-                    <div class="row">
-                    <button (click)="toGame(game)" class="ll_button">{{ game }}</button>
-                </div>    
-                </li>
-            </ng-container>
-            <li>
-                <div class="row" *ngIf="!_userService.isAuthenticated()">
-                    <button (click)="toRegister()" class="ll_button">
-                        Register
-                    </button>
-                </div>
-            </li>
-            <li>
-                <div class="row" *ngIf="!_userService.isAuthenticated()">
-                    <button (click)="toLogin()" class="ll_button" >
-                        login
-                    </button>
-                </div>
-                <div class="row" *ngIf="_userService.isAuthenticated()">
-                    <button (click)="logout()" class="ll_button">
-                        logout
-                    </button>
-                </div>
-            </li>
-        </ul>
+        <app-home-menu *ngIf="homeState === 'menu'" [(homeState)]="homeState"  />
+        <app-login *ngIf="homeState === 'login'" [(homeState)]="homeState" />
+        <app-registration *ngIf="homeState === 'register'" [(homeState)]="homeState" />
     </div>
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side"></div>
 </div>
