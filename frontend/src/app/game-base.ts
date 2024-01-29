@@ -40,7 +40,6 @@ export abstract class GameBase implements OnInit {
 
   ngOnInit() {
     if(!this._userService.isAuthenticated()){
-      console.log("POMPEJI");
       this.toHome();
     } else {
       this._settingsService.getData(this.title);
