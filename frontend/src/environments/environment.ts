@@ -1,3 +1,3 @@
 export const environment = {
-    BACKEND_URL: "http://lukalajovic.pythonanywhere.com/"
+    BACKEND_URL: "https://lukalajovic.pythonanywhere.com/"
 };
