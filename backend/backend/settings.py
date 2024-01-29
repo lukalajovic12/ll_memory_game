@@ -127,7 +127,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000','http://localhost:4200'
+     'http://localhost:3000','http://localhost:4200','https://lukalajovic12.github.io/ll_memory_game'
 ]
 
 REST_FRAMEWORK = {
