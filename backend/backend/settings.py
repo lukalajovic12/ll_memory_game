@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-9a_3ambpghsly#nc%@u7=ee$72wvt!7l&z(7#8#ft6*bnxes4#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['lukalajovic.pythonanywhere.com']
 
 
 # Application definition
@@ -127,7 +127,7 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CORS_ORIGIN_WHITELIST = [
-     'http://localhost:3000','http://localhost:4200','https://lukalajovic12.github.io/ll_memory_game'
+     'http://localhost:3000','http://localhost:4200','https://lukalajovic12.github.io'
 ]
 
 REST_FRAMEWORK = {
