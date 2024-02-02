@@ -3,9 +3,10 @@
 [lives]="lives"
 [points]="points"
 [startGame]="startGame"
-[showData]="showDataCanvas"
+[gameDisplayState]="gameDisplayState"
+[success]="success"
 >
-    <svg [attr.width]="windowSize" [attr.height]="windowSize" *ngIf="showGameCanvas" [@fadeInOut]>
+    <svg [attr.width]="windowSize" [attr.height]="windowSize" *ngIf="gameDisplayState === 'game'" [@fadeInOut]>
         <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
         stroke="black" 
         [attr.width]="canvasSize/numberOfSquares" 

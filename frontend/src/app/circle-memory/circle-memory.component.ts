@@ -1,4 +1,4 @@
-import { CIRCLES, saveData } from '../game-util';
+import { CIRCLES } from '../game-util';
 import { Component } from '@angular/core';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
@@ -62,7 +62,7 @@ export class CircleMemoryComponent extends GameBase {
   } 
 
   public startGame = () => {
-    this.settingsStart(this.title);
+    this.settingsStart();
     this.currentNumber=1;
     this.currentMistakes=0;
     this.numberOfCircles=this.startLevel;
@@ -72,20 +72,20 @@ export class CircleMemoryComponent extends GameBase {
     setTimeout(() => {
       this.showValue=false;
     }, this.time);
-
-
   }
 
-  protected checkNumber(i:number){
+  protected async checkNumber(i:number): Promise<void> {
     if(!this.showValue && this.gameNumbers[i].n >= this.currentNumber) {
       if(this.gameNumbers[i].n == this.currentNumber){
         if(this.currentNumber==this.numberOfCircles){
+          await this.sleep(500);
           this.points+=1000;
+          this.currentNumber+=1;
+          await this.generatePause(true);
           if(this.incressLevel){
             this.numberOfCircles+=1;
           }
           this.incressLevel=!this.incressLevel;
-          this.generatePause();
         } else {
           this.points+=100;
           this.currentNumber+=1;
@@ -94,16 +94,17 @@ export class CircleMemoryComponent extends GameBase {
         this.gameNumbers[i].mistake = true;
         this.currentMistakes+=1;
       } else {
+        await this.sleep(500);
         this.lives-=1;
+        await this.generatePause(false);
         if(this.lives>0) {
           if(this.numberOfCircles>3){
             this.numberOfCircles-=1;
           }
           this.incressLevel=false;
-          this.generatePause();
         }
         else {
-          saveData(this.title,this.points,this.http,this._userService,this._settingsService);
+          this.saveScore();
         }
       }
     }

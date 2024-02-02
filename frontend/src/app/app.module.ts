@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
@@ -10,7 +9,6 @@ import { GameScoreComponent } from './game-score/game-score.component';
 import { SquareMemoryComponent } from './square-memory/square-memory.component';
 import { GameTemplateComponent } from './game-template/game-template.component';
 import { HomeComponent } from './home/home.component';
-import { SquareReverseMemoryComponent } from './square-reverse-memory/square-reverse-memory.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { LoginComponent } from './login/login.component';
 import { UserService } from './user.service';
@@ -18,6 +16,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameSettingsComponent } from './game-settings/game-settings.component';
 import { HomeMenuComponent } from './home/home-menu/home-menu.component';
 import { GameMenuComponent } from './game-template/game-menu/game-menu.component';
+import { GamePauseComponent } from './game-template/game-pause/game-pause.component';
+import { GameEndComponent } from './game-template/game-end/game-end.component';
 
 
 @NgModule({
@@ -28,12 +28,13 @@ import { GameMenuComponent } from './game-template/game-menu/game-menu.component
     SquareMemoryComponent,
     GameTemplateComponent,
     HomeComponent,
-    SquareReverseMemoryComponent,
     RegistrationComponent,
     LoginComponent,
     GameSettingsComponent,
     HomeMenuComponent,
-    GameMenuComponent
+    GameMenuComponent,
+    GamePauseComponent,
+    GameEndComponent
   ],
   imports: [
     BrowserModule,

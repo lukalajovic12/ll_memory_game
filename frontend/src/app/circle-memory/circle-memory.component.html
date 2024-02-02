@@ -4,9 +4,10 @@
 [lives]="lives"
 [points]="points"
 [startGame]="startGame"
-[showData]="showDataCanvas">
+[gameDisplayState]="gameDisplayState"
+[success]="success">
 <svg [attr.width]="windowSize" 
-[attr.height]="windowSize" class="svg_canvas" *ngIf="showGameCanvas" [@fadeInOut]>
+[attr.height]="windowSize" class="svg_canvas" *ngIf="gameDisplayState === 'game'" [@fadeInOut]>
     <line *ngFor="let l of generateLines()" [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" [attr.y2]="l.y2" style="stroke:black;stroke-width:2"  />
     <circle class="game_circle"
      *ngFor="let c of circles; let i = index"

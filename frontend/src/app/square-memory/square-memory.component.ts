@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SQUARES, saveData } from '../game-util';
+import { SQUARES } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
 
@@ -49,7 +49,7 @@ export class SquareMemoryComponent extends GameBase {
   }
 
   startGame = () => {
-     this.settingsStart(this.title);
+    this.settingsStart();
     this.currentNumber=1;
     this.currentMistakes=0;
     this.numberOfSquares=this.startLevel;
@@ -61,17 +61,18 @@ export class SquareMemoryComponent extends GameBase {
 
   }
 
-  protected checkSquare(square:SvgSquare) {
+  protected async checkSquare(square:SvgSquare) {
     if(!this.showValue && square.value != 2 && square.value != 3) {
       if(square.value == 1){
         if(this.currentNumber==this.paintedSquares()){
           square.value=2;
+          await this.sleep(500);
           this.points+=1000;
           if(this.incressLevel) {
             this.numberOfSquares+=1;
           }
           this.incressLevel=!this.incressLevel;
-          this.generatePause();
+          this.generatePause(true);
         } else {
           this.points+=100;
           this.currentNumber+=1;
@@ -81,16 +82,17 @@ export class SquareMemoryComponent extends GameBase {
         square.value=3;
         this.currentMistakes+=1;
       } else {
+        await this.sleep(500);
         this.lives-=1;
         this.incressLevel=false;
         if(this.lives>0){
           if(this.numberOfSquares>3){
             this.numberOfSquares-=1;
-          }
-          this.generatePause();
+          }    
+          this.generatePause(false);
         } else {
-            saveData(this.title,this.points,this.http,this._userService,this._settingsService);       
-        }
+          this.saveScore();
+         }
       }
   }
   }

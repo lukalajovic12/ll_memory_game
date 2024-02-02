@@ -16,8 +16,9 @@ export class GameSettingsComponent  implements OnInit {
    
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => 
-      this._settingsService.getData(params['title']))
-    }
+    this._settingsService.getData(params['title']))
+  }
+
   protected plusLife():void {
     this._settingsService.lives+=1;
   }
@@ -49,12 +50,10 @@ export class GameSettingsComponent  implements OnInit {
   }
 
   protected saveSettings():void {
-    this._settingsService.saveSettings();
-    let url = '/'+this._settingsService.title;
-    this.router.navigate([url]);
-  }
-  protected toHome():void {
-    this.router.navigate(['/']);
+    if(this._userService.isAuthenticated()) {
+      this._settingsService.saveSettings();
+    }
+    this.toBack();
   }
 
   protected toBack():void {

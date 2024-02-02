@@ -1,5 +1,5 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { updateWindowSize } from '../game-util';
+import { updateWindowSize, GameDisplayState } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {UserService} from '../user.service';
 import { Router } from '@angular/router';
@@ -28,14 +28,11 @@ export class GameTemplateComponent implements OnInit  {
 
   @Input() startGame:() => void;
 
-  @Input() showData;
+  @Input() success:boolean; 
+
+  @Input() gameDisplayState: GameDisplayState;
 
   protected windowSize: number;
-
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowSize)/2;
-  }
 
   constructor(protected _userService: UserService,private router: Router){}
 
@@ -50,7 +47,11 @@ export class GameTemplateComponent implements OnInit  {
   }
 
   protected showGame():boolean{
-    return this.lives>0 && this._userService.isAuthenticated();
+    return this.lives>0;
   }   
 
+  protected sidesWidth():number {
+    let width = window.innerWidth;
+    return (width-this.windowSize)/2;
+  }
 }

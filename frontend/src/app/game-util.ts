@@ -41,15 +41,16 @@ export function saveData(title:string,gamePoints:number,
   _settingsService:SettingsService):void {
   let gameScore:MemoryGame = {title:title,
     user:_userService.user_id,
-    points:gamePoints,settings:_settingsService.settings_id
+    points:gamePoints,
+    settings:_settingsService.settings_id
   };
-    
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${_userService.token}`
-      })
-    };  
+
+  const httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${_userService.token}`
+    })
+  };  
     // Subscribe to the POST request to trigger it
     http.post<MemoryGame>(environment.BACKEND_URL+"api/memory_game/", gameScore, httpOptions).subscribe(
       (response) => {
@@ -85,3 +86,5 @@ export function saveData(title:string,gamePoints:number,
     let sizes=updateWindowSizes();
     return Math.min(sizes.width,sizes.height);
   } 
+
+  export type GameDisplayState = 'game' | 'menu' | 'data' | 'empty' | 'end';

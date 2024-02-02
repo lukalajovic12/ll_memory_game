@@ -33,17 +33,25 @@ export class UserService {
     this.httpOptions = {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' })
     };
-    const storedToken = localStorage.getItem('token');
+    const storedToken = localStorage.getItem('token');  
     if (storedToken) {
       this.token = storedToken;
       this.refreshToken();
     }
+
+    const storedUsername = localStorage.getItem('username');  
+    if (storedUsername) {
+      this.username = storedUsername;
+    }
   }
+
+
 
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
   public async login(user:User): Promise<boolean> {
     let logedin = false;
     this.username = user.username;
+    localStorage.setItem('username', this.username);
     this.http.post(environment.BACKEND_URL + 'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
       data => {
         logedin = true;
@@ -82,19 +90,15 @@ export class UserService {
     return logedin;
   }
 
-
-
-
-
   // Refreshes the JWT token, to extend the time the user is logged in
   public refreshToken() {
+    this.updateData(this.token);
     this.http.post(environment.BACKEND_URL + 'api/token/refresh/', JSON.stringify({ token: this.token }), this.httpOptions).subscribe(
       data => {
         this.updateData(data['access']);
       },
       err => {
         this.errors = err['error'];
-        this.logout();
       }
     );
   }
@@ -102,7 +106,7 @@ export class UserService {
   public logout() {
     this.token = null;
     this.token_expires = null;
-    this.username = null;
+   // this.username = null;
     this.user_id = null;
   }
 
@@ -114,12 +118,18 @@ export class UserService {
     const token_parts = this.token.split(/\./);
     const token_decoded = JSON.parse(window.atob(token_parts[1]));
     this.token_expires = new Date(token_decoded.exp * 1000);
-    this.username = this.username;
     this.user_id = token_decoded.user_id;
   }
 
+  checkTokenExpiration() {
+    const currentDate = new Date();
+    if (currentDate >= this.token_expires) {
+      this.logout();
+    }
+  }
 
   public isAuthenticated(): boolean {
+    this.checkTokenExpiration();
     return this.token !== null && this.token !== undefined;
   }
 

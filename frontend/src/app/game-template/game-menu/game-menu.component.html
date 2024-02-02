@@ -4,9 +4,10 @@
     </div>
     <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
         <button   
-         (click)="toSettings()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> settings </button> 
+         (click)="toSettings()" class="ll_button start_button" 
+         [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> settings </button> 
     </div>
-    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
+    <div class="start_button_div" *ngIf="_userService.isAuthenticated()" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
         <button   
          (click)="toScore()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> score </button> 
     </div>

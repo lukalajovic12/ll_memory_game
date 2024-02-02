@@ -1,8 +1,10 @@
 
 
         <h1>LL Memory</h1>
+        <h2 *ngIf="_userService.isAuthenticated()">Hello {{ _userService.username}}!</h2>
+        <h2 *ngIf="!_userService.isAuthenticated()"> To save score login or register.</h2>
         <ul>
-            <ng-container *ngIf="_userService.isAuthenticated()">
+            <ng-container>
                 <li *ngFor="let game of games">
                     <div class="row">
                     <button (click)="toGame(game)" class="ll_button">{{ game }}</button>

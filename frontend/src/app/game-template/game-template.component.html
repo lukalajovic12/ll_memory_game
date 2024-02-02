@@ -1,21 +1,22 @@
-<div class="game_area" *ngIf="_userService.isAuthenticated()">
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
-    <div class="game_data_component" *ngIf="!showGame()">  
+<div class="game_area">
+    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div> 
         <app-game-menu
         [title]="title"
-        [startGame]="startGame"        
-        
+        [startGame]="startGame"   
+        *ngIf="gameDisplayState === 'menu'"     
         />
-    </div>    
-        <ng-container *ngIf="showGame()">
-            <ng-content />
-            <div *ngIf="showData" [@fadeInOut]>
-                <h1>Great Job</h1>
-                <h1>You have {{lives}} lives</h1>
-                <h1>You have {{points}} points</h1>
-                <h1>Keep it Up</h1>
-            </div>
-        </ng-container>
+        <ng-content />
+        <app-game-pause 
+        [lives]="lives"
+        [points]="points"
+        [success]="success"
+        *ngIf="gameDisplayState === 'data'" [@fadeInOut]
+        />
+        <app-game-end
+        [gameDisplayState]="gameDisplayState"
+        [points]="points"
+        *ngIf="gameDisplayState === 'end'" [@fadeInOut]
+         />
         <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
     </div>
 </div>
