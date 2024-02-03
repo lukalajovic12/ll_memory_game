@@ -12,17 +12,12 @@ export class GameEndComponent {
 
   @Input() points;
 
-  @Input() gameDisplayState: GameDisplayState;
+  @Input() playAgain:() => void;
 
   constructor(protected _userService: UserService,private router: Router) { }
 
   protected toHome(){
     this.router.navigate(['/']);
   }
-
-  protected playAgain(){
-    this.gameDisplayState = 'menu';
-  }
-
 
 }

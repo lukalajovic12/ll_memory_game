@@ -13,7 +13,7 @@
         *ngIf="gameDisplayState === 'data'" [@fadeInOut]
         />
         <app-game-end
-        [gameDisplayState]="gameDisplayState"
+        [playAgain]="startGame" 
         [points]="points"
         *ngIf="gameDisplayState === 'end'" [@fadeInOut]
          />
