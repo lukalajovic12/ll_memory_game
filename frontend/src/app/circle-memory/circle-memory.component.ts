@@ -78,14 +78,14 @@ export class CircleMemoryComponent extends GameBase {
     if(!this.showValue && this.gameNumbers[i].n >= this.currentNumber) {
       if(this.gameNumbers[i].n == this.currentNumber){
         if(this.currentNumber==this.numberOfCircles){
+          this.currentNumber+=1;
           await this.sleep(500);
           this.points+=1000;
-          this.currentNumber+=1;
-          await this.generatePause(true);
           if(this.incressLevel){
             this.numberOfCircles+=1;
           }
           this.incressLevel=!this.incressLevel;
+          await this.generatePause(true);
         } else {
           this.points+=100;
           this.currentNumber+=1;
@@ -96,12 +96,12 @@ export class CircleMemoryComponent extends GameBase {
       } else {
         await this.sleep(500);
         this.lives-=1;
-        await this.generatePause(false);
+        this.incressLevel=false;
         if(this.lives>0) {
           if(this.numberOfCircles>3){
             this.numberOfCircles-=1;
           }
-          this.incressLevel=false;
+          await this.generatePause(false);
         }
         else {
           this.saveScore();

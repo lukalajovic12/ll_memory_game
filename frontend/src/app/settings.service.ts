@@ -21,7 +21,7 @@ export class SettingsService {
 
   public lives = 3;
   public startLevel=3;
-  public mistakes =0;
+  public mistakes =1;
   public startTime = 3000;
   public timeIncrease =100;
   public title="";
