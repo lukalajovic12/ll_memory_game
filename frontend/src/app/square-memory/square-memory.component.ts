@@ -47,8 +47,18 @@ export class SquareMemoryComponent extends GameBase {
       return "lightGray";
     }
   }
+  
+  public startGame = () => {
+    this.customGame=false;
+    this.gameStart();
+  }
 
-  startGame = () => {
+  public startCustomGame = () => {
+    this.customGame=true;
+    this.gameStart();
+  }  
+
+  private gameStart():void {
     this.settingsStart();
     this.currentNumber=1;
     this.currentMistakes=0;

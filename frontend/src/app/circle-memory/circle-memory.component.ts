@@ -62,6 +62,19 @@ export class CircleMemoryComponent extends GameBase {
   } 
 
   public startGame = () => {
+    this.customGame=false;
+
+    this.points=1111;
+    this.saveScore();
+    //this.gameStart();
+  }
+
+  public startCustomGame = () => {
+    this.customGame=true;
+    this.gameStart();
+  }  
+
+  private gameStart() {
     this.settingsStart();
     this.currentNumber=1;
     this.currentMistakes=0;
@@ -73,6 +86,7 @@ export class CircleMemoryComponent extends GameBase {
       this.showValue=false;
     }, this.time);
   }
+
 
   protected async checkNumber(i:number): Promise<void> {
     if(!this.showValue && this.gameNumbers[i].n >= this.currentNumber) {

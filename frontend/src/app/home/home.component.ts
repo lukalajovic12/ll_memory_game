@@ -1,7 +1,7 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import {UserService} from '../user.service';
 import { Router } from '@angular/router';
-import { CIRCLES, SQUARES, updateWindowSize } from '../game-util';
+import { CIRCLES, SQUARES, updateWindowWidth } from '../game-util';
 
 @Component({
   selector: 'app-home',
@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
   constructor(protected _userService: UserService,private router: Router) { }
 
   ngOnInit() {
-    this.windowSize=updateWindowSize();
+    this.windowSize=updateWindowWidth();
   }
 
   protected sidesWidth():number {
@@ -29,7 +29,7 @@ export class HomeComponent implements OnInit {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.windowSize = updateWindowSize();
+    this.windowSize = updateWindowWidth();
   }  
 
 }

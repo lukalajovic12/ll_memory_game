@@ -1,12 +1,17 @@
-
-<div class="row">
-    <label>username</label>
-    <input type="text" [(ngModel)]="username">
-</div>
-<div class="row">
-    <label>password</label>
-    <input type="password" [(ngModel)]="password">
-</div>
-<div class="row">
-    <button (click)="register()" class="ll_button">Register</button>
+<div class="register_class">
+    <h2>Register</h2>
+    <div class="row">
+        <label>username</label>
+        <input type="text" [(ngModel)]="username">
+    </div>
+    <div class="row">
+        <label>password</label>
+        <input type="password" [(ngModel)]="password">
+    </div>
+    <div class="row">
+        <button (click)="register()" class="ll_button">Register</button>
+    </div>
+    <div class="row">
+        <button (click)="back()" class="ll_button">Cancel</button>
+    </div>
 </div>

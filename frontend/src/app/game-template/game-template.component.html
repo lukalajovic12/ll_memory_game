@@ -1,22 +1,28 @@
 <div class="game_area">
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div> 
-        <app-game-menu
-        [title]="title"
-        [startGame]="startGame"   
-        *ngIf="gameDisplayState === 'menu'"     
-        />
-        <ng-content />
-        <app-game-pause 
-        [lives]="lives"
-        [points]="points"
-        [success]="success"
-        *ngIf="gameDisplayState === 'data'" [@fadeInOut]
-        />
-        <app-game-end
-        [playAgain]="startGame" 
-        [points]="points"
-        *ngIf="gameDisplayState === 'end'" [@fadeInOut]
-         />
+        <div>
+            <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
+            <app-game-menu
+            [title]="title"
+            [startGame]="startGame"   
+            [startCustomGame]="startCustomGame"
+            *ngIf="gameDisplayState === 'menu'"     
+            />
+            <ng-content />
+            <app-game-pause 
+            [lives]="lives"
+            [points]="points"
+            [success]="success"
+            *ngIf="gameDisplayState === 'data'" [@fadeInOut]
+            />
+            <app-game-end
+            [playAgain]="startGame" 
+            [points]="points"
+            *ngIf="gameDisplayState === 'end'" [@fadeInOut]
+            />
+         <div><div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
+        </div>
+        
         <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
     </div>
 </div>

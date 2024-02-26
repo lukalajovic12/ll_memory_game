@@ -19,6 +19,7 @@ urlpatterns = [
     path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('api/user_score/', memoryGameViews.MemoryGameViewUserScore.as_view()),
     path('api/settings_get/', memoryGameViews.SettingsGetView.as_view()),
+    path('api/leaderboard/', memoryGameViews.MemoryGameViewLeaderboard.as_view()),  
 ]
 
 

@@ -1,7 +1,7 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
-import { updateWindowSize } from 'src/app/game-util';
+import { updateWindowWidth } from 'src/app/game-util';
 @Component({
   selector: 'app-game-menu',
   templateUrl: './game-menu.component.html',
@@ -11,6 +11,8 @@ export class GameMenuComponent implements OnInit  {
 
   @Input() startGame:() => void;
 
+  @Input() startCustomGame:() => void;  
+
   @Input() title:string;
 
   private windowHeight: number;
@@ -19,14 +21,14 @@ export class GameMenuComponent implements OnInit  {
   constructor(protected _userService: UserService,private router: Router){}
 
   ngOnInit() {
-    this.windowSize = updateWindowSize();
+    this.windowSize = updateWindowWidth();
     this.windowHeight = window.innerHeight;
   }  
 
   // HostListener to listen for window resize event
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.windowSize = updateWindowSize();
+    this.windowSize = updateWindowWidth();
     this.windowHeight = window.innerHeight;
   }  
 
@@ -42,12 +44,21 @@ export class GameMenuComponent implements OnInit  {
     this.startGame();
   }
 
+  protected startTheCustomGame(){
+    this.startCustomGame();
+  } 
+
   protected toSettings(){
     this.router.navigate(['/settings'], { queryParams: { title: this.title } });
   }
   protected toScore(){
     this.router.navigate(['/score'], { queryParams: { title: this.title } });
   }
+
+  protected toTutorial(){
+    this.router.navigate(['/tutorial'], { queryParams: { title: this.title } });
+  }
+
   protected toHome():void {
     this.router.navigate(['/']);
   }

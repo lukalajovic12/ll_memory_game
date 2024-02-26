@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 class MemoryGameSerializer(serializers.ModelSerializer):
     class Meta:
         model = MemoryGame
-        fields = ('id', 'title', 'points','user','settings')
+        fields = ('id', 'title', 'points','user','settings','customGame','gameDate')
         
 class GameSettingsSerializer(serializers.ModelSerializer):
     class Meta:
@@ -35,18 +35,41 @@ class MemoryGameSerializerScore(serializers.ModelSerializer):
         return obj.user.username        
    
     def get_lives(self, obj):
+        if obj.settings == None:
+            return 3 
         return obj.settings.lives  
     
     def get_startLevel(self, obj):
-        return obj.settings.startLevel  
+        if obj.settings == None:
+            return 3
+        else:   
+            return obj.settings.startLevel  
     
     def get_mistakes(self, obj):
-        return obj.settings.mistakes  
+        if obj.settings == None:
+            return 1
+        else:      
+            return obj.settings.mistakes  
     
     def get_startTime(self, obj):
-        return obj.settings.startTime  
+        if obj.settings == None:
+            return 100
+        else:        
+            return obj.settings.startTime  
     
     def get_timeIncrease(self, obj):
-        return obj.settings.timeIncrease    
+        if obj.settings == None:
+            return 100
+        else:
+            return obj.settings.timeIncrease    
     
   
+class MemoryGameSerializerLeaderboard(serializers.ModelSerializer):
+    username = serializers.SerializerMethodField()
+    class Meta:
+        model = MemoryGame
+        fields = ('id', 'title', 'points','user','username','gameDate')
+        
+    def get_username(self, obj):
+        return obj.user.username        
+   

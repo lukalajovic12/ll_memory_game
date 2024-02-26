@@ -19,7 +19,9 @@ export interface MemoryGame {
     title:string,
     user:number
     points:number,
-    settings:number
+    settings:number,
+    customGame:boolean,
+    gameDate:string
   }
 export interface Score {
   id:number,
@@ -27,7 +29,7 @@ export interface Score {
   points:number,
   user:number,
   username:string,
-  settings_id:number,
+  settings_id?:number,
   lives:number,
   mistakes:number,
   startLevel:number,
@@ -35,14 +37,29 @@ export interface Score {
   timeIncrease:number
 }
 
-export function saveData(title:string,gamePoints:number,
+export interface Leaderboard {
+  title:string,
+  points:number,
+  user:number,
+  username:string,
+  gameDate:string
+}
+
+export function saveData(title:string,gamePoints:number,customGame:boolean,
   http:HttpClient,
   _userService: UserService,
   _settingsService:SettingsService):void {
+
+  let dd =new Date();
+  let isoData:string =  dd.toISOString();
+
+
   let gameScore:MemoryGame = {title:title,
     user:_userService.user_id,
     points:gamePoints,
-    settings:_settingsService.settings_id
+    settings: customGame? null:_settingsService.settings_id,
+    customGame:customGame,
+    gameDate:isoData
   };
 
   const httpOptions = {
@@ -81,10 +98,15 @@ export function saveData(title:string,gamePoints:number,
     return {width:svgWidth,height:svgHeight}
   }
 
-  export function updateWindowSize(): number {
+  export function updateWindowWidth(): number {
     // Use Renderer2 to get the window size
     let sizes=updateWindowSizes();
     return Math.min(sizes.width,sizes.height);
   } 
+
+  export function updateWindowHeight(): number {
+    return window.innerHeight;
+  } 
+
 
   export type GameDisplayState = 'game' | 'menu' | 'data' | 'empty' | 'end';

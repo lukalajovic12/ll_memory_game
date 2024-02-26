@@ -34,4 +34,10 @@ export class RegistrationComponent {
       this.homeStateChange.emit('menu');
     }
   }
+
+  protected back(){
+    this.homeState='menu';
+    this.homeStateChange.emit('menu');   
+  }
+
 }

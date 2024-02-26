@@ -2,21 +2,21 @@
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from .models import MemoryGame, GameSettings
-from .serializers import MemoryGameSerializer,UserSerializer,MemoryGameSerializerScore, GameSettingsSerializer
+from .serializers import MemoryGameSerializer,UserSerializer,MemoryGameSerializerScore, GameSettingsSerializer, MemoryGameSerializerLeaderboard
 from django.contrib.auth.models import User
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Max
 
 class MemoryGameView(viewsets.ModelViewSet):
-    permission_classes = [IsAuthenticated]
+   # permission_classes = [IsAuthenticated]
     serializer_class = MemoryGameSerializer
     queryset = MemoryGame.objects.all()
 
 
 
 class MemoryGameViewUserScore(APIView):
-   # permission_classes = [IsAuthenticated]
+  #  permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_user_id = request.query_params.get('user_id', None)
         parameter_game_title = request.query_params.get('title', None)
@@ -42,7 +42,7 @@ class SettingsView(viewsets.ModelViewSet):
     queryset = GameSettings.objects.all()    
     
 class SettingsGetView(APIView):
-    permission_classes = [IsAuthenticated]
+ #   permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_user_id = request.query_params.get('user_id', None)
         parameter_game_title = request.query_params.get('title', None)
@@ -57,3 +57,13 @@ class SettingsGetView(APIView):
         return Response(serializer.data)
 
 
+class MemoryGameViewLeaderboard(APIView):
+  #  permission_classes = [IsAuthenticated]
+    def get(self, request):
+        parameter_game_title = request.query_params.get('title', None)
+        if  parameter_game_title is None:
+            queryset = MemoryGame.objects.all()
+        else:
+            queryset = MemoryGame.objects.filter(title__icontains=parameter_game_title)               
+        serializer = MemoryGameSerializerLeaderboard(queryset, many=True)
+        return Response(serializer.data)

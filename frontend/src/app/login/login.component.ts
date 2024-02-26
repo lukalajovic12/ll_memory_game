@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit {
     }
   }
 
+  protected back(){
+    this.homeState='menu';
+    this.homeStateChange.emit('menu');   
+  }
 
-  
+
 }

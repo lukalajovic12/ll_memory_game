@@ -14,7 +14,9 @@ class MemoryGame(models.Model):
     title = models.CharField(max_length=120)
     points = models.IntegerField()
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    settings = models.ForeignKey(GameSettings, on_delete=models.CASCADE,null=True)
+    settings = models.ForeignKey(GameSettings, on_delete=models.CASCADE,null=True,default=None,blank=True)
+    customGame = models.BooleanField(default=False)
+    gameDate = models.DateTimeField()
     def _str_(self):
         return self.title
     

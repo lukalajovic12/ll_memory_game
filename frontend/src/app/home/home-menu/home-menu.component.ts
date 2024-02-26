@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import {UserService} from '../../user.service';
 import { Router } from '@angular/router';
-import { CIRCLES, SQUARES, updateWindowSize } from '../../game-util';
+import { CIRCLES, SQUARES } from '../../game-util';
 
 @Component({
   selector: 'app-home-menu',
@@ -21,6 +21,11 @@ export class HomeMenuComponent {
 
   protected toGame(game:string){
     this.router.navigate(['/'+game]);
+  }
+
+
+  protected toLeaderboard() {
+    this.router.navigate(['/leaderboard']);    
   }
 
   protected toRegister(){

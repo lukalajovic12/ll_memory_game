@@ -1,7 +1,7 @@
 
 <div class="game_area">
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
-    <div>
+    <div class="game_data_left_center">
         <app-home-menu *ngIf="homeState === 'menu'" [(homeState)]="homeState"  />
         <app-login *ngIf="homeState === 'login'" [(homeState)]="homeState" />
         <app-registration *ngIf="homeState === 'register'" [(homeState)]="homeState" />

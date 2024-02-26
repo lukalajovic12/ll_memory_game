@@ -1,37 +1,43 @@
 
 
-        <h1>LL Memory</h1>
-        <h2 *ngIf="_userService.isAuthenticated()">Hello {{ _userService.username}}!</h2>
-        <h2 *ngIf="!_userService.isAuthenticated()"> To save score login or register.</h2>
-        <ul>
-            <ng-container>
-                <li *ngFor="let game of games">
-                    <div class="row">
-                    <button (click)="toGame(game)" class="ll_button">{{ game }}</button>
-                </div>    
-                </li>
-            </ng-container>
-            <li>
-                <div class="row" *ngIf="!_userService.isAuthenticated()">
-                    <button (click)="toRegister()" class="ll_button">
-                        Register
-                    </button>
-                </div>
+<div class="menu_class">
+    <h1>LL Memory</h1>
+    <h2 *ngIf="_userService.isAuthenticated()">Hello {{ _userService.username}}!</h2>
+    <h2 *ngIf="!_userService.isAuthenticated()"> To save score login or register.</h2>
+    <ul>
+        <ng-container>
+            <li *ngFor="let game of games">
+                <div class="row">
+                <button (click)="toGame(game)" class="ll_button">{{ game }}</button>
+            </div>    
             </li>
-            <li>
-                <div class="row" *ngIf="!_userService.isAuthenticated()">
-                    <button (click)="toLogin()" class="ll_button" >
-                        login
-                    </button>
-                </div>
-                <div class="row" *ngIf="_userService.isAuthenticated()">
-                    <button (click)="logout()" class="ll_button">
-                        logout
-                    </button>
-                </div>
-            </li>
-        </ul>
- 
+        </ng-container>
+        <li>
+            <div class="row" *ngIf="!_userService.isAuthenticated()">
+                <button (click)="toRegister()" class="ll_button">
+                    Register
+                </button>
+            </div>
+        </li>
+        <li>
+            <div class="row" *ngIf="!_userService.isAuthenticated()">
+                <button (click)="toLogin()" class="ll_button" >
+                    login
+                </button>
+            </div>
+            <div class="row" *ngIf="_userService.isAuthenticated()">
+                <button (click)="logout()" class="ll_button">
+                    logout
+                </button>
+            </div>
+        </li>
+        <li *ngIf="_userService.isAuthenticated()">
+            <button (click)="toLeaderboard()" class="ll_button" >
+                leaderboard
+            </button>
+        </li>
+    </ul>
+</div>
     
 
 

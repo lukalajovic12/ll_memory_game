@@ -34,7 +34,7 @@ export class GameSettingsComponent  implements OnInit {
   }
 
   protected minusStartLevel():void {
-    if(this._settingsService.startLevel>2){
+    if(this._settingsService.startLevel>3){
       this._settingsService.startLevel-=1;
     }
   }

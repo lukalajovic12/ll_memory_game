@@ -18,6 +18,8 @@ import { HomeMenuComponent } from './home/home-menu/home-menu.component';
 import { GameMenuComponent } from './game-template/game-menu/game-menu.component';
 import { GamePauseComponent } from './game-template/game-pause/game-pause.component';
 import { GameEndComponent } from './game-template/game-end/game-end.component';
+import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
+import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 
 
 @NgModule({
@@ -34,7 +36,9 @@ import { GameEndComponent } from './game-template/game-end/game-end.component';
     HomeMenuComponent,
     GameMenuComponent,
     GamePauseComponent,
-    GameEndComponent
+    GameEndComponent,
+    GameTutorialComponent,
+    LeaderboardComponent
   ],
   imports: [
     BrowserModule,

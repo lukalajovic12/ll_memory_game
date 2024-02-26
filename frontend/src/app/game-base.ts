@@ -2,7 +2,7 @@ import { timer } from 'rxjs';
 import {UserService} from './user.service';
 import { HttpClient } from '@angular/common/http';
 import { Directive, HostListener, OnInit } from '@angular/core';
-import { saveData, updateWindowSize,GameDisplayState } from './game-util';
+import { saveData, updateWindowWidth,GameDisplayState } from './game-util';
 import {SettingsService} from './settings.service';
 import { Router } from '@angular/router';
 
@@ -21,6 +21,7 @@ export abstract class GameBase implements OnInit {
   protected mistakes = 2;
   protected currentMistakes = 0;
   protected timeIncrease = 100;
+  protected customGame = false;
 
   protected windowSize: number;
   protected canvasSize: number;
@@ -40,16 +41,26 @@ export abstract class GameBase implements OnInit {
 
   ngOnInit() {
     this._settingsService.getData(this.title);
-    this.windowSize=updateWindowSize();
+    this.windowSize=updateWindowWidth();
     this.canvasSize=this.windowSize-this.canvasOffset;
     this.gameDisplayState = 'menu';
   }
 
   protected settingsStart():void {
-    this.lives=this._settingsService.lives;
-    this.startLevel=this._settingsService.startLevel;
-    this.mistakes=this._settingsService.mistakes;
-    this.time=this._settingsService.startTime;
+    if(this.customGame) {
+      this.lives=this._settingsService.lives;
+      this.startLevel=this._settingsService.startLevel;
+      this.mistakes=this._settingsService.mistakes;
+      this.time=this._settingsService.startTime;
+      this.timeIncrease=this._settingsService.timeIncrease;
+
+    } else {
+      this.lives=3;
+      this.startLevel=3;
+      this.mistakes=1;
+      this.time=3000;
+      this.timeIncrease=100;
+    }
     this.points=0;
     this.gameDisplayState = 'game';
   }
@@ -87,7 +98,7 @@ export abstract class GameBase implements OnInit {
   // HostListener to listen for window resize event
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.windowSize=updateWindowSize();
+    this.windowSize=updateWindowWidth();
     this.canvasSize=this.windowSize-this.canvasOffset;
   }    
 
@@ -101,7 +112,7 @@ export abstract class GameBase implements OnInit {
     this.gameDisplayState='end';
     timer(500).subscribe(() => {
       if(this._userService.isAuthenticated()){
-        saveData(this.title,this.points,this.http,this._userService,this._settingsService);       
+        saveData(this.title,this.points,this.customGame,this.http,this._userService,this._settingsService);       
       }
     });
   }

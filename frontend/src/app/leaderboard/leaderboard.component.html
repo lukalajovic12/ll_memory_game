@@ -1,0 +1,35 @@
+<div *ngIf="_userService.isAuthenticated()"> 
+    <h1>leaderboard</h1>
+    <span style="display: inline-flex; align-items: center">
+        <label for="gamesSelect">Games: </label>
+        <select id="gamesSelect"
+          (change)="onChange($event)" [(ngModel)]="gameType">
+          <option value="circles">circle</option>
+          <option value="squares">square</option>
+          <option value="all">all</option>
+        </select>
+      </span>
+    <table>
+        <th *ngIf="gameType === 'all'">title</th>
+        <th>username</th>  
+        <th>date</th>          
+        <th>points</th>  
+        <tr *ngFor="let l of leaderboardList | async">
+            <td *ngIf="gameType === 'all'">
+              {{l.title}}
+            </td>
+            <td>
+              {{l.username}}
+            </td>   
+            <td>
+              {{l.gameDate}}
+            </td>                         
+            <td>
+              {{l.points}}
+            </td>                                                         
+        </tr>
+    </table>
+</div>
+<div class="row some_buttons">
+  <button (click)="toHome()" class="ll_button">Home</button>
+</div>  
