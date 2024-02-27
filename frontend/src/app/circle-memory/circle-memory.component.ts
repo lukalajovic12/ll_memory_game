@@ -63,10 +63,7 @@ export class CircleMemoryComponent extends GameBase {
 
   public startGame = () => {
     this.customGame=false;
-
-    this.points=1111;
-    this.saveScore();
-    //this.gameStart();
+    this.gameStart();
   }
 
   public startCustomGame = () => {
