@@ -50,16 +50,12 @@ export function saveData(title:string,gamePoints:number,customGame:boolean,
   _userService: UserService,
   _settingsService:SettingsService):void {
 
-  let dd =new Date();
-  let isoData:string =  dd.toISOString();
-
-
   let gameScore:MemoryGame = {title:title,
     user:_userService.user_id,
     points:gamePoints,
-    settings: customGame? null:_settingsService.settings_id,
+    settings: customGame && _settingsService.settings_id>0? _settingsService.settings_id:null,
     customGame:customGame,
-    gameDate:isoData
+    gameDate:new Date().toISOString()
   };
 
   const httpOptions = {

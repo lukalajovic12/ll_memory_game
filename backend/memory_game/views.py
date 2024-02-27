@@ -9,14 +9,14 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Max
 
 class MemoryGameView(viewsets.ModelViewSet):
-   # permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     serializer_class = MemoryGameSerializer
     queryset = MemoryGame.objects.all()
 
 
 
 class MemoryGameViewUserScore(APIView):
-  #  permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_user_id = request.query_params.get('user_id', None)
         parameter_game_title = request.query_params.get('title', None)
@@ -42,7 +42,7 @@ class SettingsView(viewsets.ModelViewSet):
     queryset = GameSettings.objects.all()    
     
 class SettingsGetView(APIView):
- #   permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_user_id = request.query_params.get('user_id', None)
         parameter_game_title = request.query_params.get('title', None)
@@ -58,12 +58,12 @@ class SettingsGetView(APIView):
 
 
 class MemoryGameViewLeaderboard(APIView):
-  #  permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated]
     def get(self, request):
         parameter_game_title = request.query_params.get('title', None)
         if  parameter_game_title is None:
-            queryset = MemoryGame.objects.all()
+            queryset = MemoryGame.objects.all().filter(customGame=False)
         else:
-            queryset = MemoryGame.objects.filter(title__icontains=parameter_game_title)               
+            queryset = MemoryGame.objects.filter(title__icontains=parameter_game_title).filter(customGame=False)               
         serializer = MemoryGameSerializerLeaderboard(queryset, many=True)
         return Response(serializer.data)
