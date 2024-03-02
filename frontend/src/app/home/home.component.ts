@@ -62,9 +62,6 @@ export class HomeComponent implements OnInit {
     }      
   }
 
-
-
-
   protected displayMenu():boolean {
     return this.homeState === 'menu' && this.showMenu;
   }

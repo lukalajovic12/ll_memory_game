@@ -10,9 +10,9 @@
          (click)="toSettings()" class="ll_button start_button" 
          [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Settings </button> 
     </div>
-    <div class="start_button_div" *ngIf="_userService.isAuthenticated()" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
+    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
         <button   
-         (click)="toTutorial()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Tutorial </button> 
+         (click)="toTutorial()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> How to play </button> 
     </div>
     <div class="start_button_div" *ngIf="_userService.isAuthenticated()" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
         <button   
