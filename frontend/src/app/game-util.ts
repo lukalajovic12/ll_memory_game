@@ -6,7 +6,6 @@ import {SettingsService} from './settings.service';
 
 export const CIRCLES = 'circles';
 export const SQUARES = 'squares';
-export const SQUARES_REVERSE = 'squares-reverse';
 
 export interface User {
   id:number,

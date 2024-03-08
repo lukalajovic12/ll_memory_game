@@ -27,7 +27,7 @@ export class RegistrationComponent {
 
   protected async register():Promise<void> {
     let user: User= {id:-1,username:this.username, password:this.password};
-    let registered = this._userService.register(user);
+    let registered = this._userService.registerAndLogin(user);
     await registered;
     if(registered){
       this.homeState='menu';

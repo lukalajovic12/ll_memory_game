@@ -1,25 +1,8 @@
 <div class="game_data">
-    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
-        <button (click)="startTheGame()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Start game </button> 
-    </div>
-    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
-        <button (click)="startTheCustomGame()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Start custom game </button> 
-    </div>
-    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
-        <button   
-         (click)="toSettings()" class="ll_button start_button" 
-         [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Settings </button> 
-    </div>
-    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
-        <button   
-         (click)="toTutorial()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> How to play </button> 
-    </div>
-    <div class="start_button_div" *ngIf="_userService.isAuthenticated()" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
-        <button   
-         (click)="toScore()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Score </button> 
-    </div>
-    <div class="start_button_div" [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }">
-        <button   
-         (click)="toHome()" class="ll_button start_button" [ngStyle]="{ 'width.px': windowSize-30, 'height.px':buttonHeight() }"> Home </button> 
-    </div>
+
+    <app-menu-button [text]="'Start game'" [action]="startGame"/>
+    <app-menu-button [text]="'Practice'" [action]="startCustomGame"/>
+    <app-menu-button [text]="'How to play'" [action]="toTutorial"/>
+    <app-menu-button [text]="'To Score'" [action]="toScore"/>
+    <app-menu-button [text]="'Home'" [action]="toHome"/>
 </div>

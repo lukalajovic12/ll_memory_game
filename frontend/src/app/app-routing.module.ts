@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
+import { CircleMemoryComponent } from './game-settings/circle-memory/circle-memory.component';
 import { GameScoreComponent } from './game-score/game-score.component';
 import { SquareMemoryComponent } from './square-memory/square-memory.component';
 import { HomeComponent } from './home/home.component';

@@ -4,7 +4,7 @@
     <div class="game_data_left_center">
         <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
         <div *ngIf="displayMenu()" [@fadeInOut]>
-            <app-home-menu  [(homeState)]="homeState"    />
+            <app-home-menu  [(homeState)]="homeState" />
         </div>
         <div *ngIf="displayLogin()" [@fadeInOut]>
             <app-login [(homeState)]="homeState"  />

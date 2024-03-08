@@ -3,10 +3,6 @@ import { SQUARES } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
 
-  //0 means not red
-  //1 means red
-  // 2 means red but already clcked
-  // 3 means checked but wrong
 interface SvgSquare {
   value:number,
   column:number,

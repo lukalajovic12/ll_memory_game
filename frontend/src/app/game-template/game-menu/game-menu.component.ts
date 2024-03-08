@@ -7,7 +7,7 @@ import { updateWindowWidth } from 'src/app/game-util';
   templateUrl: './game-menu.component.html',
   styleUrls: ['./game-menu.component.scss']
 })
-export class GameMenuComponent implements OnInit  {
+export class GameMenuComponent {
 
   @Input() startGame:() => void;
 
@@ -15,51 +15,21 @@ export class GameMenuComponent implements OnInit  {
 
   @Input() title:string;
 
-  private windowHeight: number;
-  protected windowSize: number;
   
   constructor(protected _userService: UserService,private router: Router){}
 
-  ngOnInit() {
-    this.windowSize = updateWindowWidth();
-    this.windowHeight = window.innerHeight;
-  }  
-
-  // HostListener to listen for window resize event
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowSize = updateWindowWidth();
-    this.windowHeight = window.innerHeight;
-  }  
-
-  protected buttonHeight():number {
-    return this.windowHeight/16;
-  }
-
-  protected buttonDivPadding():number {
-    return this.windowHeight/32;   
-  }
-
-  protected startTheGame(){
-    this.startGame();
-  }
-
-  protected startTheCustomGame(){
-    this.startCustomGame();
-  } 
-
-  protected toSettings(){
+  protected toSettings = () => {
     this.router.navigate(['/settings'], { queryParams: { title: this.title } });
   }
-  protected toScore(){
+  protected toScore = () =>{
     this.router.navigate(['/score'], { queryParams: { title: this.title } });
   }
 
-  protected toTutorial(){
+  protected toTutorial = () =>{
     this.router.navigate(['/tutorial'], { queryParams: { title: this.title } });
   }
 
-  protected toHome():void {
+  protected toHome = () => {
     this.router.navigate(['/']);
   }
 

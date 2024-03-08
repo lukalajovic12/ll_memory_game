@@ -1,1 +1,9 @@
+CMYK
+
+https://coolors.co/
+
+https://mycolor.space/
+
+https://color.adobe.com/create/color-wheel
+
 ng build --configuration production --base-href https://lukalajovic12.github.io/ll_memory_game/

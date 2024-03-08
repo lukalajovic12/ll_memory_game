@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
+import { CircleMemoryComponent } from './game-settings/circle-memory/circle-memory.component';
 import { HttpClientModule} from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { GameScoreComponent } from './game-score/game-score.component';
@@ -20,6 +20,7 @@ import { GamePauseComponent } from './game-template/game-pause/game-pause.compon
 import { GameEndComponent } from './game-template/game-end/game-end.component';
 import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
+import { MenuButtonComponent } from './menu-button/menu-button.component';
 
 
 @NgModule({
@@ -38,7 +39,8 @@ import { LeaderboardComponent } from './leaderboard/leaderboard.component';
     GamePauseComponent,
     GameEndComponent,
     GameTutorialComponent,
-    LeaderboardComponent
+    LeaderboardComponent,
+    MenuButtonComponent
   ],
   imports: [
     BrowserModule,

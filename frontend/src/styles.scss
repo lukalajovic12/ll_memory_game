@@ -1,23 +1,58 @@
+
+$ll-background-color:#336AE9;
+$ll-text-color:#fffffffb;
+
+$button-background-color: #fffffffb;
+$button-background-hover: #fed131;
+$button-background-active: #fed131;
+$button-text-color: #030303;
+
+body {
+    background-color: $ll-background-color;
+}
+
+h1 {
+    color:$ll-text-color;
+}
+
+h2 {
+    color:$ll-text-color;
+}
+
+label {
+    color:$ll-text-color;    
+}
+
+td {
+    color:$ll-text-color;
+}
+th {
+    color:$ll-text-color;
+}
+
+
 .ll_button {
+    border-radius: 50%;
     display: inline-block;
     padding: 10px 10px;
     font-size: 18px;
     cursor: pointer;
     text-align: center;
     text-decoration: none;
+    line-height: 50%;
     outline: none;
-    color: #fff;
-    background-color: #333333;
+    color: $button-text-color;
+    background-color: $button-background-color;
     border: none;
     border-radius: 15px;
+    vertical-align: middle;
 }
 
 .ll_button:hover {
-    background-color: #111111;
+    background-color: $button-background-hover;
 }
 .ll_button:active {
-    background-color: #111111;
-    box-shadow: 0 5px #666;
+    background-color: $button-background-active;
     transform: translateY(4px);
 }
 
@@ -35,12 +70,15 @@
 }
 
 .game_data_left_side {
-    background-color: white;
+    background-color: $ll-background-color;
 }
 .game_data_right_side {
-    background-color: white;
+    background-color: $ll-background-color;
 }
 
 ul {
     list-style-type: none;
+}
+.start_button {
+    padding: 30px 30px;
 }

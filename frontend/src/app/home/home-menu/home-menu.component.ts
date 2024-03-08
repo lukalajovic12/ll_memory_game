@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component ,Input, Output, EventEmitter } from '@angular/core';
 import {UserService} from '../../user.service';
 import { Router } from '@angular/router';
 import { CIRCLES, SQUARES } from '../../game-util';
@@ -10,35 +10,40 @@ import { CIRCLES, SQUARES } from '../../game-util';
 })
 export class HomeMenuComponent {
 
-  protected games = [SQUARES,CIRCLES]; 
-
   @Input()
   public homeState: 'register'|'login'|'menu';
   @Output() homeStateChange = new EventEmitter<'register' | 'login' | 'menu'>();
 
 
+
   constructor(protected _userService: UserService,private router: Router) { }
 
-  protected toGame(game:string){
-    this.router.navigate(['/'+game]);
+
+
+  public toSquare = () => {
+    this.router.navigate(['/'+SQUARES]); 
+  }
+
+  public toCircle = () => {
+    this.router.navigate(['/'+CIRCLES]); 
   }
 
 
-  protected toLeaderboard() {
+  public toLeaderboard = () =>  {
     this.router.navigate(['/leaderboard']);    
   }
 
-  protected toRegister(){
+  public toRegister = () => {
     this.homeState='register';
     this.homeStateChange.emit(this.homeState);
   }
 
-  protected toLogin(){
+  public toLogin = () => {
     this.homeState='login';
     this.homeStateChange.emit(this.homeState);
   }
 
-  protected logout(){
+  public logout = () => {
     this._userService.logout();
   }
 

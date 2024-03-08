@@ -48,47 +48,60 @@ export class UserService {
 
 
   // Uses http.post() to get an auth token from djangorestframework-jwt endpoint
-  public async login(user:User): Promise<boolean> {
-    let logedin = false;
-    this.username = user.username;
-    localStorage.setItem('username', this.username);
-    this.http.post(environment.BACKEND_URL + 'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
-      data => {
-        logedin = true;
-        this.updateData(data['access']);
-      },
-      err => {
-        this.errors = err['error'];
-      }
-    );
-    return logedin;
+  public login(user: User): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      this.username = user.username;
+      localStorage.setItem('username', this.username);
+      this.http.post(environment.BACKEND_URL + 'api/token/', JSON.stringify(user), this.httpOptions).subscribe(
+        data => {
+          this.updateData(data['access']);
+          resolve(true);
+        },
+        err => {
+          this.errors = err['error'];
+          reject(false);
+        }
+      );
+    });
   }
 
 
-  public async register(user:User): Promise<boolean> {
-    let logedin = false;
-    // let user: User= {id:-1,username:this.username, password:this.password};
-
-    const httpOptions = {
-      headers: new HttpHeaders({
-        'Content-Type': 'application/json'
-      })
-    };
-
-    // Subscribe to the POST request to trigger it
-    this.http.post<User>(environment.BACKEND_URL + "api/users/", user, httpOptions).subscribe(
-      (data) => {
-        console.log("user created", data);
-        logedin = true;
-        this.updateData(data['access']);
-      },
-      (error) => {
-        // Handle errors here
-        console.error('Error saving game data:', error);
-      }
-    );
-    return logedin;
+  public register(user: User): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
+      const httpOptions = {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json'
+        })
+      };
+  
+      // Subscribe to the POST request to trigger it
+      this.http.post<User>(environment.BACKEND_URL + "api/users/", user, httpOptions).subscribe(
+        (data) => {
+          console.log("user created", data);
+          this.updateData(data['access']);
+          resolve(true);
+        },
+        (error) => {
+          // Handle errors here
+          console.error('Error saving game data:', error);
+          reject(false);
+        }
+      );
+    });
   }
+
+  public async registerAndLogin(user: User): Promise<boolean> {
+    let registered = await this.register(user);
+  
+    if (registered) {
+      // Registration successful, proceed with login
+      let loggedIn = await this.login(user);
+      return loggedIn;
+    } else {
+      // Registration failed, handle accordingly
+      return false;
+    }
+  }  
 
   // Refreshes the JWT token, to extend the time the user is logged in
   public refreshToken() {
@@ -106,19 +119,24 @@ export class UserService {
   public logout() {
     this.token = null;
     this.token_expires = null;
-   // this.username = null;
+    this.username = null;
     this.user_id = null;
+    localStorage.removeItem('token');
   }
 
   private updateData(token) {
-    this.token = token;
-    this.errors = [];
-    // decode the token to read the username and expiration timestamp
-    localStorage.setItem('token', token);
-    const token_parts = this.token.split(/\./);
-    const token_decoded = JSON.parse(window.atob(token_parts[1]));
-    this.token_expires = new Date(token_decoded.exp * 1000);
-    this.user_id = token_decoded.user_id;
+    if(token) {
+      try {
+        const token_parts = this.token.split(/\./);
+        const token_decoded = JSON.parse(window.atob(token_parts[1]));
+        this.token_expires = new Date(token_decoded.exp * 1000);
+        this.user_id = token_decoded.user_id;
+        localStorage.setItem('token', token);
+      } catch (error) {
+        console.error('Error decoding token:', error);
+        // Handle the error appropriately
+      }
+  } 
   }
 
   checkTokenExpiration() {

@@ -5,7 +5,7 @@ import { updateWindowWidth,updateWindowHeight } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 
 
-type stateHome =  'register'|'login'|'menu';
+export type stateHome =  'register'|'login'|'menu';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -62,6 +62,7 @@ export class HomeComponent implements OnInit {
     }      
   }
 
+  
   protected displayMenu():boolean {
     return this.homeState === 'menu' && this.showMenu;
   }
