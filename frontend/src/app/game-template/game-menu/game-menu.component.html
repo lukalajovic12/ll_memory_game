@@ -1,8 +1,8 @@
 <div class="game_data">
 
-    <app-menu-button [text]="'Start game'" [action]="startGame"/>
-    <app-menu-button [text]="'Practice'" [action]="startCustomGame"/>
+    <app-menu-button [text]="'Start game'" [action]="startGame" />
+    <app-menu-button [text]="'Practice'" [action]="startCustomGame" *ngIf="_userService.isAuthenticated()"/>
     <app-menu-button [text]="'How to play'" [action]="toTutorial"/>
-    <app-menu-button [text]="'To Score'" [action]="toScore"/>
+    <app-menu-button [text]="'To Score'" [action]="toScore" *ngIf="_userService.isAuthenticated()"/>
     <app-menu-button [text]="'Home'" [action]="toHome"/>
 </div>
