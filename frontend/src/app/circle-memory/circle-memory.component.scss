@@ -1,5 +1,6 @@
+@import "../../styles.scss";
 .svg_canvas {
-    background-color: white;
+    background-color: $ll-background-color;
 }
 .game_circle:hover {
     cursor: pointer;

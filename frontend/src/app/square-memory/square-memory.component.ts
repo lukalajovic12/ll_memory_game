@@ -36,7 +36,7 @@ export class SquareMemoryComponent extends GameBase {
 
   protected squareColor(square:SvgSquare):string{
     if((square.value==1 && this.showValue) || square.value==2 ){
-      return "red";
+      return "green";
     } else if( square.value==3 ) {
       return "orange";
     } else {

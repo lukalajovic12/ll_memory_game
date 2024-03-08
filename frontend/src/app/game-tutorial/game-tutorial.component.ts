@@ -28,7 +28,7 @@ export class GameTutorialComponent  implements OnInit {
     protected displayTutorial():string{
       let gameTutorial ="";
       if(this.gameType === SQUARES){
-        let gameTutorial = "Several squares on the grid will color red. "
+        let gameTutorial = "Several squares on the grid will color green. "
         gameTutorial += "After a few seconds they will change back to gray. ";
         gameTutorial += "Remember when they were and click on them.";    
         return gameTutorial;
