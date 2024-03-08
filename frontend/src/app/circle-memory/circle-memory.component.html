@@ -15,6 +15,6 @@
       [attr.cx]="c.x" [attr.cy]="c.y"
        [attr.r]="radius/2" 
        stroke="black" stroke-width="strokeWidth" [attr.fill]="circleColor(i)" (click)="checkNumber(i)" />
-    <text class="game_circle_text" *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y" fill="white" >{{ displayNumber(n) }}</text>
+    <text class="game_circle_text" *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y" fill="black" font-size="1.5em">{{ displayNumber(n) }}</text>
 </svg>
 </app-game-template>

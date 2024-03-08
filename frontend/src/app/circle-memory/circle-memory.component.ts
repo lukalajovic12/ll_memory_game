@@ -58,7 +58,7 @@ export class CircleMemoryComponent extends GameBase {
 
   protected circleColor(i:number): string {
     let n = this.gameNumbers[i];
-    return n.mistake ? 'orange': 'green';
+    return n.mistake ? 'orange': 'white';
   } 
 
   public startGame = () => {
