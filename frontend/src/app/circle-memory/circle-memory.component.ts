@@ -48,17 +48,15 @@ export class CircleMemoryComponent extends GameBase {
 
   protected radius:number;
 
-  protected strokeWidth =3;
-
   protected override title = CIRCLES;
 
   protected displayNumber(n:SVGNumber): string {
     return this.showValue || this.currentNumber>n.n  ? n.n+'': '';
   }
 
-  protected circleColor(i:number): string {
+  protected circleMistake(i:number): boolean {
     let n = this.gameNumbers[i];
-    return n.mistake ? 'orange': 'white';
+    return n.mistake;
   } 
 
   public startGame = () => {

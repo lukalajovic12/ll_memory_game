@@ -1,11 +1,21 @@
 
-$ll-background-color:#336AE9;
+$ll-background-color:#336AE9; 
 $ll-text-color:#fffffffb;
+
+
+$ll-circles-circle-color:#030888;
+$ll-circles-mistake-color:#fed131;
+$ll-circles-canvas-color:lightgray;
 
 $button-background-color: #fffffffb;
 $button-background-hover: #fed131;
 $button-background-active: #fed131;
 $button-text-color: #030303;
+
+
+$ll-square-mistake-color:#fed131;
+$ll-square-marked-color:rgba(228, 18, 18, 0.783);
+$ll-square-unmarked-color:lightgray;
 
 body {
     background-color: $ll-background-color;

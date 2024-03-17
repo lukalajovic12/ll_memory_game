@@ -1,6 +1,6 @@
 @import "../../styles.scss";
 .svg_canvas {
-    background-color: $ll-background-color;
+    background-color: $ll-circles-canvas-color;
 }
 .game_circle:hover {
     cursor: pointer;
@@ -9,3 +9,25 @@
 .game_circle_text:hover {
     cursor: pointer;
 }
+
+.game_circle_text {
+    fill: $ll-text-color;
+    font-size: 1.5em;
+}
+
+.game_circle {
+    stroke: $ll-circles-circle-color;
+    stroke-width: 3;
+    fill:$ll-circles-circle-color;
+}
+
+.mistake_circle {
+    fill:$ll-circles-mistake-color;   
+}
+
+.circle-line {
+    stroke: $ll-circles-circle-color;
+    stroke-width: 2;   
+}
+
+

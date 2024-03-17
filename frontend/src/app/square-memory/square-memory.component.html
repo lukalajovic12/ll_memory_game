@@ -8,7 +8,12 @@
 [success]="success"
 >
     <svg [attr.width]="windowSize" [attr.height]="windowSize" *ngIf="gameDisplayState === 'game'" [@fadeInOut]>
-        <rect *ngFor="let k of squares" [attr.fill]="squareColor(k)" 
+        <rect *ngFor="let k of squares"
+        [ngClass]="{
+            'mistake_square': k.value === 'mistake',
+            'marked_square': (k.value === 'marked' && showValue)  || 'markedAndFound',
+            'unmarked_square': k.value === 'unmarked' || (k.value === 'marked' && !showValue)
+          }"
         stroke="black" 
         [attr.width]="canvasSize/numberOfSquares" 
         [attr.height]="canvasSize/numberOfSquares" 

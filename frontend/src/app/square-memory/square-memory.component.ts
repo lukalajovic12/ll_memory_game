@@ -3,8 +3,10 @@ import { SQUARES } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import { GameBase } from '../game-base';
 
+type squareValues ='marked'|'markedAndFound'|'unmarked'|'mistake';
+
 interface SvgSquare {
-  value:number,
+  value:squareValues,
   column:number,
   row:number
 }
@@ -34,16 +36,7 @@ export class SquareMemoryComponent extends GameBase {
 
   protected override title=SQUARES;
 
-  protected squareColor(square:SvgSquare):string{
-    if((square.value==1 && this.showValue) || square.value==2 ){
-      return "green";
-    } else if( square.value==3 ) {
-      return "orange";
-    } else {
-      return "lightGray";
-    }
-  }
-  
+ 
   public startGame = () => {
     this.customGame=false;
     this.gameStart();
@@ -68,10 +61,11 @@ export class SquareMemoryComponent extends GameBase {
   }
 
   protected async checkSquare(square:SvgSquare) {
-    if(!this.showValue && square.value != 2 && square.value != 3) {
-      if(square.value == 1){
+    if(square.value != 'markedAndFound' && square.value != 'mistake') {
+      this.showValue=false
+      if(square.value == 'marked'){
         if(this.currentNumber==this.paintedSquares()){
-          square.value=2;
+          square.value = 'markedAndFound';
           await this.sleep(500);
           this.points+=1000;
           if(this.incressLevel) {
@@ -82,10 +76,10 @@ export class SquareMemoryComponent extends GameBase {
         } else {
           this.points+=100;
           this.currentNumber+=1;
-          square.value=2;
+          square.value = 'markedAndFound';
         }
       } else if(this.currentMistakes<this.mistakes) {
-        square.value=3;
+        square.value='mistake';
         this.currentMistakes+=1;
       } else {
         await this.sleep(500);
@@ -117,14 +111,14 @@ export class SquareMemoryComponent extends GameBase {
     this.currentMistakes=0;
     this.showValue=true;
     this.time+=this.timeIncrease;
-    let sq = [];
+    let sq:squareValues[] = [];
 
     for(let i=0;i<(this.numberOfSquares*this.numberOfSquares-this.paintedSquares());i++){
-      sq.push(0);
+      sq.push('unmarked');
     }
 
     for(let i=0;i<this.paintedSquares();i++){
-      sq.push(1);
+      sq.push('marked');
     }
     const shuffledArray = sq.sort((a, b) => 0.5 - Math.random());
 

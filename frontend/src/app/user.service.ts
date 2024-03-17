@@ -127,10 +127,11 @@ export class UserService {
   private updateData(token) {
     if(token) {
       try {
-        const token_parts = this.token.split(/\./);
+        const token_parts = token.split(/\./);
         const token_decoded = JSON.parse(window.atob(token_parts[1]));
         this.token_expires = new Date(token_decoded.exp * 1000);
         this.user_id = token_decoded.user_id;
+        this.token=token;
         localStorage.setItem('token', token);
       } catch (error) {
         console.error('Error decoding token:', error);

@@ -1,3 +1,16 @@
+@import "../../styles.scss";
 .game_area {
     display: flex;
+}
+
+.mistake_square {
+    fill:$ll-square-mistake-color;
+}
+
+.marked_square {
+    fill:$ll-square-marked-color;
+}
+
+.unmarked_square {
+    fill:$ll-square-unmarked-color;
 }

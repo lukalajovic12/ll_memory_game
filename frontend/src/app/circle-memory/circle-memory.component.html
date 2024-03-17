@@ -9,12 +9,16 @@
 [success]="success">
 <svg [attr.width]="windowSize" 
 [attr.height]="windowSize" class="svg_canvas" *ngIf="gameDisplayState === 'game'" [@fadeInOut]>
-    <line *ngFor="let l of generateLines()" [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" [attr.y2]="l.y2" style="stroke:black;stroke-width:2"  />
+    <line class="circle-line" *ngFor="let l of generateLines()" [attr.x1]="l.x1" [attr.x2]="l.x2" [attr.y1]="l.y1" [attr.y2]="l.y2" />
     <circle class="game_circle"
      *ngFor="let c of circles; let i = index"
       [attr.cx]="c.x" [attr.cy]="c.y"
-       [attr.r]="radius/2" 
-       stroke="black" stroke-width="strokeWidth" [attr.fill]="circleColor(i)" (click)="checkNumber(i)" />
-    <text class="game_circle_text" *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y" fill="black" font-size="1.5em">{{ displayNumber(n) }}</text>
+     [attr.r]="radius/2"
+     class="game_circle" 
+     [ngClass]="{
+        'mistake_circle': circleMistake(i),
+      }"
+     (click)="checkNumber(i)" />
+    <text class="game_circle_text" *ngFor="let n of gameNumbers" [attr.x]="n.x" [attr.y]="n.y">{{ displayNumber(n) }}</text>
 </svg>
 </app-game-template>
