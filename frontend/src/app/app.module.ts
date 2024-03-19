@@ -22,7 +22,6 @@ import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MenuButtonComponent } from './menu-button/menu-button.component';
 
-
 @NgModule({
   declarations: [
     AppComponent,

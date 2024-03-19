@@ -1,7 +1,9 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/user.service';
-import { updateWindowWidth } from 'src/app/game-util';
+
+
+export type menuType = 'primary'|'practice'|'compete'
 @Component({
   selector: 'app-game-menu',
   templateUrl: './game-menu.component.html',
@@ -9,14 +11,33 @@ import { updateWindowWidth } from 'src/app/game-util';
 })
 export class GameMenuComponent {
 
+
+
+
   @Input() startGame:() => void;
 
   @Input() startCustomGame:() => void;  
 
   @Input() title:string;
 
+
+  protected type:menuType = 'primary';
+
   
-  constructor(protected _userService: UserService,private router: Router){}
+  constructor(protected _userService: UserService,private router: Router){
+
+  }
+
+  protected compete = () => {
+    this.type='compete';
+  }
+  protected practice = () => {
+    this.type='practice';
+  }
+
+  protected back = () => {
+    this.type='primary';
+  }
 
   protected toSettings = () => {
     this.router.navigate(['/settings'], { queryParams: { title: this.title } });
@@ -24,6 +45,11 @@ export class GameMenuComponent {
   protected toScore = () =>{
     this.router.navigate(['/score'], { queryParams: { title: this.title } });
   }
+
+  protected toLeaderboard = () =>{
+    this.router.navigate(['/leaderboard'], { queryParams: { title: this.title } });
+  }
+
 
   protected toTutorial = () =>{
     this.router.navigate(['/tutorial'], { queryParams: { title: this.title } });

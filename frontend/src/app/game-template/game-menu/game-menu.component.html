@@ -1,8 +1,18 @@
 <div class="game_data">
-
-    <app-menu-button [text]="'Start game'" [action]="startGame" />
-    <app-menu-button [text]="'Practice'" [action]="startCustomGame" *ngIf="_userService.isAuthenticated()"/>
+    <ng-container *ngIf="type === 'primary'">
+        <app-menu-button [text]="'Compete'" [action]="compete" />
+        <app-menu-button [text]="'Practice'" [action]="practice" />
+    </ng-container>
+    <ng-container *ngIf="type === 'compete'">
+        <app-menu-button [text]="'Start game'" [action]="startGame" />
+        <app-menu-button [text]="'Leaderboard'" [action]="toLeaderboard" />
+    </ng-container>
+    <ng-container *ngIf="type === 'practice'">
+        <app-menu-button [text]="'Start game'" [action]="startCustomGame" *ngIf="_userService.isAuthenticated()"/>
+        <app-menu-button [text]="'To Score'" [action]="toScore" *ngIf="_userService.isAuthenticated()"/>
+        <app-menu-button [text]="'Settings'" [action]="toSettings" *ngIf="_userService.isAuthenticated()"/>
+    </ng-container>
     <app-menu-button [text]="'How to play'" [action]="toTutorial"/>
-    <app-menu-button [text]="'To Score'" [action]="toScore" *ngIf="_userService.isAuthenticated()"/>
+    <app-menu-button [text]="'Back'" [action]="back" *ngIf="type !== 'primary'"/>
     <app-menu-button [text]="'Home'" [action]="toHome"/>
 </div>
