@@ -1,6 +1,5 @@
 @import "../../styles.scss";
 .menu_button {
-    border-radius: 50%;
     display: inline-block;
     padding: 10px 10px;
     font-size: 18px;
@@ -14,4 +13,13 @@
     border: none;
     border-radius: 15px;
     vertical-align: middle;
+    border: 1px solid $button-border-color;
+}
+
+.menu_button:hover {
+    background-color: $button-background-hover;
+}
+.menu_button:active {
+    background-color: $button-background-active;
+    transform: translateY(4px);
 }
