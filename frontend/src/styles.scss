@@ -66,6 +66,8 @@ th {
     border: none;
     border-radius: 15px;
     vertical-align: middle;
+    vertical-align: middle;
+    border: 1px solid $button-border-color;  
 }
 
 .ll_button:hover {
