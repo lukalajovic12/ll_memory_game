@@ -137,7 +137,7 @@ export class CircleMemoryComponent extends GameBase {
      let yy = Math.floor(this.radius*2+Math.random() * ((this.canvasSize-this.radius)-2*this.radius*2));
       let c:SVGCircle = {x:xx,y:yy}; 
       this.circles.push(c);
-      let nu:SVGNumber = {x:xx,y:yy,n:shuffledNumbers[i],mistake:false}; 
+      let nu:SVGNumber = {x:xx-5,y:yy,n:shuffledNumbers[i],mistake:false}; 
       this.gameNumbers.push(nu);
     }
   }

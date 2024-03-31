@@ -25,7 +25,7 @@ export class GameMenuComponent {
 
   
   constructor(protected _userService: UserService,private router: Router){
-
+    this.back();
   }
 
   protected compete = () => {
@@ -36,7 +36,11 @@ export class GameMenuComponent {
   }
 
   protected back = () => {
-    this.type='primary';
+    if(this._userService.isAuthenticated()) {
+      this.type='primary';
+    } else {
+      this.type='practice';
+    }
   }
 
   protected toSettings = () => {

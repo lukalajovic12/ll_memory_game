@@ -13,6 +13,6 @@
         <app-menu-button [text]="'Settings'" [action]="toSettings" />
     </ng-container>
     <app-menu-button [text]="'How to play'" [action]="toTutorial"/>
-    <app-menu-button [text]="'Back'" [action]="back" *ngIf="type !== 'primary'"/>
+    <app-menu-button [text]="'Back'" [action]="back" *ngIf="type !== 'primary' &&_userService.isAuthenticated()"/>
     <app-menu-button [text]="'Home'" [action]="toHome"/>
 </div>
