@@ -4,6 +4,7 @@
     color:$ll-text-color;
     font-size: 18px;
     padding-bottom: 10px;
+    padding-top: 20px;
 }
 
 .correct {
@@ -24,25 +25,25 @@
 
 .anwsered {
     display:flex;
-    padding-bottom: 20px;
 }
 
 .anwsered_left {
     color:$ll-text-color;
     font-size: 18px;
-    padding-right: 57px;
+    padding-right: 59px;
 }
 
 
 .anwsered_right {
     font-size: 18px;
+    color:$ll-text-color;
 
 }
 
-.anwsered_right.correct {
-    color:#030888;
+.anwsered.correct {
+    background-color:#030c88;
 }
 
-.anwsered_right.wrong {
-    color:red;
+.anwsered.wrong {
+    background-color:red;
 }

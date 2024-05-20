@@ -6,9 +6,9 @@
         <div class="correct_left">Correct anwser</div>
         <div class="correct_right" >{{ anwser.countryCorrect.country }}</div>        
     </div>
-    <div class="anwsered">
+    <div class="anwsered" [ngClass]="anwser.countryCorrect === anwser.countryAnwsered ? 'correct':'wrong'">
         <div class="anwsered_left">Anwsered</div>
-        <div class="anwsered_right" [ngClass]="anwser.countryCorrect === anwser.countryAnwsered ? 'correct':'wrong'">{{ anwser.countryAnwsered.country }} </div>   
+        <div class="anwsered_right">{{ anwser.countryAnwsered.country }} </div>   
     </div>
 
 
