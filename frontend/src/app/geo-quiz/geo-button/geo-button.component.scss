@@ -34,7 +34,3 @@ button {
 button:hover {
     background-color: $button-background-hover;
 }
-button:active {
-    background-color: $button-background-active;
-    transform: translateY(4px);
-}
