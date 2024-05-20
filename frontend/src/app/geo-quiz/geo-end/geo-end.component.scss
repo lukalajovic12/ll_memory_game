@@ -2,13 +2,13 @@
 
 .question {
     color:$ll-text-color;
-    font-size: 16px;
-    padding-bottom: 4px;
+    font-size: 18px;
+    padding-bottom: 10px;
 }
 
 .correct {
     display:flex;
-    padding-bottom: 2px;
+    padding-bottom: 5px;
 }
 
 .correct_left {
@@ -24,7 +24,7 @@
 
 .anwsered {
     display:flex;
-    padding-bottom: 2px;
+    padding-bottom: 20px;
 }
 
 .anwsered_left {
