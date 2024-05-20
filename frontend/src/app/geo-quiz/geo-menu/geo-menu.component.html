@@ -1,0 +1,18 @@
+
+<div  class="row">
+    <div *ngFor="let con of continents">
+        <input type="checkbox" id="{{con.continent}}" name="{{con.continent}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">
+        <label for="{{con.continent}}"> {{con.continent}} </label><br>
+    </div>        
+</div>
+<div class="data_settings">
+    <div class="ll_value">numberOfQuestions: {{numberOfQuestions}}</div>
+    <button (click)="plusNumberOfQuestions()" class="ll_button">+1</button>
+    <button (click)="minusNumberOfQuestions()" class="ll_button">-1</button>
+</div> 
+<div class="data_settings">
+    <div class="ll_value">Time: {{time}}</div>
+    <button (click)="plusTime()" class="ll_button">+10s</button>
+    <button (click)="minusTime()" class="ll_button">-10s</button>
+</div>     
+<button (click)="startGame()" class="ll_button" [disabled]="disableStart()">Play </button>             

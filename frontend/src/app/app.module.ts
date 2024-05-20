@@ -21,6 +21,11 @@ import { GameEndComponent } from './game-template/game-end/game-end.component';
 import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MenuButtonComponent } from './menu-button/menu-button.component';
+import { GeoDataComponent} from './geo-data/geo-data.component';
+import { GeoQuizComponent } from './geo-quiz/geo-quiz.component';
+import { GeoMenuComponent } from './geo-quiz/geo-menu/geo-menu.component';
+import { GeoButtonComponent } from './geo-quiz/geo-button/geo-button.component';
+import { GeoEndComponent } from './geo-quiz/geo-end/geo-end.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +44,12 @@ import { MenuButtonComponent } from './menu-button/menu-button.component';
     GameEndComponent,
     GameTutorialComponent,
     LeaderboardComponent,
-    MenuButtonComponent
+    MenuButtonComponent,
+    GeoDataComponent,
+    GeoQuizComponent,
+    GeoMenuComponent,
+    GeoButtonComponent,
+    GeoEndComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,48 @@
+@import "../../../styles.scss";
+
+.question {
+    color:$ll-text-color;
+    font-size: 16px;
+    padding-bottom: 4px;
+}
+
+.correct {
+    display:flex;
+    padding-bottom: 2px;
+}
+
+.correct_left {
+    color:$ll-text-color;
+    font-size: 12px;
+    padding-right: 20px;
+}
+
+.correct_right {
+    color:$ll-text-color;
+    font-size: 12px;
+}
+
+.anwsered {
+    display:flex;
+    padding-bottom: 2px;
+}
+
+.anwsered_left {
+    color:$ll-text-color;
+    font-size: 12px;
+    padding-right: 20px;
+}
+
+
+.anwsered_right {
+    font-size: 12px;
+
+}
+
+.anwsered_right.correct {
+    color:blue;
+}
+
+.anwsered_right.wrong {
+    color:red;
+}

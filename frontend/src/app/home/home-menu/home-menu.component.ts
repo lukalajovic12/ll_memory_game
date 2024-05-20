@@ -28,6 +28,10 @@ export class HomeMenuComponent {
     this.router.navigate(['/'+CIRCLES]); 
   }
 
+  public toGeo = () => {
+    this.router.navigate(['/geo-quiz']);      
+  }
+
 
   public toLeaderboard = () =>  {
     this.router.navigate(['/leaderboard']);    

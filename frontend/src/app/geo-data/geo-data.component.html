@@ -1,0 +1,30 @@
+<div class="game_area">
+    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
+        <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
+        
+        <div>
+        <div class="continents_row">
+            <div *ngFor="let con of continents">
+                <input type="checkbox" id="{{con.continent}}" name="{{con.continent}}" [(ngModel)]="con.selected" (ngModelChange)="getGeoData()">
+                <label for="{{con.continent}}"> {{con.continent}} </label><br>
+            </div>
+        </div>
+            <table class="geo_tabela">
+                <th>country</th>
+                <th>capital</th>
+                <tr *ngFor="let c of geoData">
+                    <td>
+                        {{ c.country }}
+                    </td>
+                    <td>
+                        {{ c.capital }}
+                    </td>
+                    <td>
+                        {{ c.continent }}
+                    </td>
+                </tr>
+            </table>
+            <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
+        </div>
+    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side"></div>
+</div>

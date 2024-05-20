@@ -1,0 +1,40 @@
+@import "../../../styles.scss";
+button {
+    display: inline-block;
+    font-size: 8px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    line-height: 50%;
+    outline: none;
+    color: $button-text-color;
+    background-color: $button-background-color;
+    border: none;
+    border-radius: 15px;
+    vertical-align: middle;
+    border: 1px solid $button-border-color;
+}
+
+.correct_anwser {
+    background-color: blue;
+}
+
+.correct_anwser:hover {
+    background-color: blue;
+}
+
+.wrong_anwser {
+    background-color: red;
+}
+
+.wrong_anwser:hover {
+    background-color: red;
+}
+
+button:hover {
+    background-color: $button-background-hover;
+}
+button:active {
+    background-color: $button-background-active;
+    transform: translateY(4px);
+}

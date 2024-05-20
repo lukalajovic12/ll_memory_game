@@ -1,0 +1,21 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { GeoDataComponent } from './geo-data.component';
+
+describe('GeoDataComponent', () => {
+  let component: GeoDataComponent;
+  let fixture: ComponentFixture<GeoDataComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [GeoDataComponent]
+    });
+    fixture = TestBed.createComponent(GeoDataComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

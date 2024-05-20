@@ -1,0 +1,17 @@
+<div *ngFor="let anwser of anwsers; let i = index">
+    <div class="question">
+    {{i+1}}. {{anwser.countryCorrect.capital}} is the capital of
+    </div>
+    <div class="correct">
+        <div class="correct_left">Correct anwser</div>
+        <div class="correct_right" >{{ anwser.countryCorrect.country }}</div>        
+    </div>
+    <div class="anwsered">
+        <div class="anwsered_left">Anwsered</div>
+        <div class="anwsered_right" [ngClass]="anwser.countryCorrect === anwser.countryAnwsered ? 'correct':'wrong'">{{ anwser.countryAnwsered.country }} </div>   
+    </div>
+
+
+</div>
+
+<button class="ll_button geo_button" (click)="invokeAction()"> Play again </button>

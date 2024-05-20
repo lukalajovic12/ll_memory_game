@@ -1,0 +1,54 @@
+@import "../../styles.scss";
+
+.geo_area {
+    padding: 1px;
+    display: flex;
+}
+
+.geo_button {
+    border-radius: 50%;
+    display: inline-block;
+    padding: 1px 1px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: center;
+    text-decoration: none;
+    outline: none;
+    color: $button-text-color;
+    background-color: $button-background-color;
+    border: none;
+    vertical-align: middle;
+    border: 1px solid $button-border-color;  
+}
+
+.geo_button:hover {
+    background-color: $button-background-hover;
+}
+.geo_button:active {
+    background-color: $button-background-active;
+    transform: translateY(4px);
+}
+
+.time {
+    color:$ll-text-color;
+    font-size: 12px;
+}
+
+.question {
+    color:$ll-text-color;
+    font-size: 12px;
+}
+
+.continents {
+    display: flex;
+}
+
+.ll_value {
+    font-size: 18px;
+    padding: 5px;
+    color:$ll-text-color;
+}
+
+.ll_button.geo_button {
+    font-size: 12px;
+}
