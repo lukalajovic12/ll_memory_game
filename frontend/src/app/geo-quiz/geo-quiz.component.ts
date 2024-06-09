@@ -119,10 +119,11 @@ export class GeoQuizComponent implements OnInit, OnDestroy  {
 
   checkAnswer(cc: GeoObject) {
     if(this.question === cc) {
-      this.correctAnwser=cc;
+      this.correctAnwser = cc;
       this.correct.push(cc);
     } else {
-      this.wrongAnwser=cc;
+      this.correctAnwser = this.question;
+      this.wrongAnwser = cc;
     }
 
     let anw:GeoAnwser = {countryCorrect:this.question,countryAnwsered:cc};
