@@ -32,6 +32,10 @@ export class HomeMenuComponent {
     this.router.navigate(['/geo-quiz']);      
   }
 
+  public toNim = () => {
+    this.router.navigate(['/nim']);     
+  }
+
 
   public toLeaderboard = () =>  {
     this.router.navigate(['/leaderboard']);    

@@ -6,7 +6,8 @@
     <h2 *ngIf="!_userService.isAuthenticated()"> To save score login or register.</h2>
     <app-menu-button [text]="'Squares'" [action]="toSquare"/>
     <app-menu-button [text]="'Circles'" [action]="toCircle"/>
-    <app-menu-button [text]="'Geography'" [action]="toGeo"/>    
+    <app-menu-button [text]="'Geography'" [action]="toGeo"/>
+    <app-menu-button [text]="'Nim'" [action]="toNim"/>        
     <app-menu-button [text]="'Register'" [action]="toRegister" *ngIf="!_userService.isAuthenticated()"/>
     <app-menu-button [text]="'Login'" [action]="toLogin" *ngIf="!_userService.isAuthenticated()"/>
     <app-menu-button [text]="'Logout'" [action]="logout" *ngIf="_userService.isAuthenticated()"/>

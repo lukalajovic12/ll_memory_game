@@ -84,7 +84,7 @@ export function saveData(title:string,gamePoints:number,customGame:boolean,
     const width = window.innerWidth;
     const height = window.innerHeight-120;
     // Store the window size in your class property
-    let maxSize=500;
+    let maxSize=700;
     let svgWidth=Math.min(maxSize,width);
     let svgHeight=Math.min(maxSize,height);
     svgWidth>svgHeight?svgWidth=svgHeight:svgHeight=svgWidth

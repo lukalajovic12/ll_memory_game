@@ -26,6 +26,7 @@ import { GeoQuizComponent } from './geo-quiz/geo-quiz.component';
 import { GeoMenuComponent } from './geo-quiz/geo-menu/geo-menu.component';
 import { GeoButtonComponent } from './geo-quiz/geo-button/geo-button.component';
 import { GeoEndComponent } from './geo-quiz/geo-end/geo-end.component';
+import { NimComponent } from './nim/nim.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,8 @@ import { GeoEndComponent } from './geo-quiz/geo-end/geo-end.component';
     GeoQuizComponent,
     GeoMenuComponent,
     GeoButtonComponent,
-    GeoEndComponent
+    GeoEndComponent,
+    NimComponent
   ],
   imports: [
     BrowserModule,

@@ -1,0 +1,32 @@
+@import "../../styles.scss";
+
+$ll-nim-canvas-color:lightgray;
+$ll-nim-circle-color:blue;
+$ll-nim-line-color:black;
+.nim_area {
+    padding: 1px;
+    display: flex;
+}
+
+.game_data_left_side {
+    background-color:red;
+}
+
+.game_data_right_side {
+    background-color:blue;
+}
+
+.svg_canvas {
+    background-color: $ll-nim-canvas-color;
+}
+
+.game_circle {
+    stroke: $ll-nim-circle-color;
+    stroke-width: 3;
+    fill:$ll-nim-circle-color;
+}
+
+.circle-line {
+    stroke: $ll-nim-line-color;
+    stroke-width: 3;   
+}

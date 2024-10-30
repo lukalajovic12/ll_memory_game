@@ -11,6 +11,10 @@
     fill:$ll-square-marked-color;
 }
 
+.marked_square.mistake_square {
+    fill:$ll-square-mistake-color;
+}
+
 .unmarked_square {
     fill:$ll-square-unmarked-color;
 }

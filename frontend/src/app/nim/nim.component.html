@@ -1,0 +1,19 @@
+<div class="nim_area">
+    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_left_side"></div>
+        <div>
+            <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas">
+                @for(line of createRows(); track line){
+                    @for(l of line; track l) {
+                        <circle class="game_circle" [attr.cx]="l.x" [attr.cy]="l.y+lineLength()"
+                         [attr.r]="radius/2"
+                         class="game_circle"  />
+                        <line class="circle-line"  [attr.x1]="l.x" [attr.x2]="l.x" [attr.y1]="l.y" [attr.y2]="l.y+lineLength()" />
+                        <circle class="game_circle" [attr.cx]="l.x" [attr.cy]="l.y+lineLength()"
+                         [attr.r]="radius/2"
+                         class="game_circle"  />
+                    }
+                }
+            </svg>
+        </div>       
+    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_right_side"></div>
+</div>
