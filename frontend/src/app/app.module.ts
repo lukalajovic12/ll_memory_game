@@ -3,7 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
-import { HttpClientModule} from '@angular/common/http'; 
+import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { GameScoreComponent } from './game-score/game-score.component';
 import { SquareMemoryComponent } from './square-memory/square-memory.component';
@@ -27,40 +27,35 @@ import { GeoMenuComponent } from './geo-quiz/geo-menu/geo-menu.component';
 import { GeoButtonComponent } from './geo-quiz/geo-button/geo-button.component';
 import { GeoEndComponent } from './geo-quiz/geo-end/geo-end.component';
 import { NimComponent } from './nim/nim.component';
+import {NimMenuComponent} from './nim/nim-menu/nim-menu.component'
 
-@NgModule({
-  declarations: [
-    AppComponent,
-    CircleMemoryComponent,
-    GameScoreComponent,
-    SquareMemoryComponent,
-    GameTemplateComponent,
-    HomeComponent,
-    RegistrationComponent,
-    LoginComponent,
-    GameSettingsComponent,
-    HomeMenuComponent,
-    GameMenuComponent,
-    GamePauseComponent,
-    GameEndComponent,
-    GameTutorialComponent,
-    LeaderboardComponent,
-    MenuButtonComponent,
-    GeoDataComponent,
-    GeoQuizComponent,
-    GeoMenuComponent,
-    GeoButtonComponent,
-    GeoEndComponent,
-    NimComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    FormsModule,
-    BrowserAnimationsModule
-  ],
-  providers: [UserService],
-  bootstrap: [AppComponent]
-})
+@NgModule({ declarations: [
+        AppComponent,
+        CircleMemoryComponent,
+        GameScoreComponent,
+        SquareMemoryComponent,
+        GameTemplateComponent,
+        HomeComponent,
+        RegistrationComponent,
+        LoginComponent,
+        GameSettingsComponent,
+        HomeMenuComponent,
+        GameMenuComponent,
+        GamePauseComponent,
+        GameEndComponent,
+        GameTutorialComponent,
+        LeaderboardComponent,
+        MenuButtonComponent,
+        GeoDataComponent,
+        GeoQuizComponent,
+        GeoMenuComponent,
+        GeoButtonComponent,
+        GeoEndComponent,
+        NimComponent,
+        NimMenuComponent
+    ],
+    bootstrap: [AppComponent], imports: [BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule], providers: [UserService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

@@ -8,14 +8,6 @@ $ll-nim-line-color:black;
     display: flex;
 }
 
-.game_data_left_side {
-    background-color:red;
-}
-
-.game_data_right_side {
-    background-color:blue;
-}
-
 .svg_canvas {
     background-color: $ll-nim-canvas-color;
 }
@@ -28,5 +20,14 @@ $ll-nim-line-color:black;
 
 .circle-line {
     stroke: $ll-nim-line-color;
-    stroke-width: 3;   
+    stroke-width: 2;   
+}
+
+.circle-line.choosen {
+    stroke: red;
+}
+
+.game_circle.choosen {
+    stroke: red;
+    fill: red;
 }

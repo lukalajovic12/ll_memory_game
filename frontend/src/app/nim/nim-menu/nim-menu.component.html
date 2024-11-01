@@ -1,0 +1,19 @@
+<div class="menu_class">
+    <h1>Nim</h1>
+    <app-menu-button [text]="'Play'" [action]="action"/>
+    <app-menu-button [text]="'Home'" [action]="toHome"/>
+    <p class="nim_text">
+        @switch (status) {
+            @case ('win') {
+              Awesome, you WIN
+            }
+            @case ('loose') {
+              You loose, don't worry try again. It's just an algorithm once you figure it out you will win every time.
+            }
+            @default {
+                when it's your turn take one or more matches from one row. 
+                Then the computer will do the same. If you take the last match you win.
+            }
+          }
+    </p>
+ </div>

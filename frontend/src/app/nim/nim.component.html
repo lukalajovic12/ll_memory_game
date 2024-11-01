@@ -1,19 +1,40 @@
 <div class="nim_area">
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_left_side"></div>
         <div>
-            <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas">
-                @for(line of createRows(); track line){
+            @if(playingGame) {
+            <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas" (mousedown)="startMark($event)" (mousemove)="secondMark($event)" (mouseup)="nimMove()">
+                @for(line of rows; track line){
                     @for(l of line; track l) {
+                        <line class="circle-line"  [attr.x1]="l.x" [attr.x2]="l.x" [attr.y1]="l.y" 
+                        [attr.y2]="l.y+lineLength()"
+                        [ngClass]="{
+                            'choosen': l.choosen
+                          }"
+                        />
+                        <circle class="game_circle" [attr.cx]="l.x" [attr.cy]="l.y"
+                         [attr.r]="radius/2"
+                         class="game_circle"
+                         [ngClass]="{
+                            'choosen': l.choosen
+                          }"  />                                             
                         <circle class="game_circle" [attr.cx]="l.x" [attr.cy]="l.y+lineLength()"
                          [attr.r]="radius/2"
-                         class="game_circle"  />
-                        <line class="circle-line"  [attr.x1]="l.x" [attr.x2]="l.x" [attr.y1]="l.y" [attr.y2]="l.y+lineLength()" />
-                        <circle class="game_circle" [attr.cx]="l.x" [attr.cy]="l.y+lineLength()"
-                         [attr.r]="radius/2"
-                         class="game_circle"  />
+                         class="game_circle"
+                         [ngClass]="{
+                            'choosen': l.choosen
+                          }"  />
                     }
                 }
+                @if(firstPressed) {
+                    <line class="circle-line"  [attr.x1]="firstPressX" [attr.x2]="secondPressX" [attr.y1]="firstPressY" [attr.y2]="firstPressY" />
+                    <circle class="game_circle" [attr.cx]="firstPressX" [attr.cy]="firstPressY"  [attr.r]="radius/2"  />
+                    <circle class="game_circle" [attr.cx]="secondPressX" [attr.cy]="firstPressY"  [attr.r]="radius/2"  />
+                }
             </svg>
+        } @else {
+            <app-nim-menu [action]="startGame" [status]="status" />
+        }
+
         </div>       
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_right_side"></div>
 </div>

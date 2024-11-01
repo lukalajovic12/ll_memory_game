@@ -5,7 +5,8 @@ export interface Line {
     y: number,
     choosen:boolean
   }
-
+ 
+  export type NimStatus = 'win'|'loose'|'instructions';
 
 function numberToBinaryString(num: number): string {
     return num.toString(2);
@@ -25,104 +26,96 @@ function transformToBinary(p:number[]):String[]{
         a+=1;
     }
 
-    let stanje:String[]=[];
+    let state:String[]=[];
     for(let i=0;i<st.length;++i){
         let s=st[i];
-        let dodaj=Math.abs(s.length-maks);
+        let add=Math.abs(s.length-maks);
         let ss=s;
-        if(dodaj!=0){
+        if(add!=0){
             let b=0;
-            while(b<dodaj){
+            while(b<add){
                 ss="0"+ss;
                 b+=1;
             }
 
         }
-        stanje.push(ss);
+        state.push(ss);
 
     }
-    return stanje;
+    return state;
 }
 
  export function evenPosition( lines:Line[][]):boolean{
-    let stanje=transformToBinary(lines.map(l=>l.length));
-    let sodo=true;
-    for(let j=0;j<stanje[0].length;++j){
-        let vsota=0;
-        for(let i=0;i<stanje.length;++i){
-            let s=stanje[i];
+    let state=transformToBinary(lines.map(l=>l.length));
+    let even=true;
+    for(let j=0;j<state[0].length;++j){
+        let sum=0;
+        for(let i=0;i<state.length;++i){
+            let s=state[i];
             if(s.charAt(j)=='1'){
-                vsota=1-vsota;
+                sum=1-sum;
             }
         }
-        if(vsota!=0){
-            sodo=false;
+        if(sum!=0){
+            even=false;
             break;
         }
     }
-    return sodo;
+    return even;
 }
 
 export function evenPositionNumbers( stevila:number[]):boolean{
-    let stanje=transformToBinary(stevila);
-    let sodo=true;
-    for(let j=0;j<stanje[0].length;++j){
-        let vsota=0;
-        for(let i=0;i<stanje.length;++i){
-            let s=stanje[i];
+    let state=transformToBinary(stevila);
+    let even=true;
+    for(let j=0;j<state[0].length;++j){
+        let sum=0;
+        for(let i=0;i<state.length;++i){
+            let s=state[i];
             if(s.charAt(j)=='1'){
-                vsota=1-vsota;
+                sum=1-sum;
             }
         }
-        if(vsota!=0){
-            sodo=false;
+        if(sum!=0){
+            even=false;
             break;
         }
     }
-    return sodo;
+    return even;
 }
 
-export function  randomMove(lines:Line[][]):void{
-    let a=Math.floor(lines.length+Math.random());
-    let b=Math.floor(lines[a].length+Math.random());
+export function randomMove(lines:Line[][]):void {
+    let a=Math.floor(lines.length*Math.random());
+    let b=Math.floor(lines[a].length*Math.random());
     lines[a][b].choosen=true;
 }
 
-export function  oddMove( lines:Line[][]):void {
-    let stevila:number[]=[];
-    for(let c in lines){
-        stevila.push(c.length);
+export function oddMove( lines:Line[][]):void {
+    let numbers:number[]=[];
+    for(let c of lines){
+        numbers.push(c.length);
     }
-    for(let i=0;i<stevila.length;++i){
-        let ste=stevila[i];
-        let zac=stevila[i];
-        let koncano=false;
-        while(0<=ste){
-            stevila[i]=ste;
-            if(evenPositionNumbers(stevila)==true){
-                for(let x=0;x<lines[i].length-ste;++x){
-                    lines[i][x].choosen=true;
+    for(let i=0;i<numbers.length;++i){
+        let num=numbers[i];
+        let start=numbers[i];
+        let finished=false;
+        const oldNumbers=numbers[i]
+        while(0<=num){
+            numbers[i]=num;
+            if(evenPositionNumbers(numbers)){
+                for(let j=0;j<lines[i].length-num;++j){
+                    lines[i][j].choosen=true;
                 }
-                koncano=true;
+                finished=true;
                 break;
             }
-            ste-=1;
+            num-=1;
         }
-        if(koncano==true){
+        numbers[i]=oldNumbers;
+        if(finished==true){
             break;
         }
         else{
-            stevila[i]=zac;
-        }
-
-    }
-    for(let j=0;j<stevila.length;++j){
-        let c=lines[j];
-        if(c.length>stevila[j]){
-            for(let k=0;k<c.length-stevila[j];++k){
-                c[k].choosen=true;
-            }
+            numbers[i]=start;
         }
     }
-
 }
