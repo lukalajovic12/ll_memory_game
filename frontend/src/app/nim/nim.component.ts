@@ -32,7 +32,7 @@ export class NimComponent implements OnInit, OnDestroy {
   private originalRowsLength =6;
   
   ngOnInit() {
-    this.windowWidth = Math.min(window.innerWidth,600);
+    this.windowWidth = Math.min(window.innerWidth-20,500);
     this.windowHeight = window.innerHeight-50;
   }
 
@@ -73,19 +73,13 @@ export class NimComponent implements OnInit, OnDestroy {
     this.playingGame = true;
   }
 
-  protected startMark(event: MouseEvent | TouchEvent) {
+  protected startMark(event: MouseEvent) {
     if(event.target instanceof SVGSVGElement) {
       const svgElement = event.target as SVGSVGElement;
       const point = svgElement.createSVGPoint();
       if (svgElement && point && svgElement.getScreenCTM()) {
-        if(event instanceof MouseEvent) {
-          point.x = event.clientX;
-          point.y = event.clientY;
-        } 
-        if(event instanceof TouchEvent) {
-          point.x = event.touches[0].clientX;
-          point.y = event.touches[0].clientY;
-        } 
+        point.x = event.clientX;
+        point.y = event.clientY;
         const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
         const mouseX = svgPoint.x;
         const mouseY = svgPoint.y;
@@ -96,17 +90,12 @@ export class NimComponent implements OnInit, OnDestroy {
   }
   }
 
-  protected secondMark(event: MouseEvent | TouchEvent) {
+  protected secondMark(event: MouseEvent) {
     if(event.target instanceof SVGSVGElement) {
       const svgElement = event.target as SVGSVGElement;
       const point = svgElement.createSVGPoint();
       if (svgElement && point && svgElement.getScreenCTM()) {
-        if(event instanceof MouseEvent) {
-          point.x = event.clientX;
-        } 
-        if(event instanceof TouchEvent) {
-          point.x = event.touches[0].clientX;
-        } 
+        point.x = event.clientX;
         const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
         const mouseX = svgPoint.x;
         this.secondPressX = mouseX;
@@ -114,8 +103,35 @@ export class NimComponent implements OnInit, OnDestroy {
   }
   }  
 
-  
+  protected startMarkTouch(event: TouchEvent) {
+    if(event.target instanceof SVGSVGElement) {
+      const svgElement = event.target as SVGSVGElement;
+      const point = svgElement.createSVGPoint();
+      if (svgElement && point && svgElement.getScreenCTM()) {
+        point.x = event.touches[0].clientX;
+        point.y = event.touches[0].clientY;
+        const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
+        const mouseX = svgPoint.x;
+        const mouseY = svgPoint.y;
+        this.firstPressX = mouseX;
+        this.firstPressY = mouseY;
+        this.firstPressed=true;
+      }
+  }
+  }
 
+  protected secondMarkTouch(event: TouchEvent) {
+    if(event.target instanceof SVGSVGElement) {
+      const svgElement = event.target as SVGSVGElement;
+      const point = svgElement.createSVGPoint();
+      if (svgElement && point && svgElement.getScreenCTM()) {
+        point.x = event.touches[0].clientX;
+        const svgPoint = point.matrixTransform(svgElement.getScreenCTM().inverse());
+        const mouseX = svgPoint.x;
+        this.secondPressX = mouseX;
+      }
+  }
+  }  
 
   private markChoosen():void {
     this.markedElements=false;
