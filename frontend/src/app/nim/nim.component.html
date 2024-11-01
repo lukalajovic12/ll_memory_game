@@ -2,7 +2,9 @@
     <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_left_side"></div>
         <div>
             @if(playingGame) {
-            <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas" (mousedown)="startMark($event)" (mousemove)="secondMark($event)" (mouseup)="nimMove()">
+            <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas" 
+            (mousedown)="startMark($event)" (mousemove)="secondMark($event)" (mouseup)="nimMove()"
+            (touchstart)="startMark($event)" (touchmove)="secondMark($event)" (touchend)="nimMove()">
                 @for(line of rows; track line){
                     @for(l of line; track l) {
                         <line class="circle-line"  [attr.x1]="l.x" [attr.x2]="l.x" [attr.y1]="l.y" 
