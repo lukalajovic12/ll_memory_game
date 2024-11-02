@@ -1,11 +1,22 @@
 import { Component, HostListener, OnInit, OnDestroy  } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Line, evenPosition,oddMove,randomMove, NimStatus } from './nim-logic'
+import {trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-nim',
   templateUrl: './nim.component.html',
-  styleUrls: ['./nim.component.scss']
+  styleUrls: ['./nim.component.scss'],
+  animations: [
+    trigger('fadeInOut', [
+      state('void', style({
+        opacity: 0
+      })),
+      transition(':enter, :leave', [
+        animate('0.5s ease-in-out')
+      ])
+    ])
+  ] 
 })
 export class NimComponent implements OnInit, OnDestroy {
 
