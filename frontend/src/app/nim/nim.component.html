@@ -27,7 +27,7 @@
                           }"  />
                     }
                 }
-                @if(firstPressed) {
+                @if(firstPressed && secondPressX>0) {
                     <line class="circle-line"  [attr.x1]="firstPressX" [attr.x2]="secondPressX" [attr.y1]="firstPressY" [attr.y2]="firstPressY" />
                     <circle class="game_circle" [attr.cx]="firstPressX" [attr.cy]="firstPressY"  [attr.r]="radius/2"  />
                     <circle class="game_circle" [attr.cx]="secondPressX" [attr.cy]="firstPressY"  [attr.r]="radius/2"  />

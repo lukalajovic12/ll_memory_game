@@ -32,8 +32,28 @@ export class NimComponent implements OnInit, OnDestroy {
   private originalRowsLength =6;
   
   ngOnInit() {
-    this.windowWidth = Math.min(window.innerWidth-20,500);
+    this.setupWidths();
+  }
+
+  private setupWidths():void {
+    this.windowWidth = Math.min(window.innerWidth-60,500);
     this.windowHeight = window.innerHeight-50;
+    if(this.playingGame){
+      let maks =0;
+      for(let r of this.rows) {
+        if(r.length>maks) {
+          maks=r.length;
+        }
+      }
+      const maksRatio=this.windowWidth/maks;
+      for(let i=0; i<this.rows.length;i++) {
+        for(let j=0; j<this.rows[i].length;j++) {
+          this.rows[i][j].x=j*maksRatio+maksRatio/2
+          this.rows[i][j].y=i*(this.windowHeight/this.rows.length)+10;
+        }
+      }
+    }
+
   }
 
   private createRows(): void {
@@ -50,7 +70,7 @@ export class NimComponent implements OnInit, OnDestroy {
     for(let i=0; i<nimNumbers.length;i++) {
       let row: Line[] = []
       for(let j=0; j<nimNumbers[i];j++) {
-        let l:Line = {y:i*(this.windowHeight/nimNumbers.length)+10,x:j*maksRatio+maksRatio/2 ,choosen:false};
+        let l:Line = {x:j*maksRatio+maksRatio/2, y:i*(this.windowHeight/nimNumbers.length)+10,choosen:false};
         row.push(l);
       }
       this.rows.push(row);
@@ -60,7 +80,6 @@ export class NimComponent implements OnInit, OnDestroy {
       oddMove(this.rows);
       this.removeChoosen();
     }
-
   }
 
   protected lineLength():number {
@@ -207,8 +226,7 @@ export class NimComponent implements OnInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
-    this.windowWidth = Math.min(window.innerWidth,600);
-    this.windowHeight = window.innerHeight-50;
+    this.setupWidths();
   }  
 
 }
