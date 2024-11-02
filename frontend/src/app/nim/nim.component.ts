@@ -6,17 +6,7 @@ import {trigger, state, style, animate, transition } from '@angular/animations';
 @Component({
   selector: 'app-nim',
   templateUrl: './nim.component.html',
-  styleUrls: ['./nim.component.scss'],
-  animations: [
-    trigger('fadeInOut', [
-      state('void', style({
-        opacity: 0
-      })),
-      transition(':enter, :leave', [
-        animate('0.5s ease-in-out')
-      ])
-    ])
-  ] 
+  styleUrls: ['./nim.component.scss']
 })
 export class NimComponent implements OnInit, OnDestroy {
 
