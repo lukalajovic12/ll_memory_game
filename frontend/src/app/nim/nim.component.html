@@ -4,7 +4,8 @@
             @if(playingGame) {
             <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas" 
             (mousedown)="startMark($event)" (mousemove)="secondMark($event)" (mouseup)="nimMove()"
-            (touchstart)="startMarkTouch($event)" (touchmove)="secondMarkTouch($event)" (touchend)="nimMove()" [@fadeInOut]>
+            (touchstart)="startMarkTouch($event)" (touchmove)="secondMarkTouch($event)" (touchend)="nimMove()"
+             [@fadeInOut]>
                 @for(line of rows; track line){
                     @for(l of line; track l) {
                         <line class="circle-line"  [attr.x1]="l.x" [attr.x2]="l.x" [attr.y1]="l.y" 
@@ -34,7 +35,7 @@
                 }
             </svg>
         } @else {
-            <app-nim-menu [action]="startGame" [status]="status" [@fadeInOut] />
+            <app-nim-menu [action]="startGame" [status]="status" />
         }
 
         </div>       
