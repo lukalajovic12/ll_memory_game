@@ -1,7 +1,6 @@
 import { Component, HostListener, OnInit, OnDestroy  } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Line, evenPosition,oddMove,randomMove, NimStatus } from './nim-logic'
-import {trigger, state, style, animate, transition } from '@angular/animations';
 
 @Component({
   selector: 'app-nim',
@@ -10,14 +9,12 @@ import {trigger, state, style, animate, transition } from '@angular/animations';
 })
 export class NimComponent implements OnInit, OnDestroy {
 
-
-  protected firstPressX=-1;
-  protected firstPressY=-1;
-  protected secondPressX=-1;
+  protected firstPressX = -1;
+  protected firstPressY = -1;
+  protected secondPressX = -1;
 
   protected firstPressed = false;
-
-  private markedElements=false;
+  private markedElements = false;
 
   protected rows: Line[][] = [];
 

@@ -9,7 +9,8 @@
     </ng-container>
     <ng-container *ngIf="type === 'practice'">
         <app-menu-button [text]="'Start game'" [action]="startCustomGame" />
-        <app-menu-button [text]="'To Score'" [action]="toScore" *ngIf="_userService.isAuthenticated()"/>
+        <app-menu-button [text]="'To Score'" [action]="toScore" />
+        <!--*ngIf="_userService.isAuthenticated()"-->
         <app-menu-button [text]="'Settings'" [action]="toSettings" />
     </ng-container>
     <app-menu-button [text]="'How to play'" [action]="toTutorial"/>

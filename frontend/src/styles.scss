@@ -98,3 +98,7 @@ th {
 .game_data_right_side {
     background-color: $ll-background-color;
 }
+
+body, .app-container {
+    touch-action: none;
+  }

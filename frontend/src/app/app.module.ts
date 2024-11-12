@@ -6,6 +6,7 @@ import { CircleMemoryComponent } from './circle-memory/circle-memory.component';
 import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'; 
 import { FormsModule } from '@angular/forms';
 import { GameScoreComponent } from './game-score/game-score.component';
+import { GameScoreChartComponent } from './game-score/game-score-chart/game-score-chart.component';
 import { SquareMemoryComponent } from './square-memory/square-memory.component';
 import { GameTemplateComponent } from './game-template/game-template.component';
 import { HomeComponent } from './home/home.component';
@@ -27,12 +28,13 @@ import { GeoMenuComponent } from './geo-quiz/geo-menu/geo-menu.component';
 import { GeoButtonComponent } from './geo-quiz/geo-button/geo-button.component';
 import { GeoEndComponent } from './geo-quiz/geo-end/geo-end.component';
 import { NimComponent } from './nim/nim.component';
-import {NimMenuComponent} from './nim/nim-menu/nim-menu.component'
+import {NimMenuComponent} from './nim/nim-menu/nim-menu.component';
 
 @NgModule({ declarations: [
         AppComponent,
         CircleMemoryComponent,
         GameScoreComponent,
+        GameScoreChartComponent,
         SquareMemoryComponent,
         GameTemplateComponent,
         HomeComponent,
@@ -54,8 +56,10 @@ import {NimMenuComponent} from './nim/nim-menu/nim-menu.component'
         NimComponent,
         NimMenuComponent
     ],
-    bootstrap: [AppComponent], imports: [BrowserModule,
+    bootstrap: [AppComponent], 
+    imports: [BrowserModule,
         AppRoutingModule,
         FormsModule,
-        BrowserAnimationsModule], providers: [UserService, provideHttpClient(withInterceptorsFromDi())] })
+        BrowserAnimationsModule ], 
+    providers: [UserService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

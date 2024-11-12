@@ -21,5 +21,4 @@ class MemoryGame(models.Model):
         return self.title
     
 
-
         

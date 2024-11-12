@@ -1,11 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import {UserService} from '../user.service';
+import { UserService } from '../user.service';
 import { Score } from '../game-util';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
+
+
+
 @Component({
   selector: 'app-game-score',
   templateUrl: './game-score.component.html',
@@ -13,11 +16,13 @@ import { Router } from '@angular/router';
 })
 export class GameScoreComponent implements OnInit {
 
-  protected score: Observable<Score[]>;
+  public score: Score[]=[];
 
-  protected gameType="all";
+  protected gameType:'all'|'circles'|'squares' = "all";
 
-  private title="all";
+  protected gameDisplay:'chart'|'table' = 'chart';
+
+  private title:'all'|'circles'|'squares'='all';
 
   private scoreUrl():string {
     if(this.gameType==="all"){
@@ -32,11 +37,9 @@ export class GameScoreComponent implements OnInit {
     private route: ActivatedRoute,private router: Router){}  
 
   ngOnInit() {
-
-    if(!this._userService.isAuthenticated()){
-      this.toHome();
-    }
-
+  //  if(!this._userService.isAuthenticated()){
+  //    this.toHome();
+ //   }
     this.route.queryParams.subscribe(params => {
       this.gameType=params['title'];
       this.title=params['title'];
@@ -44,19 +47,36 @@ export class GameScoreComponent implements OnInit {
     });
   }
 
-  onChange(value:any) {
+protected onChangeGameType():void {
     this.getScore();
 }
 
+protected onChangeGameDisplay():void {
+
+}
+
+
   private getScore() {
-   let headers = new HttpHeaders({
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${this._userService.token}`
-  });   
-  headers.set('Authorization', `Bearer ${this._userService.token}`);
-   this.score=this.http.get<Score[]>(this.scoreUrl(), { headers });
+  // let headers = new HttpHeaders({
+  //  'Content-Type': 'application/json',
+  //  'Authorization': `Bearer ${this._userService.token}`
+  //});   
+  //headers.set('Authorization', `Bearer ${this._userService.token}`);
+  // const scoreObservable=this.http.get<Score[]>(this.scoreUrl(), { headers });
+
+  // scoreObservable.subscribe((data: Score[]) => {
+  //   this.score = data;
+  // });
+
+   this.score = [{id:1,points:10,startLevel:3,title:'squares',user:1,username:'playerone',settings_id:1,lives:3,mistakes:1,startTime:2000,timeIncrease:100},
+    {id:2,points:15,startLevel:3,title:'squares',user:1,username:'playerone',settings_id:1,lives:3,mistakes:1,startTime:2000,timeIncrease:100},
+    {id:3,points:80,startLevel:3,title:'squares',user:1,username:'playerone',settings_id:1,lives:3,mistakes:1,startTime:2000,timeIncrease:100},
+    {id:4,points:166,startLevel:3,title:'squares',user:1,username:'playerone',settings_id:1,lives:3,mistakes:1,startTime:2000,timeIncrease:100},
+    {id:5,points:17,startLevel:3,title:'squares',user:1,username:'playerone',settings_id:1,lives:3,mistakes:1,startTime:2000,timeIncrease:100},
+    {id:6,points:200,startLevel:3,title:'squares',user:1,username:'playerone',settings_id:1,lives:3,mistakes:1,startTime:2000,timeIncrease:100}
+   ];
   }
- 
+
   protected toHome():void {
     this.router.navigate(['/']);
   }
@@ -64,5 +84,7 @@ export class GameScoreComponent implements OnInit {
     let url = '/'+this.title;
     this.router.navigate([url]);
   }  
+
+
 
 }
