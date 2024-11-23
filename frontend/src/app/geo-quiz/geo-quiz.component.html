@@ -1,25 +1,21 @@
-<div class="geo_area">
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
-        <div>
-            <ng-container *ngIf="gameState === 'settings'">
-                <app-geo-menu
-                [(numberOfQuestions)]="numberOfQuestions"
-                [(continents)]="continents"
-                [startGame]="startGame"
-                [(time)]="time"
-                />         
-            </ng-container>
-            <ng-container *ngIf="gameState === 'game'">
-                <div class="time">  time: {{ timeLeft }}</div>
-                <div class="question"> {{displayQuestionText()}}</div>
-                <app-geo-button *ngFor="let cc of questions"  [text]="cc.country" 
-                [correctAnwser]="correctAnwser === cc" 
-                [wrongAnwser]="wrongAnwser === cc" 
-                [action]="checkAnswer.bind(this, cc)" />
-        </ng-container>
-        <ng-container *ngIf="gameState === 'end'">
-            <app-geo-end [action]="playAgain" [anwsers]="anwsers" />
-        </ng-container>
-        </div>       
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side"></div>
-</div>
+<div class="game_area">
+    <ng-container *ngIf="gameState === 'settings'">
+        <app-geo-menu
+        [(numberOfQuestions)]="numberOfQuestions"
+        [(continents)]="continents"
+        [startGame]="startGame"
+        [(time)]="time"
+        />         
+    </ng-container>
+    <ng-container *ngIf="gameState === 'game'">
+        <div class="time">  time: {{ timeLeft }}</div>
+        <div class="question"> {{displayQuestionText()}}</div>
+        <app-geo-button *ngFor="let cc of questions"  [text]="cc.country" 
+        [correctAnwser]="correctAnwser === cc" 
+        [wrongAnwser]="wrongAnwser === cc" 
+        [action]="checkAnswer.bind(this, cc)" />
+</ng-container>
+<ng-container *ngIf="gameState === 'end'">
+    <app-geo-end [action]="playAgain" [anwsers]="anwsers" />
+</ng-container>
+  </div>

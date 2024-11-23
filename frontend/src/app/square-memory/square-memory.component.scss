@@ -1,4 +1,11 @@
 @import "../../styles.scss";
+
+.svg_canvas {
+    width: var(--window-width);
+    height: var(--window-width);
+}
+
+
 .game_area {
     display: flex;
 }

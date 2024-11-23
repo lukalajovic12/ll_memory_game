@@ -3,6 +3,7 @@ import { updateWindowWidth,updateWindowHeight } from '../game-util';
 import { interval, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
 import { Continent, GeoObject, countriesList, GeoAnwser } from '../game-util';
+import { AreaBase } from '../area-base';
 
 export type GeoQuizState = 'settings' | 'game' | 'end';
 @Component({
@@ -10,10 +11,7 @@ export type GeoQuizState = 'settings' | 'game' | 'end';
   templateUrl: './geo-quiz.component.html',
   styleUrls: ['./geo-quiz.component.scss']
 })
-export class GeoQuizComponent implements OnInit, OnDestroy  {
-
-  private windowWidth: number; 
-  private windowHeight: number; 
+export class GeoQuizComponent extends AreaBase implements OnDestroy  {
 
   protected questions:GeoObject[] = [];
   protected question:GeoObject;
@@ -41,6 +39,7 @@ export class GeoQuizComponent implements OnInit, OnDestroy  {
   protected timeLeft = this.time;
 
   constructor() {
+    super();
     this.countries=countriesList;
     this.continents=this.getContinents();
   }
@@ -154,25 +153,4 @@ export class GeoQuizComponent implements OnInit, OnDestroy  {
     return list;
   }
 
-
-  ngOnInit() {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
-  }
-
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowWidth)/2;
-  }
-
-  protected sidesHeight():number {
-    let height = window.innerHeight;
-    return (height-this.windowHeight)/2;
-  }   
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
-  }  
 }

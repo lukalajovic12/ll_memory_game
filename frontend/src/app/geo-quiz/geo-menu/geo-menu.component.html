@@ -1,4 +1,10 @@
 
+<h1>
+    Geo quiz
+</h1>
+<h2>
+    Choose continents
+</h2>
 <div  class="row">
     <div *ngFor="let con of continents">
         <input type="checkbox" id="{{con.continent}}" name="{{con.continent}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">

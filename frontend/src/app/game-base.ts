@@ -1,13 +1,14 @@
 import { timer } from 'rxjs';
 import {UserService} from './user.service';
 import { HttpClient } from '@angular/common/http';
-import { Directive, HostListener, OnInit } from '@angular/core';
-import { saveData, updateWindowWidth,GameDisplayState } from './game-util';
+import { Directive, OnInit } from '@angular/core';
+import { saveData,GameDisplayState } from './game-util';
 import {SettingsService} from './settings.service';
 import { Router } from '@angular/router';
+import { AreaBase } from './area-base';
 
 @Directive()
-export abstract class GameBase implements OnInit {
+export abstract class GameBase extends AreaBase implements OnInit {
 
 
   protected gameDisplayState: GameDisplayState;
@@ -23,7 +24,6 @@ export abstract class GameBase implements OnInit {
   protected timeIncrease = 100;
   protected customGame = false;
 
-  protected windowSize: number;
   protected canvasSize: number;
 
   private canvasOffset = 35;
@@ -37,12 +37,13 @@ export abstract class GameBase implements OnInit {
     protected _userService: UserService,
     protected _settingsService:SettingsService,
     private router: Router ){
+      super();
   }
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
     this._settingsService.getData(this.title);
-    this.windowSize=updateWindowWidth();
-    this.canvasSize=this.windowSize-this.canvasOffset;
+    this.canvasSize=this.windowWidth-this.canvasOffset;
     this.gameDisplayState = 'menu';
   }
 
@@ -94,13 +95,6 @@ export abstract class GameBase implements OnInit {
         }, ms);
     });
 }
-
-  // HostListener to listen for window resize event
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowSize=updateWindowWidth();
-    this.canvasSize=this.windowSize-this.canvasOffset;
-  }    
 
   protected toHome():void {
     this.router.navigate(['/']);

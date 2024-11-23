@@ -1,8 +1,8 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import {UserService} from '../user.service';
 import { Router } from '@angular/router';
-import { updateWindowWidth,updateWindowHeight } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
+import { AreaBase } from '../area-base';
 
 
 export type stateHome =  'register'|'login'|'menu';
@@ -21,13 +21,7 @@ export type stateHome =  'register'|'login'|'menu';
     ])
   ]    
 })
-export class HomeComponent implements OnInit {
-
-
-  private windowWidth: number; 
-
-  
-  private windowHeight: number; 
+export class HomeComponent extends AreaBase {
 
   protected showMenu:boolean =true;
   
@@ -76,27 +70,10 @@ export class HomeComponent implements OnInit {
   }
   
   
-  constructor(protected _userService: UserService,private router: Router) { }
+  constructor(protected _userService: UserService,private router: Router) {
+    super();
+   }
 
-  ngOnInit() {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
-  }
 
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowWidth)/2;
-  }
-
-  protected sidesHeight():number {
-    let height = window.innerHeight;
-    return (height-this.windowHeight)/2;
-  }   
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
-  }  
 
 }

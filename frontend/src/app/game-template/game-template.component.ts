@@ -1,8 +1,9 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
-import { updateWindowWidth,updateWindowHeight, GameDisplayState } from '../game-util';
+import { Component, Input } from '@angular/core';
+import {  GameDisplayState } from '../game-util';
 import {trigger, state, style, animate, transition } from '@angular/animations';
 import {UserService} from '../user.service';
 import { Router } from '@angular/router';
+import { AreaBase } from '../area-base';
 @Component({
   selector: 'app-game-template',
   templateUrl: './game-template.component.html',
@@ -18,7 +19,7 @@ import { Router } from '@angular/router';
     ])
   ]    
 })
-export class GameTemplateComponent implements OnInit  {
+export class GameTemplateComponent extends AreaBase {
 
   @Input()  title:string;
 
@@ -34,33 +35,12 @@ export class GameTemplateComponent implements OnInit  {
 
   @Input() gameDisplayState: GameDisplayState;
 
-  protected windowWidth: number;
-  protected windowHeight: number;
-
-  constructor(protected _userService: UserService,private router: Router){}
-
-  ngOnInit() {
-    this.windowWidth=updateWindowWidth();
-  }
-
-  // HostListener to listen for window resize event
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
+  constructor(protected _userService: UserService,private router: Router){
+    super();
   }
 
   protected showGame():boolean{
     return this.lives>0;
   }   
 
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowWidth)/2;
-  }
-
-  protected sidesHeight():number {
-    let height = window.innerHeight;
-    return (height-this.windowHeight)/2;
-  }  
 }

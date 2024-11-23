@@ -1,13 +1,14 @@
-import { Component, HostListener, OnInit, OnDestroy  } from '@angular/core';
+import { Component, OnInit, OnDestroy  } from '@angular/core';
 import { Subject } from 'rxjs';
 import { Line, evenPosition,oddMove,randomMove, NimStatus } from './nim-logic'
+import { AreaBase } from '../area-base';
 
 @Component({
   selector: 'app-nim',
   templateUrl: './nim.component.html',
   styleUrls: ['./nim.component.scss']
 })
-export class NimComponent implements OnInit, OnDestroy {
+export class NimComponent extends AreaBase implements OnInit, OnDestroy {
 
   protected firstPressX = -1;
   protected firstPressY = -1;
@@ -22,20 +23,17 @@ export class NimComponent implements OnInit, OnDestroy {
 
   public status:NimStatus='instructions';
   
-  protected windowWidth: number; 
-  protected windowHeight: number;
   private unsubscribe$: Subject<void> = new Subject<void>();
   protected radius =6;
 
   private originalRowsLength =6;
   
-  ngOnInit() {
-    this.setupWidths();
+  override ngOnInit() {
+    super.ngOnInit();
+    this.setupNimWidths();
   }
 
-  private setupWidths():void {
-    this.windowWidth = Math.min(window.innerWidth-60,500);
-    this.windowHeight = window.innerHeight-50;
+  private setupNimWidths():void {
     if(this.playingGame){
       let maks =0;
       for(let r of this.rows) {
@@ -51,7 +49,6 @@ export class NimComponent implements OnInit, OnDestroy {
         }
       }
     }
-
   }
 
   private createRows(): void {
@@ -205,26 +202,11 @@ export class NimComponent implements OnInit, OnDestroy {
             resolve();
         }, ms);
     });
-}
-
+  }
+  
   ngOnDestroy() {
     this.unsubscribe$.next();
     this.unsubscribe$.complete();
   }
-
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return width;
-  }
-
-  protected sidesHeight():number {
-    let height = window.innerHeight;
-    return (height-this.windowHeight)/2;
-  }   
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.setupWidths();
-  }  
 
 }

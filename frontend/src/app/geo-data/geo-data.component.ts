@@ -1,26 +1,22 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { updateWindowWidth,updateWindowHeight } from '../game-util';
+import { Component } from '@angular/core';
 
 import { CountryCapital, Continent, GeoObject, countriesList } from '../game-util';
-
+import { AreaBase } from '../area-base';
 @Component({
   selector: 'app-geo-data',
   templateUrl: './geo-data.component.html',
   styleUrls: ['./geo-data.component.scss']
 })
-export class GeoDataComponent implements OnInit {
-  private windowWidth: number; 
-  private windowHeight: number; 
-
+export class GeoDataComponent extends AreaBase {
 
   countryCapitals:CountryCapital[]=[];
-
 
   private countries:{ [key: string]: string[][]; }={};
   continents: Continent[]=[];
   geoData:GeoObject[] =[];
 
   constructor() {
+    super();
     this.countries=countriesList;
 
     this.continents=this.getContinents();
@@ -52,28 +48,7 @@ export class GeoDataComponent implements OnInit {
   }
 
 
-  ngOnInit() {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
-
-  }
-
-  protected sidesWidth():number {
-    let width = window.innerWidth;
-    return (width-this.windowWidth)/2;
-  }
-
-  protected sidesHeight():number {
-    let height = window.innerHeight;
-    return (height-this.windowHeight)/2;
-  }   
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowWidth = updateWindowWidth();
-    this.windowHeight = updateWindowHeight();
-  }  
-
+  
 
 
 }

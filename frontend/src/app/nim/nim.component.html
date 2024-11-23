@@ -1,8 +1,6 @@
-<div class="nim_area">
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_left_side"></div>
-        <div>
+<div class="game_area">
             @if(playingGame) {
-            <svg [attr.width]="windowWidth" [attr.height]="windowHeight" class="svg_canvas" 
+            <svg class="svg_canvas" 
             (mousedown)="startMark($event)" (mousemove)="secondMark($event)" (mouseup)="nimMove()"
             (touchstart)="startMarkTouch($event)" (touchmove)="secondMarkTouch($event)" 
             (touchend)="nimMove()">
@@ -36,8 +34,5 @@
             </svg>
         } @else {
             <app-nim-menu [action]="startGame" [status]="status" />
-        }
-
-        </div>       
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth(), 'height.px': windowHeight }" class="game_data_right_side"></div>
+        }    
 </div>

@@ -1,20 +1,14 @@
 
 <div class="game_area">
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div>
-    <div class="game_data_left_center">
-        <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
-        <div *ngIf="displayMenu()" [@fadeInOut]>
-            <app-home-menu  [(homeState)]="homeState" />
-        </div>
-        <div *ngIf="displayLogin()" [@fadeInOut]>
-            <app-login [(homeState)]="homeState"  />
-        </div>
-        <div *ngIf="displayRegister()" [@fadeInOut]>
-            <app-registration  [(homeState)]="homeState"  />
-        </div>
-        <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
+    <div *ngIf="displayMenu()" [@fadeInOut]>
+        <app-home-menu  [(homeState)]="homeState" />
     </div>
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side"></div>
+    <div *ngIf="displayLogin()" [@fadeInOut]>
+        <app-login [(homeState)]="homeState"  />
+    </div>
+    <div *ngIf="displayRegister()" [@fadeInOut]>
+        <app-registration  [(homeState)]="homeState"  />
+    </div>
 </div>
     
 

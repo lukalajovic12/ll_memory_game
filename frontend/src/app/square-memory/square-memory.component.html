@@ -7,7 +7,7 @@
 [gameDisplayState]="gameDisplayState"
 [success]="success"
 >
-    <svg [attr.width]="windowSize" [attr.height]="windowSize" *ngIf="gameDisplayState === 'game'" [@fadeInOut]>
+    <svg class="svg_canvas" *ngIf="gameDisplayState === 'game'" [@fadeInOut]>
         <rect *ngFor="let k of squares"
         [ngClass]="{
             'mistake_square': k.value === 'mistake',

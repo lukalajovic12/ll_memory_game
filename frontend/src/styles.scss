@@ -88,17 +88,9 @@ th {
 }
 
 .game_area {
-    padding: 5px;
-    display: flex;
+    margin-left: var(--sides-width);
+    margin-right: var(--sides-width);
+    background-color: $ll-background-color;    
+    width: var(--window-width);
+    height: var(--window-height);
 }
-
-.game_data_left_side {
-    background-color: $ll-background-color;
-}
-.game_data_right_side {
-    background-color: $ll-background-color;
-}
-
-body, .app-container {
-    touch-action: none;
-  }

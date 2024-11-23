@@ -1,7 +1,4 @@
 <div class="game_area">
-    <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_left_side"></div> 
-        <div>
-            <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
             <app-game-menu
             [title]="title"
             [startGame]="startGame"   
@@ -20,8 +17,4 @@
             [points]="points"
             *ngIf="gameDisplayState === 'end'" [@fadeInOut]
             />
-         <div *ngIf="sidesHeight()>0" [ngStyle]="{ 'height.px': sidesHeight() }"></div>
-        </div>
-        <div *ngIf="sidesWidth()>0" [ngStyle]="{ 'width.px': sidesWidth() }" class="game_data_right_side">
-    </div>
 </div>
