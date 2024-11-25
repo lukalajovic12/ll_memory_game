@@ -1,53 +1,49 @@
-<svg [attr.width]="windowWidth" 
-[attr.height]="windowHeight" class="svg_canvas">
-<path
-[attr.d]="pathData"
-stroke="blue"
-fill="none"
-stroke-width="2"
-/>
-
-<line 
-    [attr.x1]="chartMaginX"
-    [attr.x2]="windowWidth-chartMaginX/2"
-    [attr.y1]="windowHeight-chartMaginY"
-    [attr.y2]="windowHeight-chartMaginY"
-     style="stroke:blue;stroke-width:2"
-/>
-<line 
-    [attr.x1]="chartMaginX"
-    [attr.x2]="chartMaginX"
-    [attr.y1]="chartMaginY"
-    [attr.y2]="windowHeight-chartMaginY"
-    style="stroke:blue;stroke-width:2"
-/>
-@if(xNumbers.length>1) {
-<text [attr.x]="xNumbers[0].x" [attr.y]="windowHeight" fill="blue">{{xNumbers[0].display}}</text>
-<text [attr.x]="xNumbers[xNumbers.length-1].x" [attr.y]="windowHeight" fill="blue">{{xNumbers[xNumbers.length-1].display}}</text>
-}
-@for(x of xNumbers; track x){
-    <line 
-    [attr.x1]="x.x"
-    [attr.x2]="x.x"
-    [attr.y1]="windowHeight-chartMaginY-1"
-    [attr.y2]="windowHeight-chartMaginY+5"
-    style="stroke:blue;stroke-width:1"
+<svg class="svg_canvas">
+    <path
+    [attr.d]="pathData"
+    stroke="blue"
+    fill="none"
+    stroke-width="2"
     />
-}
-@if(yNumbers.length>1) {
-<text [attr.x]="0" [attr.y]="yNumbers[0].y" fill="blue">{{yNumbers[0].display}}</text>
-<text [attr.x]="0" [attr.y]="yNumbers[yNumbers.length-1].y" fill="blue">{{yNumbers[yNumbers.length-1].display}}</text>
-}
-@for(y of yNumbers; track y){
     <line 
-    [attr.x1]="chartMaginX+1"
-    [attr.x2]="chartMaginX-5"
-    [attr.y1]="y.y-chartMaginY"
-    [attr.y2]="y.y-chartMaginY"
-    style="stroke:blue;stroke-width:1"
+        [attr.x1]="chartMaginX"
+        [attr.x2]="windowWidth-chartMaginX/2"
+        [attr.y1]="windowHeight-chartMaginY"
+        [attr.y2]="windowHeight-chartMaginY"
+        class="border_lines"
+
     />
-}
-
-
-
+    <line 
+        [attr.x1]="chartMaginX"
+        [attr.x2]="chartMaginX"
+        [attr.y1]="chartMaginY"
+        [attr.y2]="windowHeight-chartMaginY"
+        class="border_lines"
+    />
+    @if(xNumbers.length>1) {
+    <text [attr.x]="xNumbers[0].x" [attr.y]="windowHeight" fill="blue">{{xNumbers[0].display}}</text>
+    <text [attr.x]="xNumbers[xNumbers.length-1].x" [attr.y]="windowHeight" fill="blue">{{xNumbers[xNumbers.length-1].display}}</text>
+    }
+    @for(x of xNumbers; track x){
+        <line 
+        [attr.x1]="x.x"
+        [attr.x2]="x.x"
+        [attr.y1]="windowHeight-chartMaginY-1"
+        [attr.y2]="windowHeight-chartMaginY+5"
+        class="point_marks"
+        />
+    }
+    @if(yNumbers.length>1) {
+    <text [attr.x]="0" [attr.y]="yNumbers[0].y" fill="blue">{{yNumbers[0].display}}</text>
+    <text [attr.x]="0" [attr.y]="yNumbers[yNumbers.length-1].y" fill="blue">{{yNumbers[yNumbers.length-1].display}}</text>
+    }
+    @for(y of yNumbers; track y){
+        <line 
+        [attr.x1]="chartMaginX+1"
+        [attr.x2]="chartMaginX-5"
+        [attr.y1]="y.y-chartMaginY"
+        [attr.y2]="y.y-chartMaginY"
+        class="point_marks"
+        />
+    }
 </svg>

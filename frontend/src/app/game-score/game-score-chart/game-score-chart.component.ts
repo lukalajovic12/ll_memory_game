@@ -1,4 +1,4 @@
-import { Component, HostListener, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Score } from '../../game-util';
 import { AreaBase } from 'src/app/area-base';
 
@@ -11,8 +11,6 @@ import { AreaBase } from 'src/app/area-base';
 export class GameScoreChartComponent extends AreaBase implements OnInit{
 
   @Input() score: Score[]=[];
-
-
 
   protected pathData: string = '';
 

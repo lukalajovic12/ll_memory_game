@@ -4,9 +4,9 @@ import { Observable } from 'rxjs';
 import { UserService } from '../user.service';
 import { Score } from '../game-util';
 import { ActivatedRoute } from '@angular/router';
-import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
 import { Location } from '@angular/common';
+import { AreaBase } from 'src/app/area-base';
+export type Gametype ='all'|'circles'|'squares';
 
 
 @Component({
@@ -14,11 +14,11 @@ import { Location } from '@angular/common';
   templateUrl: './game-score.component.html',
   styleUrls: ['./game-score.component.scss']
 })
-export class GameScoreComponent implements OnInit {
+export class GameScoreComponent extends AreaBase implements OnInit {
 
   public score: Score[]=[];
 
-  protected gameType:'all'|'circles'|'squares' = "all";
+  public gameType:Gametype = "all";
 
   protected gameDisplay:'chart'|'table' = 'chart';
 
@@ -26,9 +26,12 @@ export class GameScoreComponent implements OnInit {
 
   constructor(private  http:HttpClient,
     public _userService: UserService,
-    private route: ActivatedRoute,private location: Location){}  
+    private route: ActivatedRoute,private location: Location){
+      super();
+    }  
 
-  ngOnInit() {
+  override ngOnInit() {
+    super.ngOnInit();
   //  if(!this._userService.isAuthenticated()){
   //    this.toHome();
  //   }

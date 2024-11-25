@@ -1,0 +1,6 @@
+@import "../../../styles.scss";
+
+.svg_canvas {
+    width: var(--window-width);
+    height: calc( var(--window-height) -100);
+}

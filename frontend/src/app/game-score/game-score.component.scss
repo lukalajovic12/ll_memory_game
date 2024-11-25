@@ -1,4 +1,18 @@
-table {
+@import "../../styles.scss";
+
+  .score_menu {
+    display: flex; 
+    gap: 5px;
+    padding-bottom: 5px;
+  }
+
+  .some_buttons {
+    display: flex; 
+    gap: 5px;
+    padding-bottom: 5px;
+  }
+
+  table {
     font-family: arial, sans-serif;
     border-collapse: collapse;
     width: 100%;
@@ -10,7 +24,7 @@ table {
     padding: 8px;
   }
 
-  .score_menu {
-    display: inline-flex; 
-    align-items: center;
-  }
+  .svg_canvas {
+    width: var(--window-width);
+    height: calc(var(--window-height) - 100);
+}

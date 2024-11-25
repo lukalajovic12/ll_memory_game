@@ -1,3 +1,4 @@
+@import "../../../styles.scss";
 $ll-score-chart-canvas-color:lightgray;
 path {
     fill: none;
@@ -8,4 +9,15 @@ path {
     background-color: $ll-score-chart-canvas-color;
     font-family: sans-serif;
     font-size: 10px;
+    height: calc(var(--window-height) -100 );
+}
+
+.border_lines {
+    stroke:blue;
+    stroke-width:2
+}
+
+.point_marks{
+    stroke:blue;
+    stroke-width:1
 }

@@ -7,6 +7,7 @@ import { provideHttpClient, withInterceptorsFromDi } from '@angular/common/http'
 import { FormsModule } from '@angular/forms';
 import { GameScoreComponent } from './game-score/game-score.component';
 import { GameScoreChartComponent } from './game-score/game-score-chart/game-score-chart.component';
+import { GameScoreTableComponent } from './game-score/game-score-table/game-score-table.component';
 import { SquareMemoryComponent } from './square-memory/square-memory.component';
 import { GameTemplateComponent } from './game-template/game-template.component';
 import { HomeComponent } from './home/home.component';
@@ -35,6 +36,7 @@ import {NimMenuComponent} from './nim/nim-menu/nim-menu.component';
         CircleMemoryComponent,
         GameScoreComponent,
         GameScoreChartComponent,
+        GameScoreTableComponent,
         SquareMemoryComponent,
         GameTemplateComponent,
         HomeComponent,

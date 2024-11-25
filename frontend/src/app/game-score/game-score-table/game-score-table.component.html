@@ -1,0 +1,38 @@
+<table>
+    @if(gameType === 'all') {
+    <th>title</th>
+    }
+    <th>points</th>
+    <th>start lives</th>       
+    <th>start level</th>   
+    <th>mistakes</th>  
+    <th>start time</th>  
+    <th>time increase</th>
+    @for(s of score; track s)  {
+    <tr>
+        @if(gameType === 'all') {
+        <td>
+            {{s.title}}
+        </td>
+        }
+        <td>
+            {{s.points}}
+        </td>     
+        <td>
+            {{s.lives}}
+        </td>                 
+        <td>
+            {{s.startLevel}}
+        </td>   
+        <td>
+            {{s.mistakes}}
+        </td>    
+        <td>
+            {{s.startTime}}
+        </td>
+        <td>
+            {{s.timeIncrease}}
+        </td>                                                       
+    </tr>
+    }
+</table>
