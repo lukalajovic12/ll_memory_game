@@ -57,9 +57,6 @@ import {NimMenuComponent} from './nim/nim-menu/nim-menu.component';
         NimMenuComponent
     ],
     bootstrap: [AppComponent], 
-    imports: [BrowserModule,
-        AppRoutingModule,
-        FormsModule,
-        BrowserAnimationsModule ], 
+    imports: [ BrowserModule, AppRoutingModule, FormsModule, BrowserAnimationsModule ], 
     providers: [UserService, provideHttpClient(withInterceptorsFromDi())] })
 export class AppModule { }

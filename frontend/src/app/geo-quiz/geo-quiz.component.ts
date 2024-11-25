@@ -19,9 +19,9 @@ export class GeoQuizComponent extends AreaBase implements OnDestroy  {
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  public continents: Continent[]=[];
+  public continents: Continent[]= [];
 
-  protected geoData:GeoObject[] =[];
+  protected geoData:GeoObject[] = [];
 
   protected gameState:GeoQuizState='settings';
 

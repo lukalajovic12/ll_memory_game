@@ -14,13 +14,3 @@ table {
     display: inline-flex; 
     align-items: center;
   }
-
-  .bar-chart {
-    display: inline-block;
-  }
-  .bar {
-    transition: fill 0.3s;
-  }
-  .bar:hover {
-    fill: #3e8e41;
-  }

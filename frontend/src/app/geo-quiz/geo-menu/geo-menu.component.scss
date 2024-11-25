@@ -2,6 +2,9 @@
 .ll_button.geo_button {
     font-size: 18px;
 }
+.ll_button:disabled {
+    opacity: 0.56
+}
 
 .continents {
     display: flex;
@@ -14,5 +17,15 @@
 }
 
 .data_settings {
-    display: flex;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
 }
+
+.continents_container {
+    padding-top: 5px;
+    display: grid;
+    grid-template-columns: auto auto auto;
+    gap: 5px;
+}
+

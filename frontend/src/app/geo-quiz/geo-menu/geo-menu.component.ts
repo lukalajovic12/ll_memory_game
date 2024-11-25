@@ -1,4 +1,5 @@
 import { Component,EventEmitter, Input, Output } from '@angular/core';
+import { Router } from '@angular/router';
 import { Continent } from '../../game-util';
 @Component({
   selector: 'app-geo-menu',
@@ -21,14 +22,15 @@ export class GeoMenuComponent {
   public time =30;
   @Output() protected timeChange = new EventEmitter<number>();
 
-  constructor() {
-
+  constructor(private router: Router) {
   }
+
+  protected toHome():void {
+    this.router.navigate(['/']);
+  }  
 
   protected disableStart():boolean{
     return this.continents.filter(c =>c.selected).length===0;
-
-
   }
 
 

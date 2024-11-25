@@ -5,20 +5,21 @@
 <h2>
     Choose continents
 </h2>
-<div  class="row">
-    <div *ngFor="let con of continents">
+<div class="continents_container">
+    @for(con of continents; track con) {
+     <div>
         <input type="checkbox" id="{{con.continent}}" name="{{con.continent}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">
-        <label for="{{con.continent}}"> {{con.continent}} </label><br>
-    </div>        
-</div>
+        <label for="{{con.continent}}"> {{con.continent}} </label>
+     </div>   
+    }
+</div>        
 <div class="data_settings">
-    <div class="ll_value">numberOfQuestions: {{numberOfQuestions}}</div>
+    <div class="ll_value">Anwsers: {{numberOfQuestions}}</div>
     <button (click)="plusNumberOfQuestions()" class="ll_button">+1</button>
     <button (click)="minusNumberOfQuestions()" class="ll_button">-1</button>
-</div> 
-<div class="data_settings">
     <div class="ll_value">Time: {{time}}s</div>
     <button (click)="plusTime()" class="ll_button">+10s</button>
     <button (click)="minusTime()" class="ll_button">-10s</button>
-</div>     
-<button (click)="startGame()" class="ll_button" [disabled]="disableStart()">Play </button>             
+    <button (click)="startGame()" class="ll_button" [disabled]="disableStart()">Play </button>             
+    <button (click)="toHome()" class="ll_button"> Back </button>    
+</div>  

@@ -1,5 +1,6 @@
 import { Component, HostListener, Input, OnInit } from '@angular/core';
 import { Score } from '../../game-util';
+import { AreaBase } from 'src/app/area-base';
 
 
 @Component({
@@ -7,12 +8,11 @@ import { Score } from '../../game-util';
   templateUrl: './game-score-chart.component.html',
   styleUrl: './game-score-chart.component.scss'
 })
-export class GameScoreChartComponent implements OnInit{
+export class GameScoreChartComponent extends AreaBase implements OnInit{
 
   @Input() score: Score[]=[];
 
-  protected windowWidth: number; 
-  protected windowHeight: number;
+
 
   protected pathData: string = '';
 
@@ -23,26 +23,12 @@ export class GameScoreChartComponent implements OnInit{
   protected chartMaginX=20;
   protected chartMaginY=10;
 
-  ngOnInit() {
-    this.setupWidths();
+  override ngOnInit() {
+    super.ngOnInit();
     this.generateSplinePath();
   }
-
-  private setupWidths():void {
-    this.windowWidth = Math.min(window.innerWidth-60,500);
-    this.windowHeight = window.innerHeight-150;
-  }
-
-
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.setupWidths();
-    this.generateSplinePath();
-  }    
 
   generateSplinePath(): void {
-
     if (this.score.length > 2) {
     this.pathData="";
     this.xNumbers=[];
