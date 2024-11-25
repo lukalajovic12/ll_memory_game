@@ -4,9 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { Directive, OnInit } from '@angular/core';
 import { saveData,GameDisplayState } from './game-util';
 import {SettingsService} from './settings.service';
-import { Router } from '@angular/router';
 import { AreaBase } from './area-base';
-
+import { Location } from '@angular/common';
 @Directive()
 export abstract class GameBase extends AreaBase implements OnInit {
 
@@ -36,7 +35,7 @@ export abstract class GameBase extends AreaBase implements OnInit {
   constructor(protected http:HttpClient,
     protected _userService: UserService,
     protected _settingsService:SettingsService,
-    private router: Router ){
+    private location: Location ){
       super();
   }
 
@@ -97,7 +96,7 @@ export abstract class GameBase extends AreaBase implements OnInit {
 }
 
   protected toHome():void {
-    this.router.navigate(['/']);
+    this.location.back();
   }  
 
   protected async saveScore() {

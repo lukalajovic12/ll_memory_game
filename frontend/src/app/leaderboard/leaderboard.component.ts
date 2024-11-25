@@ -4,9 +4,9 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import {UserService} from '../user.service';
 import { Leaderboard } from '../game-util';
-import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
+import { Location } from '@angular/common';
+
 @Component({
   selector: 'app-leaderboard',
   templateUrl: './leaderboard.component.html',
@@ -27,7 +27,7 @@ export class LeaderboardComponent  implements OnInit  {
   }
 
   constructor(private  http:HttpClient,
-    public _userService: UserService,private router: Router){}  
+    public _userService: UserService,private location:Location){}  
 
   ngOnInit() {
     if(!this._userService.isAuthenticated()){
@@ -50,7 +50,7 @@ export class LeaderboardComponent  implements OnInit  {
   }
  
   protected toHome():void {
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
 

@@ -6,7 +6,7 @@ import { Score } from '../game-util';
 import { ActivatedRoute } from '@angular/router';
 import { environment } from 'src/environments/environment';
 import { Router } from '@angular/router';
-
+import { Location } from '@angular/common';
 
 
 @Component({
@@ -24,17 +24,9 @@ export class GameScoreComponent implements OnInit {
 
   private title:'all'|'circles'|'squares'='all';
 
-  private scoreUrl():string {
-    if(this.gameType==="all"){
-      return environment.BACKEND_URL + "api/user_score/?user_id="+this._userService.user_id;
-    } else {
-      return environment.BACKEND_URL + "api/user_score/?title="+this.gameType+"&"+"user_id="+this._userService.user_id;
-    }
-  }
-
   constructor(private  http:HttpClient,
     public _userService: UserService,
-    private route: ActivatedRoute,private router: Router){}  
+    private route: ActivatedRoute,private location: Location){}  
 
   ngOnInit() {
   //  if(!this._userService.isAuthenticated()){
@@ -78,13 +70,10 @@ protected onChangeGameDisplay():void {
   }
 
   protected toHome():void {
-    this.router.navigate(['/']);
+    this.location.back();
+    this.location.back();
   }
   protected toBack():void {
-    let url = '/'+this.title;
-    this.router.navigate([url]);
+    this.location.back();
   }  
-
-
-
 }

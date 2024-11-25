@@ -1,7 +1,6 @@
 import { Component,Input } from '@angular/core';
 import {UserService} from '../../user.service';
-import { Router } from '@angular/router';
-import { GameDisplayState } from 'src/app/game-util';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-game-end',
@@ -14,10 +13,10 @@ export class GameEndComponent {
 
   @Input() playAgain:() => void;
 
-  constructor(protected _userService: UserService,private router: Router) { }
+  constructor(protected _userService: UserService,private location:Location) { }
 
   protected toHome(){
-    this.router.navigate(['/']);
+    this.location.back();
   }
 
 }
