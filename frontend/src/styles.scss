@@ -55,11 +55,8 @@ th {
 .ll_button {
     border-radius: 50%;
     display: inline-block;
-    padding: 10px 10px;
     font-size: 18px;
     cursor: pointer;
-    text-align: center;
-    text-decoration: none;
     line-height: 50%;
     outline: none;
     color: $button-text-color;
@@ -91,6 +88,6 @@ th {
     margin-left: var(--sides-width);
     margin-right: var(--sides-width);
     background-color: $ll-background-color;    
-    width: var(--window-width);
+  /*  width: var(--window-width); */
     height: var(--window-height);
 }
