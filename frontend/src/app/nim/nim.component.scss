@@ -4,7 +4,7 @@ $ll-nim-canvas-color:lightgray;
 $ll-nim-circle-color:blue;
 $ll-nim-line-color:black;
 
-.svg_canvas {
+.game_area .svg_canvas {
     background-color: $ll-nim-canvas-color;
     width: var(--window-width);
     height: var(--window-height);
