@@ -78,7 +78,7 @@ export class NimComponent extends AreaBase implements OnInit, OnDestroy {
   }
 
   protected lineLength():number {
-    return this.windowHeight/this.originalRowsLength-20;
+    return this.windowHeight/this.originalRowsLength-30;
 
   }
 

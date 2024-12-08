@@ -4,8 +4,10 @@ $ll-nim-canvas-color:lightgray;
 $ll-nim-circle-color:blue;
 $ll-nim-line-color:black;
 
-.svg_canvas {
+.game_area .svg_canvas {
     background-color: $ll-nim-canvas-color;
+    height: calc(var(--window-height) - 10px);
+    max-height: calc(var(--window-height) - 10px);
 }
 
 .game_circle {
