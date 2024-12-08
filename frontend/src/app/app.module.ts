@@ -23,13 +23,13 @@ import { GameEndComponent } from './game-template/game-end/game-end.component';
 import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { MenuButtonComponent } from './menu-button/menu-button.component';
-import { GeoDataComponent} from './geo-data/geo-data.component';
-import { GeoQuizComponent } from './geo-quiz/geo-quiz.component';
-import { GeoMenuComponent } from './geo-quiz/geo-menu/geo-menu.component';
-import { GeoButtonComponent } from './geo-quiz/geo-button/geo-button.component';
-import { GeoEndComponent } from './geo-quiz/geo-end/geo-end.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { QuizMenuComponent } from './quiz/quiz-menu/quiz-menu.component';
+import { QuizButtonComponent } from './quiz/quiz-button/quiz-button.component';
+import { QuizEndComponent } from './quiz/quiz-end/quiz-end.component';
 import { NimComponent } from './nim/nim.component';
-import {NimMenuComponent} from './nim/nim-menu/nim-menu.component';
+import { NimMenuComponent } from './nim/nim-menu/nim-menu.component';
+import { GeoQuizComponent } from './quiz/geo-quiz/geo-quiz.component'
 
 @NgModule({ declarations: [
         AppComponent,
@@ -50,13 +50,13 @@ import {NimMenuComponent} from './nim/nim-menu/nim-menu.component';
         GameTutorialComponent,
         LeaderboardComponent,
         MenuButtonComponent,
-        GeoDataComponent,
-        GeoQuizComponent,
-        GeoMenuComponent,
-        GeoButtonComponent,
-        GeoEndComponent,
+        QuizComponent,
+        QuizMenuComponent,
+        QuizButtonComponent,
+        QuizEndComponent,
         NimComponent,
-        NimMenuComponent
+        NimMenuComponent,
+        GeoQuizComponent
     ],
     bootstrap: [AppComponent], 
     imports: [ BrowserModule, AppRoutingModule, FormsModule, BrowserAnimationsModule ], 

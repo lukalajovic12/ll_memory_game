@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { GeoEndComponent } from './geo-end.component';
+import { QuizMenuComponent } from './quiz-menu.component';
 
-describe('GeoEndComponent', () => {
-  let component: GeoEndComponent;
-  let fixture: ComponentFixture<GeoEndComponent>;
+describe('GeoMenuComponent', () => {
+  let component: QuizMenuComponent;
+  let fixture: ComponentFixture<QuizMenuComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [GeoEndComponent]
+      declarations: [QuizMenuComponent]
     });
-    fixture = TestBed.createComponent(GeoEndComponent);
+    fixture = TestBed.createComponent(QuizMenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

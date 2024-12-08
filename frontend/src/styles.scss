@@ -6,12 +6,10 @@
 //primary button
 //#8d2ce9
 
-
 //$ll-background-color:#336AE9;
 $ll-background-color:#023c23;
 
 $ll-text-color:#fffffffb;
-
 
 $ll-circles-circle-color:#030888;
 $ll-circles-mistake-color:#fed131;
@@ -85,9 +83,18 @@ th {
 }
 
 .game_area {
-    margin-left: var(--sides-width);
-    margin-right: var(--sides-width);
-    background-color: $ll-background-color;    
-  /*  width: var(--window-width); */
-    height: var(--window-height);
+    display: flex;
+    justify-content: center;
+}
+
+.game_area div {
+    max-width: var(--window-width); 
+    max-height: var(--window-height);
+}
+
+.game_area svg {
+    max-width: var(--window-width); 
+    max-height: var(--window-width);
+    width: var(--window-width);
+    height: var(--window-width);
 }

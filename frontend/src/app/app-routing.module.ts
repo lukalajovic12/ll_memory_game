@@ -7,8 +7,7 @@ import { HomeComponent } from './home/home.component';
 import { GameSettingsComponent } from './game-settings/game-settings.component';
 import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
-import { GeoDataComponent} from './geo-data/geo-data.component'
-import { GeoQuizComponent} from './geo-quiz/geo-quiz.component'
+import { GeoQuizComponent } from './quiz/geo-quiz/geo-quiz.component'
 import {NimComponent} from './nim/nim.component'
 import { CIRCLES, SQUARES } from './game-util';
 const routes: Routes = [
@@ -19,7 +18,6 @@ const routes: Routes = [
   {path: 'settings', component:GameSettingsComponent},    
   {path: 'tutorial', component:GameTutorialComponent},
   {path: 'leaderboard', component:LeaderboardComponent},
-  {path: 'geo-data', component:GeoDataComponent},  
   {path: 'geo-quiz', component:GeoQuizComponent}, 
   {path:'nim',component:NimComponent} 
 ];

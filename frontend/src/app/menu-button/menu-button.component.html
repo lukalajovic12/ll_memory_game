@@ -1,5 +1,5 @@
-<div [ngStyle]="{ 'padding-top.px':buttonDivPadding(), 'padding-bottom.px':buttonDivPadding() }" >
-    <button (click)="invokeAction()" class="menu_button" [ngStyle]="{ 'width.px': windowSize-20, 'height.px':buttonHeight()}">
+<div class="menu_button_container">
+    <button (click)="invokeAction()" class="menu_button">
         {{ text }}
     </button>
 </div>

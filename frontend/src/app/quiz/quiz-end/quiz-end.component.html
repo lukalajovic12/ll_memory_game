@@ -1,16 +1,16 @@
 <div *ngFor="let anwser of anwsers; let i = index">
     <div class="question">
-    {{i+1}}. {{anwser.countryCorrect.capital}} is the capital of
+    {{i+1}}. {{anwser.countryCorrect.question}} is the capital of
     </div>
     <div class="correct">
         <div class="correct_left">Correct anwser</div>
-        <div class="correct_right" >{{ anwser.countryCorrect.country }}</div>        
+        <div class="correct_right" >{{ anwser.countryCorrect.anwser }}</div>        
     </div>
     <div class="anwsered" [ngClass]="anwser.countryCorrect === anwser.countryAnwsered ? 'correct':'wrong'">
         <div class="anwsered_left">Anwsered</div>
-        <div class="anwsered_right">{{ anwser.countryAnwsered.country }} </div>   
+        <div class="anwsered_right">{{ anwser.countryAnwsered.anwser }} </div>   
     </div>
 </div>
 <div class="play_again">
-    <button class="ll_button geo_button" (click)="invokeAction()"> Play again </button>
+    <button class="ll_button quiz_button" (click)="invokeAction()"> Play again </button>
 </div>

@@ -1,6 +1,6 @@
 @import "../../styles.scss";
 
-.geo_button {
+.quiz_button {
     border-radius: 50%;
     display: inline-block;
     padding: 1px 1px;
@@ -16,10 +16,10 @@
     border: 1px solid $button-border-color;  
 }
 
-.geo_button:hover {
+.quiz_button:hover {
     background-color: $button-background-hover;
 }
-.geo_button:active {
+.quiz_button:active {
     background-color: $button-background-active;
     transform: translateY(4px);
 }
@@ -44,6 +44,6 @@
     color:$ll-text-color;
 }
 
-.ll_button.geo_button {
+.ll_button.quiz_button {
     font-size: 18px;
 }

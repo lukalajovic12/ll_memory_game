@@ -1,59 +1,70 @@
-import { Component, HostListener, OnInit, OnDestroy  } from '@angular/core';
-import { updateWindowWidth,updateWindowHeight } from '../game-util';
+import { Component, Input, OnDestroy, OnInit  } from '@angular/core';
 import { interval, Subject } from 'rxjs';
 import { takeUntil, take } from 'rxjs/operators';
-import { Continent, GeoObject, countriesList, GeoAnwser } from '../game-util';
+import { Category, QuizObject, QuizAnwser } from '../game-util';
 import { AreaBase } from '../area-base';
 
-export type GeoQuizState = 'settings' | 'game' | 'end';
+export type QuizState = 'settings' | 'game' | 'end';
 @Component({
-  selector: 'app-geo-quiz',
-  templateUrl: './geo-quiz.component.html',
-  styleUrls: ['./geo-quiz.component.scss']
+  selector: 'app-quiz',
+  templateUrl: './quiz.component.html',
+  styleUrls: ['./quiz.component.scss']
 })
-export class GeoQuizComponent extends AreaBase implements OnDestroy  {
+export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
 
-  protected questions:GeoObject[] = [];
-  protected question:GeoObject;
-  private countries:{ [key: string]: string[][]; }={};
+  protected questions:QuizObject[] = [];
+  protected question:QuizObject;
+
+  @Input()
+  public title:string;
+  @Input()
+  public chooseCategories:string;
+
+  @Input()
+  public quizList:{ [key: string]: string[][]; }={};
+
+  @Input() displayQuestion: (QuizObject) => string;
 
   private unsubscribe$: Subject<void> = new Subject<void>();
 
-  public continents: Continent[]= [];
+  public categories: Category[]= [];
 
-  protected geoData:GeoObject[] = [];
+  protected quizData:QuizObject[] = [];
 
-  protected gameState:GeoQuizState='settings';
+  protected gameState:QuizState='settings';
 
   public numberOfQuestions = 3;
 
 
-  protected anwsers:GeoAnwser[]=[];
+  protected anwsers:QuizAnwser[]=[];
 
-  protected correct:GeoObject[] = [];
+  protected correct:QuizObject[] = [];
 
-  protected wrongAnwser:GeoObject = null;  
-  protected correctAnwser:GeoObject = null;  
+  protected wrongAnwser:QuizObject = null;  
+  protected correctAnwser:QuizObject = null;  
 
   public time = 30;
   protected timeLeft = this.time;
 
   constructor() {
     super();
-    this.countries=countriesList;
-    this.continents=this.getContinents();
+  }
+
+  override ngOnInit() {
+    super.ngOnInit();
+    this.categories=this.getCategories();
   }
 
   protected displayQuestionText():string {
     if(this.question) {
-      return this.question.capital+" is the capital of?";
+      return this.displayQuestion(this.question);
     } else {
       return "";
     }
   }
 
   private createQuestions() {
-    if(this.correct.length === this.geoData.length) {
+    if(this.correct.length === this.quizData.length) {
       this.gameState = 'end';
       this.timeLeft = 0;
       this.unsubscribe$.next();
@@ -62,13 +73,13 @@ export class GeoQuizComponent extends AreaBase implements OnDestroy  {
       this.correctAnwser=null;
       this.wrongAnwser=null;
       let sq = [];
-      for(let i=0;i<(this.geoData.length);i++){
+      for(let i=0;i<(this.quizData.length);i++){
         sq.push(i);
       }
       this.questions = [];
       let shuffledNumbers = sq.sort((a, b) => 0.5 - Math.random());
       for(let i=0;i<this.numberOfQuestions;i++){
-        let gg =this.geoData[shuffledNumbers[i]];
+        let gg =this.quizData[shuffledNumbers[i]];
         this.questions.push(gg);
       }
       this.question=this.questions[0];
@@ -106,7 +117,7 @@ export class GeoQuizComponent extends AreaBase implements OnDestroy  {
     this.timeLeft = this.time;
     this.correct = [];
     this.anwsers = [];
-    this.getGeoData();
+    this.getQuizData();
     this.createQuestions();
     this.startCountdown();
   }
@@ -116,7 +127,7 @@ export class GeoQuizComponent extends AreaBase implements OnDestroy  {
   }
 
 
-  checkAnswer(cc: GeoObject) {
+  checkAnswer(cc: QuizObject) {
     if(this.question === cc) {
       this.correctAnwser = cc;
       this.correct.push(cc);
@@ -125,7 +136,7 @@ export class GeoQuizComponent extends AreaBase implements OnDestroy  {
       this.wrongAnwser = cc;
     }
 
-    let anw:GeoAnwser = {countryCorrect:this.question,countryAnwsered:cc};
+    let anw:QuizAnwser = {countryCorrect:this.question,countryAnwsered:cc};
     this.anwsers.push(anw);
       setTimeout(() => {
         this.createQuestions();
@@ -133,22 +144,22 @@ export class GeoQuizComponent extends AreaBase implements OnDestroy  {
     
   }
 
-   getGeoData():void {
-    this.geoData=[];
-    for(let con of this.continents) {
+  protected getQuizData():void {
+    this.quizData=[];
+    for(let con of this.categories) {
       if(con.selected){
-        for(let c of this.countries[con.continent]) {
-          let g:GeoObject ={continent:con.continent,country:c[0],capital:c[1]};
-          this.geoData.push(g);
+        for(let c of this.quizList[con.category]) {
+          let q:QuizObject ={categoy:con.category, anwser:c[0],question:c[1]};
+          this.quizData.push(q);
         }
       }
     }
   }
 
-  private getContinents():Continent[] {
-    let list:Continent[] =[];
-    for(let key in this.countries){
-      list.push({continent:key,selected:false});
+  private getCategories():Category[] {
+    let list:Category[] =[];
+    for(let key in this.quizList){
+      list.push({category:key,selected:false});
     }
     return list;
   }

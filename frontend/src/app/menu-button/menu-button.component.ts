@@ -1,11 +1,11 @@
-import { Component, HostListener ,Input, OnInit } from '@angular/core';
-import { updateWindowWidth } from 'src/app/game-util';
+import { Component, Input, OnInit } from '@angular/core';
+import { AreaBase } from '../area-base';
 @Component({
   selector: 'app-menu-button',
   templateUrl: './menu-button.component.html',
   styleUrls: ['./menu-button.component.scss']
 })
-export class MenuButtonComponent implements OnInit {
+export class MenuButtonComponent extends AreaBase {
 
   @Input() action: () => void;
 
@@ -16,28 +16,5 @@ export class MenuButtonComponent implements OnInit {
       this.action();
     }
   }
-
-
-  private windowHeight: number;
-  protected windowSize: number;
-
-  protected buttonDivPadding():number {
-    return this.windowHeight/32;   
-  }
-
-  protected buttonHeight():number {
-    return this.windowHeight/16;
-  }
-
-  ngOnInit() {
-    this.windowSize = updateWindowWidth();
-    this.windowHeight = window.innerHeight;
-  }  
-  // HostListener to listen for window resize event
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    this.windowHeight = window.innerHeight;
-    this.windowSize = updateWindowWidth();
-  }    
 
 }

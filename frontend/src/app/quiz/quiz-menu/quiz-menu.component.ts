@@ -1,16 +1,22 @@
 import { Component,EventEmitter, Input, Output } from '@angular/core';
 import { Location } from '@angular/common';
-import { Continent } from '../../game-util';
+import { Category } from '../../game-util';
 @Component({
-  selector: 'app-geo-menu',
-  templateUrl: './geo-menu.component.html',
-  styleUrls: ['./geo-menu.component.scss']
+  selector: 'app-quiz-menu',
+  templateUrl: './quiz-menu.component.html',
+  styleUrls: ['./quiz-menu.component.scss']
 })
-export class GeoMenuComponent {
+export class QuizMenuComponent {
 
   @Input()
-  public continents: Continent[]=[];
-  @Output() continentsChange = new EventEmitter<Continent[]>();
+  public title:string;
+
+  @Input()
+  public chooseCategories:string;
+
+  @Input()
+  public categories: Category[]=[];
+  @Output() categoriesChange = new EventEmitter<Category[]>();
 
   @Input() startGame:() => void;
 
@@ -30,12 +36,12 @@ export class GeoMenuComponent {
   }  
 
   protected disableStart():boolean{
-    return this.continents.filter(c =>c.selected).length===0;
+    return this.categories.filter(c =>c.selected).length===0;
   }
 
 
   protected continentsValueChange():void{
-    this.continentsChange.emit(this.continents);
+    this.categoriesChange.emit(this.categories);
   }
 
   protected plusNumberOfQuestions(){

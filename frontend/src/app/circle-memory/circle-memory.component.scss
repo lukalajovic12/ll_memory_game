@@ -1,8 +1,6 @@
 @import "../../styles.scss";
 .svg_canvas {
     background-color: $ll-circles-canvas-color;
-    width: var(--window-width);
-    height: var(--window-width);
 }
 
 .game_circle:hover {

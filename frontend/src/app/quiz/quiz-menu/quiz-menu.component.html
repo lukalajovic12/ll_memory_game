@@ -1,15 +1,15 @@
 
 <h1>
-    Geo quiz
+    {{ title }}
 </h1>
 <h2>
-    Choose continents
+   {{chooseCategories}} 
 </h2>
 <div class="continents_container">
-    @for(con of continents; track con) {
+    @for(con of categories; track con) {
      <div>
-        <input type="checkbox" id="{{con.continent}}" name="{{con.continent}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">
-        <label for="{{con.continent}}"> {{con.continent}} </label>
+        <input type="checkbox" id="{{con.category}}" name="{{con.category}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">
+        <label for="{{con.category}}"> {{con.category}} </label>
      </div>   
     }
 </div>        

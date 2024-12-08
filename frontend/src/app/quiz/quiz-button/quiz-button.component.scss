@@ -1,5 +1,17 @@
 @import "../../../styles.scss";
+
+
+.quiz_button_container {
+    padding-top: calc(var(--window-height) / 32);
+    padding-bottom: calc(var(--window-height) / 32);
+
+}
+
+
+
 button {
+    width: calc(var(--window-width) - 20px);
+    height:  calc(var(--window-height) / 16);;   
     display: inline-block;
     font-size: 18px;
     cursor: pointer;

@@ -118,18 +118,18 @@ export function saveData(title:string,gamePoints:number,customGame:boolean,
  
    export const countriesList2 = {'abcde': [['a', 'a'],['b','b'],['c','c'],['d','d'],['e','e']]};
 
-  export interface GeoObject {
-    country: string,
-    capital: string,
-    continent: string
+  export interface QuizObject {
+    question: string,
+    anwser: string,
+    categoy: string
   }
   
-  export interface Continent {
-    continent: string,
+  export interface Category {
+    category: string,
     selected:boolean
   }
 
-  export interface GeoAnwser {
-    countryCorrect: GeoObject,
-    countryAnwsered:GeoObject
+  export interface QuizAnwser {
+    countryCorrect: QuizObject,
+    countryAnwsered:QuizObject
   }
