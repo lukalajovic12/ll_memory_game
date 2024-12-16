@@ -29,7 +29,11 @@ import { QuizButtonComponent } from './quiz/quiz-button/quiz-button.component';
 import { QuizEndComponent } from './quiz/quiz-end/quiz-end.component';
 import { NimComponent } from './nim/nim.component';
 import { NimMenuComponent } from './nim/nim-menu/nim-menu.component';
-import { GeoQuizComponent } from './quiz/geo-quiz/geo-quiz.component'
+import { GeoQuizComponent } from './quiz/geo-quiz/geo-quiz.component';
+import { GreekAlphabetQuizComponent } from './quiz/greek-alphabet-quiz/greek-alphabet-quiz.component';
+import { UkranianCirilicAlphabetQuizComponent } from './quiz/ukranian-cirilic-alphabet-quiz/ukranian-cirilic-alphabet-quiz.component';
+
+
 
 @NgModule({ declarations: [
         AppComponent,
@@ -56,7 +60,9 @@ import { GeoQuizComponent } from './quiz/geo-quiz/geo-quiz.component'
         QuizEndComponent,
         NimComponent,
         NimMenuComponent,
-        GeoQuizComponent
+        GeoQuizComponent,
+        GreekAlphabetQuizComponent,
+        UkranianCirilicAlphabetQuizComponent
     ],
     bootstrap: [AppComponent], 
     imports: [ BrowserModule, AppRoutingModule, FormsModule, BrowserAnimationsModule ], 

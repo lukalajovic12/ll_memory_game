@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { QuizAnwser } from '../../game-util';
+import { QuizAnwser, QuizObject } from '../../game-util';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-quiz-end',
   templateUrl: './quiz-end.component.html',
@@ -11,10 +12,19 @@ export class QuizEndComponent {
 
   @Input() action: () => void;
 
+  @Input() displayQuestion: (QuizObject) => string;
+
+  constructor(private location: Location) {
+  }
+
   invokeAction(): void {
     if (this.action) {
       this.action();
     }
+  }  
+
+  protected toHome():void {
+    this.location.back();
   }  
 
 }

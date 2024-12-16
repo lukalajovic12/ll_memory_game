@@ -18,7 +18,7 @@ export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
   @Input()
   public title:string;
   @Input()
-  public chooseCategories:string;
+  public chooseCategories?:string;
 
   @Input()
   public quizList:{ [key: string]: string[][]; }={};
@@ -136,7 +136,7 @@ export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
       this.wrongAnwser = cc;
     }
 
-    let anw:QuizAnwser = {countryCorrect:this.question,countryAnwsered:cc};
+    let anw:QuizAnwser = {correct:this.question,anwsered:cc};
     this.anwsers.push(anw);
       setTimeout(() => {
         this.createQuestions();
@@ -146,8 +146,9 @@ export class QuizComponent extends AreaBase implements OnDestroy, OnInit  {
 
   protected getQuizData():void {
     this.quizData=[];
+    const noneSelected = this.categories.filter(c => c.selected).length === 0;
     for(let con of this.categories) {
-      if(con.selected){
+      if(noneSelected || con.selected){
         for(let c of this.quizList[con.category]) {
           let q:QuizObject ={categoy:con.category, anwser:c[0],question:c[1]};
           this.quizData.push(q);

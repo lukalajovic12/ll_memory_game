@@ -2,17 +2,19 @@
 <h1>
     {{ title }}
 </h1>
+@if( categories.length>1){
 <h2>
    {{chooseCategories}} 
 </h2>
-<div class="continents_container">
+<div class="categories_container">
     @for(con of categories; track con) {
      <div>
         <input type="checkbox" id="{{con.category}}" name="{{con.category}}" [(ngModel)]="con.selected" (ngModelChange)="continentsValueChange()">
         <label for="{{con.category}}"> {{con.category}} </label>
      </div>   
     }
-</div>        
+</div>
+}
 <div class="data_settings">
     <div class="ll_value">Anwsers: {{numberOfQuestions}}</div>
     <button (click)="plusNumberOfQuestions()" class="ll_button menu_button">+1</button>

@@ -19,7 +19,7 @@
             [action]="checkAnswer.bind(this, cc)" />
         </ng-container>
         <ng-container *ngIf="gameState === 'end'">
-            <app-quiz-end [action]="playAgain" [anwsers]="anwsers" />
+            <app-quiz-end [action]="playAgain" [anwsers]="anwsers" [displayQuestion]="displayQuestion" />
         </ng-container>
     </div>
   </div>

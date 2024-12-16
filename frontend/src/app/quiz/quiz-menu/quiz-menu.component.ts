@@ -12,7 +12,7 @@ export class QuizMenuComponent {
   public title:string;
 
   @Input()
-  public chooseCategories:string;
+  public chooseCategories?:string;
 
   @Input()
   public categories: Category[]=[];
@@ -36,9 +36,8 @@ export class QuizMenuComponent {
   }  
 
   protected disableStart():boolean{
-    return this.categories.filter(c =>c.selected).length===0;
+    return this.categories.length > 1 && this.categories.filter(c =>c.selected).length===0;
   }
-
 
   protected continentsValueChange():void{
     this.categoriesChange.emit(this.categories);

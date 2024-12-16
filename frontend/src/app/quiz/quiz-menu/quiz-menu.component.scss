@@ -7,10 +7,6 @@
     opacity: 0.56
 }
 
-.continents {
-    display: flex;
-}
-
 .ll_value {
     font-size: 18px;
     padding: 1px;
@@ -23,10 +19,11 @@
     gap: 5px;
 }
 
-.continents_container {
+.categories_container {
     padding-top: 5px;
     display: grid;
     grid-template-columns: auto auto auto;
-    gap: 5px;
+    gap: 10px;
+    padding: 10px;
 }
 

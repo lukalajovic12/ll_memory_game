@@ -8,7 +8,10 @@ import { GameSettingsComponent } from './game-settings/game-settings.component';
 import { GameTutorialComponent } from './game-tutorial/game-tutorial.component';
 import { LeaderboardComponent } from './leaderboard/leaderboard.component';
 import { GeoQuizComponent } from './quiz/geo-quiz/geo-quiz.component'
-import {NimComponent} from './nim/nim.component'
+import { NimComponent } from './nim/nim.component'
+import { GreekAlphabetQuizComponent } from './quiz/greek-alphabet-quiz/greek-alphabet-quiz.component';
+import { UkranianCirilicAlphabetQuizComponent } from './quiz/ukranian-cirilic-alphabet-quiz/ukranian-cirilic-alphabet-quiz.component';
+
 import { CIRCLES, SQUARES } from './game-util';
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -19,6 +22,8 @@ const routes: Routes = [
   {path: 'tutorial', component:GameTutorialComponent},
   {path: 'leaderboard', component:LeaderboardComponent},
   {path: 'geo-quiz', component:GeoQuizComponent}, 
+  {path: 'greek-alphabet', component:GreekAlphabetQuizComponent},  
+  {path: 'cirilic', component:UkranianCirilicAlphabetQuizComponent},  
   {path:'nim',component:NimComponent} 
 ];
 

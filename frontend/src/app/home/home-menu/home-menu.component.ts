@@ -32,10 +32,17 @@ export class HomeMenuComponent {
     this.router.navigate(['/geo-quiz']);      
   }
 
+  public toGreek = () => {
+    this.router.navigate(['/greek-alphabet']);      
+  }
+
+  public toCirilic = () => {
+    this.router.navigate(['/cirilic']);      
+  }
+
   public toNim = () => {
     this.router.navigate(['/nim']);     
   }
-
 
   public toLeaderboard = () =>  {
     this.router.navigate(['/leaderboard']);    

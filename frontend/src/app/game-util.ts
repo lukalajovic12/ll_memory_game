@@ -130,6 +130,6 @@ export function saveData(title:string,gamePoints:number,customGame:boolean,
   }
 
   export interface QuizAnwser {
-    countryCorrect: QuizObject,
-    countryAnwsered:QuizObject
+    correct: QuizObject,
+    anwsered:QuizObject
   }
